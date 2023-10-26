@@ -23,6 +23,12 @@ tag:
   subtitle: '标签'
   post_total: '共计 %d 篇文章'
 
+proxy:
+  menu: '代理'
+  title: '代理'
+  subtitle: '代理'
+  post_total: '共计 %d 篇文章'
+
 about:
   menu: '关于'
   title: '关于'

@@ -17,6 +17,12 @@ category:
   post_total: '%d posts in total'
   more: 'More...'
 
+proxy:
+  menu: 'Proxies'
+  title: 'Proxies'
+  subtitle: 'Proxies'
+  post_total: '%d posts in total'
+
 tag:
   menu: 'Tags'
   title: 'Tags'

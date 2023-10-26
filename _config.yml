@@ -56,6 +56,10 @@ prismjs:
   line_number: true
   tab_replace: ''
 
+# Menu
+menu:
+  About: /info
+
 # Home page setting
 # path: Root path for your blogs index page. (default = '')
 # per_page: Posts displayed per page. (0 = disable pagination)
@@ -103,5 +107,5 @@ theme: fluid
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: 'git'
-  repo: 'git@github.com:jiaminglu0716/hexo-blog.git'
+  repo: 'git@github.com:jiaminglu0716/mvlg-blog.git'
   branch: 'master'
