@@ -1,5 +1,5 @@
 ---
-title: Hello World
+title: Hexo Infomation
 categories:
 - Default
 tags:
