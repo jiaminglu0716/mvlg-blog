@@ -1,5 +1,5 @@
 ---
-title: test
+title: Proxy
 layout: test
 ---
 

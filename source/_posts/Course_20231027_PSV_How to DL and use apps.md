@@ -1,5 +1,5 @@
 ---
-title: PSV使用文档
+title: 【教程】PSV使用文档
 categories:
 - Gamer
 - Portable

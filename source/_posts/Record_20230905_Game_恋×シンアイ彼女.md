@@ -1,5 +1,5 @@
 ---
-title: 记录
+title: 【速记】恋×シンアイ彼女
 categories:
 - Gamer
 - Galgame
