@@ -1,5 +1,6 @@
 ---
 title: 【教程】Hexo - Create new page
+date: 2023-10-28 21:56:00
 categories:
 - Default
 tags:

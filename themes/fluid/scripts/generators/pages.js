@@ -80,3 +80,12 @@ hexo.extend.generator.register('_posts', function(locals) {
     };
   }
 });
+
+hexo.extend.generator.register('_postsc', function(locals) {
+  // console.log(Object.keys(locals.all_posts))
+  // console.log(locals.all_posts.data[0].slug)
+  return {
+    path  : 'c/index.html', 
+    layout: 'postsc'
+  };
+});
