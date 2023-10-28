@@ -1,5 +1,5 @@
 ---
-title: 记录
+title: 【速记】Lunaria
 categories:
 - Gamer
 - Galgame

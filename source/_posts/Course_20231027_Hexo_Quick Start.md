@@ -1,5 +1,5 @@
 ---
-title: Hexo Infomation
+title: 【教程】Hexo - Quick Start
 categories:
 - Default
 tags:

@@ -1,5 +1,5 @@
 ---
-title: Summer Pockets Reflection Blue
+title: 【感想】Summer Pockets Reflection Blue
 categories:
 - Gamer
 - Galgame

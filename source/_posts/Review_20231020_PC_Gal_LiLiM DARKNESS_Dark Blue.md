@@ -1,5 +1,5 @@
 ---
-title: Dark Blue
+title: 【感想】Dark Blue
 date: 2023-10-20 14:44:00
 categories:
 - Gamer

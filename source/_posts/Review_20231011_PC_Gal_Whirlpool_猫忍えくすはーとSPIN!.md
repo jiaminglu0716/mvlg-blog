@@ -1,5 +1,5 @@
 ---
-title: 猫忍えくすはーとSPIN!
+title: 【感想】猫忍えくすはーとSPIN!
 categories:
 - Gamer
 - Galgame

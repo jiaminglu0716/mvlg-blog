@@ -1,5 +1,5 @@
 ---
-title: アイカギ
+title: 【感想】アイカギ
 date: 2023-10-17 15:13:00
 categories:
 - Gamer

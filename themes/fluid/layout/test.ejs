@@ -1,0 +1,16 @@
+<%
+page.layout = "test"
+page.title = theme.pageTest.title || __('test.title')
+if (theme.index.slogan.enable) {
+  page.subtitle = theme.index.slogan.text || config.subtitle || ''
+}
+page.banner_img = theme.index.banner_img
+page.banner_img_height = theme.index.banner_img_height
+page.banner_mask_alpha = theme.index.banner_mask_alpha
+%>
+
+<!-- 文章选项列表-博客主页 -->
+<h1>HHH</h1>
+<%= theme.pageTest.title %>
+
+<%- partial('_partials/paginator') %>

@@ -1,5 +1,5 @@
 ---
-title: 瑠璃櫻
+title: 【感想】瑠璃櫻
 categories:
 - Gamer
 - Galgame

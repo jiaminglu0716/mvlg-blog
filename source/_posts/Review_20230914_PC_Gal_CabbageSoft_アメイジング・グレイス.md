@@ -1,5 +1,5 @@
 ---
-title: アメイジング・グレイス -What color is your attribute?-
+title: 【感想】アメイジング・グレイス -What color is your attribute?-
 categories:
 - Gamer
 - Galgame

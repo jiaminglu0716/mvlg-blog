@@ -1,5 +1,5 @@
 ---
-title: 提亚拉之泪:花冠的大地
+title: 【感想】提亚拉之泪:花冠的大地
 categories:
 - Gamer
 - Galgame

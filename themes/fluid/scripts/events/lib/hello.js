@@ -1,5 +1,6 @@
 'use strict';
 
+// 控制台 Banner
 module.exports = (hexo) => {
   if (hexo.theme.has_hello) {
     return;

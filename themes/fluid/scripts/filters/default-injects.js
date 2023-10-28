@@ -4,6 +4,7 @@
 
 const path = require('path');
 
+// 主题布局ejs模板引入
 hexo.extend.filter.register('theme_inject', function(injects) {
   injects.header.file('default', path.join(hexo.theme_dir, 'layout/_partials/header.ejs'));
   injects.footer.file('default', path.join(hexo.theme_dir, 'layout/_partials/footer.ejs'));

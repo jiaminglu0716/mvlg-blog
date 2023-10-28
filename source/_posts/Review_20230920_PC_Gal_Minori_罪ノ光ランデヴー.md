@@ -1,5 +1,5 @@
 ---
-title: 罪ノ光ランデヴー
+title: 【感想】罪ノ光ランデヴー
 categories:
 - Gamer
 - Galgame

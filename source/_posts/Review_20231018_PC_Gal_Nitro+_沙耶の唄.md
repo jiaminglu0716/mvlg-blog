@@ -1,5 +1,5 @@
 ---
-title: 沙耶の唄
+title: 【感想】沙耶の唄
 date: 2023-10-18 17:40:00
 categories:
 - Gamer

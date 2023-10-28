@@ -5,6 +5,8 @@ const path = require('path');
 const objUtil = require('../../utils/object');
 const { isNotEmptyObject } = require('../../utils/object');
 
+
+// 主题配置文件（检测与合并）
 module.exports = (hexo) => {
   const isZh = hexo.theme.i18n.languages[0].search(/zh-CN/i) !== -1;
 
@@ -16,10 +18,12 @@ module.exports = (hexo) => {
     if (data && isNotEmptyObject(data.fluid_config)) {
       dataConfig = data.fluid_config;
     } else if (!configFromRoot(hexo)) {
+      // 不修改源主题代码配置提醒，使用覆盖配置模式。
+      // 核心还是魔改主题，无所谓
       if (isZh) {
-        hexo.log.warn('[Fluid] 推荐你使用覆盖配置功能: https://hexo.fluid-dev.com/docs/guide/#%E8%A6%86%E7%9B%96%E9%85%8D%E7%BD%AE');
+        // hexo.log.warn('[Fluid] 推荐你使用覆盖配置功能: https://hexo.fluid-dev.com/docs/guide/#%E8%A6%86%E7%9B%96%E9%85%8D%E7%BD%AE');
       } else {
-        hexo.log.warn('[Fluid] It is recommended that you use override configuration: https://hexo.fluid-dev.com/docs/en/guide/#override-configuration');
+        // hexo.log.warn('[Fluid] It is recommended that you use override configuration: https://hexo.fluid-dev.com/docs/en/guide/#override-configuration');
       }
     }
     if (data && isNotEmptyObject(data.fluid_static_prefix)) {
@@ -87,6 +91,7 @@ module.exports = (hexo) => {
   hexo.log.debug('[Fluid] Output theme config:\n', JSON.stringify(hexo.theme.config, undefined, 2));
 };
 
+// 根目录覆盖式配置文件名称
 const configFromRoot = (hexo) => {
   const configPath = path.join(hexo.base_dir, '_config.fluid.yml');
   return fs.existsSync(configPath);

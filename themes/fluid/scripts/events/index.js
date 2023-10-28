@@ -2,6 +2,7 @@
 
 'use strict';
 
+// 基于Hexo生命周期钩子进行库引入事件挂载
 hexo.on('generateBefore', () => {
   require('./lib/merge-configs')(hexo);
   require('./lib/compatible-configs')(hexo);

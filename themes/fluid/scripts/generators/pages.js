@@ -5,6 +5,8 @@
 const fs = require('fs');
 const path = require('path');
 
+// 页面布局生成器，适用于 hexo new 指令
+
 // generate 404 page
 if (!fs.existsSync(path.join(hexo.source_dir, '404.html'))) {
   hexo.extend.generator.register('_404', function(locals) {
@@ -47,6 +49,34 @@ hexo.extend.generator.register('_links', function(locals) {
       path  : 'links/index.html',
       data  : locals.theme,
       layout: 'links'
+    };
+  }
+});
+
+/**
+ * 页面路由注册
+ * - page 路由地址
+ * - data 传递数据
+ * - layout 主题布局模板
+ */
+hexo.extend.generator.register('_test', function(locals) {
+  if (this.theme.config.pageTest.enable !== false) {
+    console.log(Object.keys(this))
+    return {
+      path  : 'test/index.html', 
+      data  : locals.theme,
+      layout: 'test'
+    };
+  }
+});
+
+hexo.extend.generator.register('_posts', function(locals) {
+  if (this.theme.config.pageTest.enable !== false) {
+    // console.log(Object.keys(locals.all_posts))
+    // console.log(locals.all_posts.data[0].slug)
+    return {
+      path  : 'posts/index.html', 
+      layout: 'posts'
     };
   }
 });

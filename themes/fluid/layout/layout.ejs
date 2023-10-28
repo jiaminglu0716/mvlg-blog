@@ -8,9 +8,11 @@ var colorSchema = theme.dark_mode && theme.dark_mode.enable && theme.dark_mode.d
 
 <%- partial('_partials/head.ejs') %>
 
+<!-- fluid通用布局模板(影响每个应用的页面)-->
 <body>
   <%- inject_point('bodyBegin') %>
 
+  <!-- 隐藏层头部，位于真实头部下方 -->
   <header>
     <%- inject_point('header') %>
   </header>
@@ -19,6 +21,7 @@ var colorSchema = theme.dark_mode && theme.dark_mode.enable && theme.dark_mode.d
     <% if(is_post() || page.layout === '404') { %>
       <%- body %>
     <% } else { %>
+      <!-- 博客内容层外框 -->
       <div class="container nopadding-x-md">
         <div id="board"
           <%- banner_img_height >= 100 && theme.banner && theme.banner.parallax ? 'style="margin-top: 0"' : '' %>>
@@ -27,6 +30,7 @@ var colorSchema = theme.dark_mode && theme.dark_mode.enable && theme.dark_mode.d
               <img src="<%= url_for(theme.about.avatar) %>" class="img-fluid" alt="avatar">
             </div>
           <% } %>
+          <!-- 博客内容层内框 -->
           <div class="container">
             <div class="row">
               <div class="col-12 col-md-10 m-auto">

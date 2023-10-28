@@ -1,5 +1,5 @@
 ---
-title: LUNARiA -Virtualized Moonchild-
+title: 【感想】LUNARiA -Virtualized Moonchild-
 date: 2023-10-24 02:19:32
 index_img: https://pic.imgdb.cn/item/653baa71c458853aef224319.png
 banner_img: https://pic.imgdb.cn/item/653baa71c458853aef224319.png

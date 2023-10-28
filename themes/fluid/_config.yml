@@ -354,7 +354,7 @@ navbar:
     - { key: "archive", link: "/archives/", icon: "iconfont icon-archive-fill" }
     - { key: "category", link: "/categories/", icon: "iconfont icon-category-fill" }
     - { key: "tag", link: "/tags/", icon: "iconfont icon-tags-fill" }
-    # - { key: "教程", link: "/info/", icon: "iconfont icon-books" }
+    - { key: "教程", link: "/test/", icon: "iconfont icon-books" }
     - { key: "proxy", link: "/proxy/", icon: "iconfont icon-user-fill" }
     - { key: "about", link: "/about/", icon: "iconfont icon-user-fill" }
     - { key: "links", link: "/links/", icon: "iconfont icon-link-fill" }
@@ -976,6 +976,17 @@ page:
   banner_img_height: 60
   banner_mask_alpha: 0.3
 
+
+#---------------------------
+# Test (测试新建页面模块)
+# 。。。。。
+#---------------------------
+pageTest:
+  enable: true
+  banner_img: /img/cover-banner.png
+  banner_img_height: 60
+  banner_mask_alpha: 0.3
+  title: Test 测试
 
 #---------------------------
 # 404页

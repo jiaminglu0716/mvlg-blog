@@ -1,5 +1,5 @@
 ---
-title: 提亚拉之泪:外传
+title: 【感想】提亚拉之泪:外传
 categories:
 - Gamer
 - Galgame

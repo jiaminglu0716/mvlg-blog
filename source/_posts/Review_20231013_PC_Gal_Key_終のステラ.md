@@ -1,5 +1,5 @@
 ---
-title: 終のステラ
+title: 【感想】終のステラ
 categories:
 - Gamer
 - Galgame

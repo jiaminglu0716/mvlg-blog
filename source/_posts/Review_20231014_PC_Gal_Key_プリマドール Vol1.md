@@ -1,5 +1,5 @@
 ---
-title: プリマドール 冬の花火/雪華文様
+title: 【感想】プリマドール 冬の花火/雪華文様
 categories:
 - Gamer
 - Galgame

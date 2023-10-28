@@ -1,5 +1,5 @@
 ---
-title: 记录
+title: 【速记】瑠璃櫻
 categories:
 - Gamer
 - Galgame

@@ -7,8 +7,8 @@ page.banner_img_height = theme.index.banner_img_height
 page.banner_mask_alpha = theme.index.banner_mask_alpha
 %>
 
-<!-- 文章选项列表-博客主页 -->
-<% page.posts.each(function (post) { %>
+<!-- site引用的数据不支持分页器-->
+<% site.posts.each(function (post) { %>
   <!-- 博客列表项 -->
   <div class="row mx-auto index-card">
     <% var post_url = url_for(post.path), index_img = post.index_img || theme.post.default_index_img %>
@@ -63,5 +63,3 @@ page.banner_mask_alpha = theme.index.banner_mask_alpha
     </article>
   </div>
 <% }) %>
-
-<%- partial('_partials/paginator') %>

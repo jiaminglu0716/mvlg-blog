@@ -1,5 +1,5 @@
 ---
-title: 恋×シンアイ彼女
+title: 【感想】恋×シンアイ彼女
 categories:
 - Gamer
 - Galgame
