@@ -39,6 +39,21 @@ links:
   title: 'Links'
   subtitle: 'Links'
 
+shoplinks:
+  menu: 'ShopLinks'
+  title: 'ShopLinks'
+  subtitle: 'ShopLinks'
+
+acglinks:
+  menu: 'ACGLinks'
+  title: 'ACGLinks'
+  subtitle: 'ACGLinks'
+
+nav:
+  menu: 'Navigation'
+  title: 'Navigation'
+  subtitle: 'Navigation'
+
 page404:
   menu: 'Page not found'
   title: 'Page not found'

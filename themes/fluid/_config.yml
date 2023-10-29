@@ -143,7 +143,8 @@ dark_mode:
 color:
   # body 背景色
   # Color of body background
-  body_bg_color: "#447EA5"
+  # body_bg_color: "#447EA5"
+  body_bg_color: "#ffffff"
   # 暗色模式下的 body 背景色，下同
   # Color in dark mode, the same below
   body_bg_color_dark: "#1f3144"
@@ -336,7 +337,7 @@ navbar:
   # 导航栏毛玻璃特效，实验性功能，可能会造成页面滚动掉帧和抖动，部分浏览器不支持会自动不生效
   # Navigation bar frosted glass special animation. It is an experimental feature
   ground_glass:
-    enable: true
+    enable: false
 
     # 模糊像素，只能为数字，数字越大模糊度越高
     # Number of blurred pixel. the larger the number, the higher the blur
@@ -357,7 +358,15 @@ navbar:
     - { key: "教程", link: "/test/", icon: "iconfont icon-books" }
     - { key: "proxy", link: "/proxy/", icon: "iconfont icon-user-fill" }
     - { key: "about", link: "/about/", icon: "iconfont icon-user-fill" }
-    - { key: "links", link: "/links/", icon: "iconfont icon-link-fill" }
+    - { 
+        key: "nav",
+        icon: "iconfont icon-link-fill",
+        submenu: [
+          { key: "links", link: "/links/", icon: "iconfont icon-link-fill" },
+          { key: "shoplinks", link: "/shoplinks/", icon: "iconfont icon-link-fill" },
+          { key: "ACG", link: "/acglinks/", icon: "iconfont icon-link-fill" }
+        ]
+      }
 
 # 搜索功能，基于 hexo-generator-search 插件，若已安装其他搜索插件请关闭此功能，以避免生成多余的索引文件
 # Search feature, based on hexo-generator-search. If you have installed other search plugins, please disable this feature to avoid generating redundant index files
@@ -1032,74 +1041,13 @@ links:
       link: "https://github.com/fluid-dev/hexo-theme-fluid",
       avatar: "/img/favicon.png"
     }
-    # ACG御用链接
-    - {
-      title: "Pixiv",
-      intro: "pixiv",
-      link: "https://www.pixiv.net/",
-      avatar: "/img/favicon.png"
-    }
     - {
       title: "Google",
       intro: "google",
       link: "https://www.google.com/",
       avatar: "/img/favicon.png"
     }
-    - {
-      title: "Amazon JP",
-      intro: "amazon.jp",
-      link: "https://www.amazon.co.jp/",
-      avatar: "/img/favicon.png"
-    }
-    # Galgame
-    - {
-      title: "Vndb",
-      intro: "the visual novel database",
-      link: "https://vndb.org/",
-      avatar: "https://t.vndb.org/s/angel-bg.jpg"
-    }
-    - {
-      title: "Galzy",
-      intro: "紫缘社-资源站",
-      link: "https://galzy.eu.org/",
-      avatar: "https://files.imgdb.cn/static/images/6d/04/643baef60d2dde5777a46d04.webp?n=rKz6gq7a&s=9b515722&t=653c133"
-    }
-    - {
-      title: "Seiya",
-      intro: "诚也Galgame攻略屋",
-      link: "https://seiya-saiga.com/game/kouryaku.html",
-      avatar: "/img/favicon.png"
-    }
-    - {
-      title: "DLsite",
-      intro: "ACG线上购物商城",
-      link: "https://www.dlsite.com/soft/ranking/total?category=game",
-      avatar: "https://www.dlsite.com/images/web/common/logo/pc/logo-dlsite.png"
-    }
-    - {
-      title: "绅士漫画",
-      intro: "绅士漫画地址发布页",
-      link: "https://wn01.ru/",
-      avatar: "/img/favicon.png"
-    }
-    - {
-      title: "2dj/mikocon",
-      intro: "2dj地址导航",
-      link: "https://bbs4.2djgame.net/",
-      avatar: "/img/favicon.png"
-    }
-    - {
-      title: "GGbases",
-      intro: "类似于nyaa",
-      link: "https://www.ggbases.com/",
-      avatar: "/img/favicon.png"
-    }
-    - {
-      title: "Nyaa",
-      intro: "nyaa proxy site",
-      link: "https://www.thetechbasket.com/nyaa-proxy-list/",
-      avatar: "/img/favicon.png"
-    }
+    
   # 当成员头像加载失败时，替换为指定图片
   # When the member avatar fails to load, replace the specified image
   onerror_avatar: /img/avatar.png
@@ -1126,6 +1074,130 @@ links:
     # Options: utterances | disqus | gitalk | valine | waline | changyan | livere | remark42 | twikoo | cusdis | giscus
     type: disqus
 
+
+#---------------------------
+# 购物友链页(海内外 + Proxy)
+# Shop Links Page
+#---------------------------
+shoplinks:
+  enable: true
+  banner_img: /img/cover-banner.png
+  banner_img_height: 60
+  banner_mask_alpha: 0.3
+  # 友链的成员项
+  # Member item of page
+  items:
+    - {
+      title: "Amazon JP",
+      intro: "amazon.jp",
+      link: "https://www.amazon.co.jp/",
+      avatar: "/img/favicon.png"
+    }
+
+  onerror_avatar: /img/avatar.png
+
+  custom:
+    enable: false
+    content: ''
+
+  comments:
+    enable: false
+    type: disqus
+
+#---------------------------
+# ACG友链页
+# ACGLinks Page
+#---------------------------
+acglinks:
+  enable: true
+  banner_img: /img/cover-banner.png
+  banner_img_height: 60
+  banner_mask_alpha: 0.3
+  # 友链的成员项
+  # Member item of page
+  items:
+    - {
+      title: "Pixiv",
+      intro: "pixiv",
+      link: "https://www.pixiv.net/",
+      avatar: "/img/favicon.png"
+    }
+  comic:
+    title: Comic
+    items:
+      - {
+        title: "绅士漫画",
+        intro: "绅士漫画地址发布页",
+        link: "https://wn01.ru/",
+        avatar: "/img/favicon.png"
+      }
+  anime:
+    title: Anime
+    items: 
+      - {
+        title: "Bilibilii",
+        intro: "哔哩哔哩",
+        link: "https://www.bilibili.com/",
+        avatar: "/img/favicon.png"
+      }
+  galgame:
+    title: Galgame
+    items:
+      - {
+        title: "Vndb",
+        intro: "the visual novel database",
+        link: "https://vndb.org/",
+        avatar: "https://t.vndb.org/s/angel-bg.jpg"
+      }
+      - {
+        title: "Galzy",
+        intro: "紫缘社-资源站",
+        link: "https://galzy.eu.org/",
+        avatar: "https://files.imgdb.cn/static/images/6d/04/643baef60d2dde5777a46d04.webp?n=rKz6gq7a&s=9b515722&t=653c133"
+      }
+      - {
+        title: "Seiya",
+        intro: "诚也Galgame攻略屋",
+        link: "https://seiya-saiga.com/game/kouryaku.html",
+        avatar: "/img/favicon.png"
+      }
+      - {
+        title: "DLsite",
+        intro: "ACG线上购物商城",
+        link: "https://www.dlsite.com/soft/ranking/total?category=game",
+        avatar: "https://www.dlsite.com/images/web/common/logo/pc/logo-dlsite.png"
+      }
+      - {
+        title: "2dj/mikocon",
+        intro: "2dj地址导航",
+        link: "https://bbs4.2djgame.net/",
+        avatar: "/img/favicon.png"
+      }
+      - {
+        title: "GGbases",
+        intro: "类似于nyaa",
+        link: "https://www.ggbases.com/",
+        avatar: "/img/favicon.png"
+      }
+  resource:
+    title: Resource
+    items:
+      - {
+        title: "Nyaa",
+        intro: "nyaa proxy site",
+        link: "https://www.thetechbasket.com/nyaa-proxy-list/",
+        avatar: "/img/favicon.png"
+      }
+
+  onerror_avatar: /img/avatar.png
+
+  custom:
+    enable: false
+    content: ''
+
+  comments:
+    enable: false
+    type: disqus
 
 #---------------------------
 # 以下是配置 JS CSS 等静态资源的 URL 前缀，可以自定义成 CDN 地址，

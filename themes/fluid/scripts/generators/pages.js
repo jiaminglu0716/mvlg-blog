@@ -5,7 +5,7 @@
 const fs = require('fs');
 const path = require('path');
 
-// 页面布局生成器，适用于 hexo new 指令
+// page router -> /xxx access the template we set 
 
 // generate 404 page
 if (!fs.existsSync(path.join(hexo.source_dir, '404.html'))) {
@@ -53,9 +53,31 @@ hexo.extend.generator.register('_links', function(locals) {
   }
 });
 
+// generate shoplinks page
+hexo.extend.generator.register('_shoplinks', function(locals) {
+  if (this.theme.config.links.enable !== false) {
+    return {
+      path  : 'shoplinks/index.html',
+      data  : locals.theme,
+      layout: 'shoplinks'
+    };
+  }
+});
+
+// generate acglinks page
+hexo.extend.generator.register('_acglinks', function(locals) {
+  if (this.theme.config.links.enable !== false) {
+    return {
+      path  : 'acglinks/index.html',
+      data  : locals.theme,
+      layout: 'acglinks'
+    };
+  }
+});
+
 /**
  * 页面路由注册
- * - page 路由地址
+ * - path 路由地址
  * - data 传递数据
  * - layout 主题布局模板
  */
@@ -84,6 +106,7 @@ hexo.extend.generator.register('_posts', function(locals) {
 hexo.extend.generator.register('_postsc', function(locals) {
   // console.log(Object.keys(locals.all_posts))
   // console.log(locals.all_posts.data[0].slug)
+  // console.log(this.locals.get('pages'))
   return {
     path  : 'c/index.html', 
     layout: 'postsc'

@@ -39,6 +39,21 @@ links:
   title: '友链'
   subtitle: '友情链接'
 
+shoplinks:
+  menu: '购链'
+  title: '购链'
+  subtitle: '购链'
+
+acglinks:
+  menu: 'ACG'
+  title: 'ACG'
+  subtitle: 'ACG'
+
+nav:
+  menu: '导航'
+  title: '导航'
+  subtitle: '导航'
+
 page404:
   menu: '页面不存在'
   title: '页面不存在'

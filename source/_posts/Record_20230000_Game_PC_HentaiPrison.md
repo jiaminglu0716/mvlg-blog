@@ -1,5 +1,6 @@
 ---
 title: 记录
+description: 8u
 categories:
 - Gamer
 - Galgame
