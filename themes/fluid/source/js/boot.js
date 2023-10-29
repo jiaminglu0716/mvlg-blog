@@ -2,6 +2,7 @@
 
 Fluid.boot = {};
 
+// 主题事件注册入口
 Fluid.boot.registerEvents = function() {
   Fluid.events.billboard();
   Fluid.events.registerNavbarEvent();

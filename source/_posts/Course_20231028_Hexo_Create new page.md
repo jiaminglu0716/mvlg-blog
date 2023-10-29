@@ -68,5 +68,127 @@ hexo new <layout> <title>
     <%= theme.pageTest.title %>
     ```
 
+### Fluid主题页面编程
+#### CSS内部样式
+1. source -> css -> main.styl 是入口主方法，内部多文件夹根据页面进行分类，然后使用统一函数对外进行暴露。
+2. 模仿即可，在_pages内新建文件夹 _<layout>，然后写 styl 格式的css即可。
+
+_pages.styl
+```styl
+@import "_base/*"
+@import "_index/*"
+@import "_post/*"
+@import "_archive/*"
+@import "_about/*"
+@import "_category/*"
+@import "_tag/*"
+@import "_links/*"
+```
+
+_main.styl
+```styl
+@import "_variables/base"
+for $inject_variable in hexo-config("injects.variable")
+    @import $inject_variable;
+
+@import "_functions/base"
+
+@import "_mixins/base"
+for $inject_mixin in hexo-config("injects.mixin")
+    @import $inject_mixin;
+
+@import "_pages/pages"
+
+for $inject_style in hexo-config("injects.style")
+    @import $inject_style;
+
+```
+#### 全局模板注入
+参考路径: fluid -> layout -> _partials -> css.ejs
+```ejs
+<!-- css函数库引入 -->
+<%- css_ex(theme.static_prefix.bootstrap, 'css/bootstrap.min.css') %>
+
+<% var css_snippets = deduplicate(page.css_snippets) %>
+<% for (var idx = 0; idx < css_snippets.length; idx++) { %>
+  <%- css_snippets[idx] %>
+<% } %>
+<% page.css_snippets = [] %>
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+<%- css('//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css') %>
+
+<%- css(theme.static_prefix.iconfont || theme.iconfont) %>
+
+<%- css_ex(theme.static_prefix.internal_css, 'main.css') %>
+
+<% if (theme.code.highlight.enable) { %>
+  <%- css_ex(theme.static_prefix.internal_css, 'highlight.css', 'id="highlight-css"') %>
+  <% if (theme.dark_mode.enable) { %>
+    <%- css_ex(theme.static_prefix.internal_css, 'highlight-dark.css', 'id="highlight-css-dark"') %>
+  <% } %>
+<% } %>
+
+<% if (theme.custom_css) { %>
+  <%- css(theme.custom_css) %>
+<% } %><!-- css函数库引入 -->
+<%- css_ex(theme.static_prefix.bootstrap, 'css/bootstrap.min.css') %>
+
+<% var css_snippets = deduplicate(page.css_snippets) %>
+<% for (var idx = 0; idx < css_snippets.length; idx++) { %>
+  <%- css_snippets[idx] %>
+<% } %>
+<% page.css_snippets = [] %>
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+<%- css('//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css') %>
+
+<%- css(theme.static_prefix.iconfont || theme.iconfont) %>
+
+<%- css_ex(theme.static_prefix.internal_css, 'main.css') %>
+
+<% if (theme.code.highlight.enable) { %>
+  <%- css_ex(theme.static_prefix.internal_css, 'highlight.css', 'id="highlight-css"') %>
+  <% if (theme.dark_mode.enable) { %>
+    <%- css_ex(theme.static_prefix.internal_css, 'highlight-dark.css', 'id="highlight-css-dark"') %>
+  <% } %>
+<% } %>
+
+<% if (theme.custom_css) { %>
+  <%- css(theme.custom_css) %>
+<% } %>
+```
+ejs注入方法来源参考路径: fluid -> scripts -> helpers -> url.js
+```js
+/* global hexo */
+
+'use strict';
+
+const urlJoin = require('../utils/url-join');
+
+hexo.extend.helper.register('css_ex', function(base, relative, ex = '') {
+  return `<link ${ex} rel="stylesheet" href="${this.url_for(urlJoin(base, relative))}" />`;
+});
+
+hexo.extend.helper.register('js_ex', function(base, relative, ex = '') {
+  return `<script ${ex} src="${this.url_for(urlJoin(base, relative))}" ></script>`;
+});
+
+hexo.extend.helper.register('url_join', function(base, relative) {
+  return this.url_for(urlJoin(base, relative));
+});
+
+```
+#### js脚本模板事件绑定
+
+To be continued ....
+
+```js
+
+```
+
+
 ### 后记
 目前只分析了部分源码，根据逻辑梳理与实机测试。目前卡在获取分页博客阶段，后续后空会继续分析，然后进行内容更新。目前想要实现的目标有两个：一是分页博客文章列表，二是文章过滤分页列表显示。
