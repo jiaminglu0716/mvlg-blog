@@ -21,8 +21,49 @@ tags:
 - 全收集100%(Nightmare)
 - 全宝箱100%(Nightmare)
 
-<!-- ![セルセタの樹海](http://ito.cside.com/kamonet/game3/ysc_psv/img/map_006.gif)
-![始原の地](http://ito.cside.com/kamonet/game3/ysc_psv/img/map_015.gif) -->
+
+{% gi 4 2-2 %}
+![](https://pic.imgdb.cn/item/653e6c10c458853aefcaea0b.jpg)
+![](https://pic.imgdb.cn/item/653e6c11c458853aefcaeb86.jpg)
+![](https://pic.imgdb.cn/item/653e6c11c458853aefcaecc8.jpg)
+![](https://pic.imgdb.cn/item/653e6c11c458853aefcaeeb8.jpg)
+{% endgi %}
+{% gi 4 2-2 %}
+![](https://pic.imgdb.cn/item/653e6c11c458853aefcaefca.jpg)
+![](https://pic.imgdb.cn/item/653e6c1bc458853aefcb36e6.jpg)
+![](https://pic.imgdb.cn/item/653e6c1bc458853aefcb37cf.jpg)
+![](https://pic.imgdb.cn/item/653e6c1bc458853aefcb3996.jpg)
+{% endgi %}
+{% gi 4 2-2 %}
+![](https://pic.imgdb.cn/item/653e6c1bc458853aefcb3b5d.jpg)
+![](https://pic.imgdb.cn/item/653e6c1bc458853aefcb3c74.jpg)
+![](https://pic.imgdb.cn/item/653e6c23c458853aefcb760e.jpg)
+![](https://pic.imgdb.cn/item/653e6c23c458853aefcb7717.jpg)
+{% endgi %}
+{% gi 4 2-2 %}
+![](https://pic.imgdb.cn/item/653e6c23c458853aefcb78da.jpg)
+![](https://pic.imgdb.cn/item/653e6c23c458853aefcb7acc.jpg)
+![](https://pic.imgdb.cn/item/653e6c23c458853aefcb74f8.jpg)
+![](https://pic.imgdb.cn/item/653e6c28c458853aefcba245.jpg)
+{% endgi %}
+{% gi 4 2-2 %}
+![](https://pic.imgdb.cn/item/653e6c29c458853aefcba314.jpg)
+![](https://pic.imgdb.cn/item/653e6c29c458853aefcba428.jpg)
+![](https://pic.imgdb.cn/item/653e6c29c458853aefcba5e1.jpg)
+![](https://pic.imgdb.cn/item/653e6c28c458853aefcba0fc.jpg)
+{% endgi %}
+{% gi 4 2-2 %}
+![](https://pic.imgdb.cn/item/653e6c2fc458853aefcbceda.jpg)
+![](https://pic.imgdb.cn/item/653e6c2fc458853aefcbcfd2.jpg)
+![](https://pic.imgdb.cn/item/653e6c2fc458853aefcbd15f.jpg)
+![](https://pic.imgdb.cn/item/653e6c2fc458853aefcbd2f2.jpg)
+{% endgi %}
+{% gi 4 2-2 %}
+![](https://pic.imgdb.cn/item/653e6c2fc458853aefcbcde1.jpg)
+![](https://pic.imgdb.cn/item/653e6c33c458853aefcbeef1.jpg)
+![](https://pic.imgdb.cn/item/653e6c33c458853aefcbf024.jpg)
+![](https://pic.imgdb.cn/item/653e6c34c458853aefcbf17a.jpg)
+{% endgi %}
 
 Tips: 全地图的话需要贴着地图模糊的边界走，判断标准是小地图显示的最小马赛克轮廓。全收集如果有全地图可以忽略大地图，主力是迷宫，迷宫不要给横线迷惑了，要仔细校对地图，然后容易漏的点是千年巢穴的小洞口周围。全宝箱一般阴影探索完毕不容易漏，容易漏的地方是塔的隐藏层，有三段浮动板，等一会儿会自动消失，在第一个实体平台往前走即可。噩梦数字是99.6、99.8、99.5。
 
