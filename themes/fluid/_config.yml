@@ -355,8 +355,8 @@ navbar:
     - { key: "archive", link: "/archives/", icon: "iconfont icon-archive-fill" }
     - { key: "category", link: "/categories/", icon: "iconfont icon-category-fill" }
     - { key: "tag", link: "/tags/", icon: "iconfont icon-tags-fill" }
-    - { key: "教程", link: "/test/", icon: "iconfont icon-books" }
-    - { key: "proxy", link: "/proxy/", icon: "iconfont icon-user-fill" }
+    - { key: "教程", link: "/info/", icon: "iconfont icon-books" }
+    # - { key: "proxy", link: "/proxy/", icon: "iconfont icon-user-fill" }
     - { key: "about", link: "/about/", icon: "iconfont icon-user-fill" }
     - { 
         key: "nav",
@@ -476,7 +476,8 @@ footer:
 index:
   # 首页 Banner 头图，可以是相对路径或绝对路径，以下相同
   # Path of Banner image, can be a relative path or an absolute path, the same on other pages
-  banner_img: /img/cover-banner.png
+  # banner_img: /img/cover-banner.png
+  banner_img: /img/cover-9.jpg
 
   # 头图高度，屏幕百分比
   # Height ratio of banner image
@@ -548,13 +549,13 @@ index:
 # Post Page
 #---------------------------
 post:
-  banner_img: /img/cover-banner.png
+  banner_img: /img/cover-6.jpg
   banner_img_height: 70
   banner_mask_alpha: 0.3
 
   # 文章在首页的默认封面图，当没有指定 index_img 时会使用该图片，若两者都为空则不显示任何图片
   # Path of the default post cover when `index_img` is not set. If both are empty, no image will be displayed
-  default_index_img: 
+  default_index_img: /img/cover-2.png
 
   # 文章标题下方的元信息
   # Meta information below title
@@ -728,11 +729,11 @@ post:
   mermaid:
     # 开启后文章默认可用，自定义页面如需使用，需在 Front-matter 中指定 `mermaid: true`
     # If you want to use mermaid on the custom page, you need to set `mermaid: true` in Front-matter
-    enable: false
+    enable: true
 
     # 开启后，只有在文章 Front-matter 里指定 `mermaid: true` 才会在文章页启动公式转换，以便在页面不包含公式时提高加载速度
     # If true, only set `mermaid: true` in Front-matter will enable mermaid, to load faster when the page does not contain mermaid
-    specific: false
+    specific: true
 
     # See: http://mermaid-js.github.io/mermaid/
     options: { theme: 'default' }
@@ -902,7 +903,7 @@ giscus:
 # Archive Page
 #---------------------------
 archive:
-  banner_img: /img/cover-banner.png
+  banner_img: /img/cover-1.jpg
   banner_img_height: 60
   banner_mask_alpha: 0.3
 
@@ -913,7 +914,7 @@ archive:
 #---------------------------
 category:
   enable: true
-  banner_img: /img/cover-banner.png
+  banner_img: /img/cover-10.jpg
   banner_img_height: 60
   banner_mask_alpha: 0.3
 
@@ -942,7 +943,7 @@ category:
 #---------------------------
 tag:
   enable: true
-  banner_img: /img/cover-banner.png
+  banner_img: /img/cover-13.png
   banner_img_height: 80
   banner_mask_alpha: 0.3
   tagcloud:
@@ -959,7 +960,7 @@ tag:
 #---------------------------
 about:
   enable: true
-  banner_img: /img/cover-banner.png
+  banner_img: /img/cover-5.jpg
   banner_img_height: 60
   banner_mask_alpha: 0.3
   avatar: /img/avatar.png

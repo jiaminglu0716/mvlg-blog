@@ -119,7 +119,6 @@ Stage 6:
 
 すべてのエンディングを見ると以下のようなタイトル画面になる
 ![](http://cdn-ak.f.st-hatena.com/images/fotolife/a/akamemukan/20151214/20151214225040.jpg)
-
 ---
 
 ～新作School Days HQのREPLAY（Ｈシーン）のまとめ～
