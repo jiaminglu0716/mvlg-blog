@@ -83,7 +83,7 @@ hexo.extend.generator.register('_acglinks', function(locals) {
  */
 hexo.extend.generator.register('_test', function(locals) {
   if (this.theme.config.pageTest.enable !== false) {
-    console.log(Object.keys(this))
+    // console.log(Object.keys(this))
     return {
       path  : 'test/index.html', 
       data  : locals.theme,

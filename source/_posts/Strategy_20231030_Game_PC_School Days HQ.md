@@ -15,6 +15,7 @@ tags:
 ---
 
 转载: https://akamemukan.hatenablog.com/entry/2015/12/14/225108
+路线: http://sagaoz.net/foolmaker/game/s/schooldayshq.html
 
 ---
 
@@ -118,7 +119,10 @@ Stage 6:
 {% endgi %}
 
 すべてのエンディングを見ると以下のようなタイトル画面になる
+
+{% gi 1 1 %}
 ![](http://cdn-ak.f.st-hatena.com/images/fotolife/a/akamemukan/20151214/20151214225040.jpg)
+{% endgi %}
 ---
 
 ～新作School Days HQのREPLAY（Ｈシーン）のまとめ～
@@ -182,3 +186,48 @@ Stage 6:
 ４‐５：最終話「我が子へ」「轢殺」　／　言葉の家で言葉と
 
 というわけで、新作HQで追加されたＨシーンは２‐９、３‐３、３‐４、３‐11、４‐２、４‐５
+
+---
+
+### 前序
+---
+{% gi 2 1-1 %}
+![](/images/galgame/School%20Days%20HQ/school_days_hq-s-1.png)
+![](/images/galgame/School%20Days%20HQ/school_days_hq-s-2.png)
+{% endgi %}
+### Route A
+---
+{% gi 3 1-1-1 %}
+![](/images/galgame/School%20Days%20HQ/school_days_hq-s-3.png)
+![](/images/galgame/School%20Days%20HQ/school_days_hq-s-4.png)
+![](/images/galgame/School%20Days%20HQ/school_days_hq-s-5.png)
+{% endgi %}
+### Route B
+---
+{% gi 2 1-1 %}
+![](/images/galgame/School%20Days%20HQ/school_days_hq-s-6.png)
+![](/images/galgame/School%20Days%20HQ/school_days_hq-s-7.png)
+{% endgi %}
+### Route C
+---
+{% gi 2 1-1 %}
+![](/images/galgame/School%20Days%20HQ/school_days_hq-s-8.png)
+![](/images/galgame/School%20Days%20HQ/school_days_hq-s-9.png)
+{% endgi %}
+### Route D
+---
+{% gi 3 1-1-1 %}
+![](/images/galgame/School%20Days%20HQ/school_days_hq-s-10.png)
+![](/images/galgame/School%20Days%20HQ/school_days_hq-s-11.png)
+![](/images/galgame/School%20Days%20HQ/school_days_hq-s-12.png)
+{% endgi %}
+### 回收CG
+---
+{% gi 2 1-1 %}
+![](/images/galgame/School%20Days%20HQ/school_days_hq-s-13.png)
+![](/images/galgame/School%20Days%20HQ/school_days_hq-s-14.png)
+{% endgi %}
+
+### 后序
+---
+![](/images/galgame/School%20Days%20HQ/school_days_hq-s-15.png)
