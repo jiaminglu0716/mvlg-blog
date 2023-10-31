@@ -1,5 +1,6 @@
 ---
 title: 【速记】School Days HQ
+description: Galgame速记文本 >>> 
 categories:
 - Gamer
 - Galgame
