@@ -42,7 +42,9 @@
 .index-excerpt
   color var(--sec-text-color)
   margin 0.5rem 0 0.5rem 0
-  height calc(1.4rem * 3)
+  // 动态调整列表描述高度，去除手机模式下列表项的冗余空间。
+  min-height calc(1.4rem * 1)
+  max-height calc(1.4rem * 3)
   overflow hidden
   display flex
 
