@@ -3,7 +3,7 @@ title: about
 date: 2023-10-26 22:19:32
 ---
 
-<style>
+<!-- <style>
 .circle_50 {
     width: 10rem;
     height: 10rem;
@@ -30,7 +30,7 @@ date: 2023-10-26 22:19:32
     <div class="avater">
         <img class="circle_50" src="https://pic.imgdb.cn/item/653baa71c458853aef224319.png">
     </div>
-</div>
+</div> -->
 
 
 #### 前言

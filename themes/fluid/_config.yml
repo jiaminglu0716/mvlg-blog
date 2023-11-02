@@ -961,17 +961,24 @@ tag:
 about:
   enable: true
   banner_img: /img/cover-5.jpg
-  banner_img_height: 60
-  banner_mask_alpha: 0.3
-  avatar: /img/avatar.png
-  name: "Fluid"
-  intro: "An elegant theme for Hexo"
+  banner_img_height: 55
+  banner_mask_alpha: 0.1
+  avatar: https://pic.imgdb.cn/item/653baa71c458853aef224319.png
+  name: "mvlg"
+  intro: "keep balance between life and job"
   # 更多图标可从 https://hexo.fluid-dev.com/docs/icon/ 查找，`class` 代表图标的 css class，添加 `qrcode` 后，图标不再是链接而是悬浮二维码
   # More icons can be found from https://hexo.fluid-dev.com/docs/en/icon/  `class` is the css class of the icon. If adding `qrcode`, The icon is no longer a link, but a hovering QR code
   icons:
-    - { class: "iconfont icon-github-fill", link: "https://github.com", tip: "GitHub" }
-    - { class: "iconfont icon-douban-fill", link: "https://douban.com", tip: "豆瓣" }
-    - { class: "iconfont icon-wechat-fill", qrcode: "/img/favicon.png" }
+    - { class: "iconfont icon-github-fill", link: "https://github.com/mvlg0716", tip: "GitHub" }
+    - { class: "iconfont icon-twitter-fill", link: "https://t.me/mvlg", tip: "Twitter" }
+    - { class: "iconfont icon-facebook-fill", link: "https://t.me/mvlg", tip: "Telegram" }
+    - { class: "iconfont icon-line-fill", link: "https://t.me/mvlg", tip: "Whatsapp" }
+    - { class: "iconfont icon-telegram-fill", link: "https://t.me/mvlg", tip: "Telegram" }
+    - { class: "iconfont icon-whatsapp-fill", link: "https://t.me/mvlg", tip: "Whatsapp" }
+    # China Channel
+    # - { class: "iconfont icon-wechat-fill", qrcode: "/img/cover-5.jpg", tip: "Wechat" }
+    # - { class: "iconfont icon-qq-fill", link: "https://douban.com", tip: "QQ" }
+    # - { class: "iconfont icon-weibo-fill", qrcode: "/img/cover-5.jpg", tip: "Weibo" }
 
 
 #---------------------------

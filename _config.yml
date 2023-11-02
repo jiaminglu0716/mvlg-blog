@@ -58,7 +58,7 @@ prismjs:
 
 # Menu
 menu:
-  About: /info
+  About: /about
 
 # Home page setting
 # path: Root path for your blogs index page. (default = '')

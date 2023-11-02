@@ -1,5 +1,6 @@
 <!-- 分页 - 未完成 -->
-<% site.posts.each(function (post) { %>
+<%- page.title %>
+<% page.posts.each(function (post) { %>
   <!-- 博客列表项 -->
   <div class="row mx-auto index-card">
     <% var post_url = url_for(post.path), index_img = post.index_img || theme.post.default_index_img %>
@@ -54,3 +55,5 @@
     </article>
   </div>
 <% }) %>
+
+<%- partial('_partials/paginator') %>

@@ -19,54 +19,109 @@ hexo new <layout> <title>
 
 ### 主题页面创建解析
 #### 这里以fluid为例子
-1. 模板创建(fluid -> layout): 局部组件于_partials，全局页面于 layout目录下。
-2. 模板对外路由(fluid -> scripts -> generators -> pages.js)
-    ```js
-    /**
-     * 页面路由注册
-     * - page 路由地址
-     * - data 传递数据
-     * - layout 主题布局模板
-     */
-    hexo.extend.generator.register('_test', function(locals) {
-    if (this.theme.config.pageTest.enable !== false) {
-        return {
-        path  : 'test/index.html', 
-        data  : locals.theme,
-        layout: 'test'
-        };
-    }
-    });
-    ```
-3. 模板数据调用(site, page, theme): 一般而言，这里page的数据会有出入。官方默认的index、tags、archives可以获得分页后的全贴数据。如果是site的话只能获取全贴数据。
-    ```yml
-    pageTest:
-        enable: true
-        banner_img: /img/cover-banner.png
-        banner_img_height: 60
-        banner_mask_alpha: 0.3
-        title: Test 测试
+- 模板创建(fluid -> layout): 局部组件于_partials，全局页面于 layout目录下。
+- 模板对外路由(fluid -> scripts -> generators -> pages.js)
 
-    navbar:
-        menu:
-            - { key: "test", link: "/test/", icon: "iconfont icon-books" }
-    ```
-    数据调用
-    ```ejs
-    <%
-    page.layout = "test"
-    page.title = theme.pageTest.title || __('test.title')
-    if (theme.index.slogan.enable) {
-    page.subtitle = theme.index.slogan.text || config.subtitle || ''
-    }
-    page.banner_img = theme.index.banner_img
-    page.banner_img_height = theme.index.banner_img_height
-    page.banner_mask_alpha = theme.index.banner_mask_alpha
-    %>
+```js
+/**
+ * 页面路由注册
+  * - page 路由地址
+  * - data 传递数据
+  * - layout 主题布局模板
+  */
+hexo.extend.generator.register('_test', function(locals) {
+  if (this.theme.config.pageTest.enable !== false) {
+    return {
+      path  : 'test/index.html', 
+      data  : locals.theme,
+      layout: 'test'
+    };
+  }
+});
+```
 
-    <h1>HHH</h1>
-    <%= theme.pageTest.title %>
-    ```
+- 模板数据调用(site, page, theme): 一般而言，这里page的数据会有出入。官方默认的index、tags、archives可以获得分页后的全贴数据。如果是site的话只能获取全贴数据。
+
+```yml
+pageTest:
+  enable: true
+  banner_img: /img/cover-banner.png
+  banner_img_height: 60
+  banner_mask_alpha: 0.3
+  title: Test 测试
+
+navbar:
+  menu:
+    - { key: "test", link: "/test/", icon: "iconfont icon-books" }
+```
+
+- 数据调用
+
+```ejs
+<%
+page.layout = "test"
+page.title = theme.pageTest.title || __('test.title')
+if (theme.index.slogan.enable) {
+page.subtitle = theme.index.slogan.text || config.subtitle || ''
+}
+page.banner_img = theme.index.banner_img
+page.banner_img_height = theme.index.banner_img_height
+page.banner_mask_alpha = theme.index.banner_mask_alpha
+%>
+
+<h1>HHH</h1>
+<%= theme.pageTest.title %>
+```
+#### 分页模板页面
+
+- 引入hexo分页组件
+
+```js
+const pagination = require('hexo-pagination');
+```
+
+- 调用分页模块
+
+```js
+hexo.extend.generator.register('_test', function(locals) {
+  return pagination('test/index.html', locals.posts, {
+    perPage: 10,
+    // 模板布局页面
+    layout: 'test',
+    // 模板数据，底层调用 Object.assign 进行数据合并更新，内部调用变量是 page
+    data: {}
+  });
+});
+```
+
+- ejs 添加分页组件
+
+```ejs
+<%- partial('_partials/paginator') %>
+```
+
+#### ejs 模板数据
+
+- 路由数据
+
+```js
+hexo.extend.generator.register('_test', function(locals) {
+  return {
+    path  : 'test/index.html', 
+    data  : {
+      txt: 'test txt'
+    },
+    layout: 'test'
+  };
+});
+```
+
+- ejs调用模板 
+
+```ejs
+<%= page.txt %>
+```
+
 
 ### Fluid主题页面编程
 #### CSS内部样式
@@ -182,8 +237,6 @@ hexo.extend.helper.register('url_join', function(base, relative) {
 
 ```
 #### js脚本模板事件绑定
-
-To be continued ....
 
 ```js
 

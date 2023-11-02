@@ -12,5 +12,32 @@ page.banner_mask_alpha = theme.index.banner_mask_alpha
 <!-- 文章选项列表-博客主页 -->
 <h1>HHH</h1>
 <%= theme.pageTest.title %>
+<%= page.t %>
 
-<%- partial('_partials/paginator') %>
+<div id="app">
+  <p>{{ message }}</p>
+</div>
+
+<script src="https://cdn.staticfile.org/vue/2.7.0/vue.min.js"></script>
+<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+
+<script>
+new Vue({
+  el: '#app',
+  data: {
+    message: 'Hello Vue.js!'
+  }
+})
+
+$(document).ready(function(){
+  $.ajax({
+    url: 'https://www.bilibili.com',
+    method: 'get',
+    success: (data, status, xhr) => {
+      console.log(data)
+    }
+  })
+})
+</script>
+
+

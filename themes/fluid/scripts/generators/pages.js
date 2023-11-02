@@ -4,6 +4,7 @@
 
 const fs = require('fs');
 const path = require('path');
+const pagination = require('hexo-pagination');
 
 // page router -> /xxx access the template we set 
 
@@ -38,6 +39,17 @@ hexo.extend.generator.register('_categories', function(locals) {
       path  : 'categories/index.html',
       data  : locals.theme,
       layout: 'categories'
+    };
+  }
+});
+
+// generate about Page
+hexo.extend.generator.register('_about', function(locals) {
+  if (this.theme.config.category.enable !== false) {
+    return {
+      path  : 'about/index.html',
+      data  : locals.theme,
+      layout: 'about'
     };
   }
 });
@@ -86,7 +98,9 @@ hexo.extend.generator.register('_test', function(locals) {
     // console.log(Object.keys(this))
     return {
       path  : 'test/index.html', 
-      data  : locals.theme,
+      data  : {
+        t: 'test'
+      },
       layout: 'test'
     };
   }
@@ -104,11 +118,17 @@ hexo.extend.generator.register('_posts', function(locals) {
 });
 
 hexo.extend.generator.register('_postsc', function(locals) {
-  // console.log(Object.keys(locals.all_posts))
-  // console.log(locals.all_posts.data[0].slug)
-  // console.log(this.locals.get('pages'))
-  return {
-    path  : 'c/index.html', 
-    layout: 'postsc'
-  };
+  // console.log(locals.posts.data[0].title);
+  // const posts = [];
+  // locals.posts.map(post => {
+  //   if (post.title.indexOf('【教程】') > -1) 
+  //     posts.push(post)
+  // })
+  return pagination('_c/index.html', locals.posts, {
+    perPage: 10,
+    layout: 'postsc',
+    data: {
+      title: 'postcc'
+    }
+  });
 });
