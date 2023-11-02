@@ -93,13 +93,16 @@ hexo.extend.generator.register('_acglinks', function(locals) {
  * - data 传递数据
  * - layout 主题布局模板
  */
-hexo.extend.generator.register('_test', function(locals) {
+hexo.extend.generator.register('_test', async function(locals) {
   if (this.theme.config.pageTest.enable !== false) {
     // console.log(Object.keys(this))
+    // console.log(await hexo.extend.helper.get('bilibili')())
+
+    const { bangumiTimeline } = require('../requests/bilibili')
     return {
       path  : 'test/index.html', 
       data  : {
-        t: 'test'
+        data: await bangumiTimeline()
       },
       layout: 'test'
     };

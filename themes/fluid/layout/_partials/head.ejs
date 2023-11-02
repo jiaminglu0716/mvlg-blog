@@ -37,12 +37,18 @@ var ogConfig = Object.assign({ image: ogImage && url_for(ogImage) }, theme.open_
   <% if (theme.custom_head) { %>
     <%- theme.custom_head %>
   <% } %>
+  <meta name="referrer" content="no-referrer" />
   <title><%= title %></title>
 
   <%- partial('_partials/css.ejs') %>
   <%- export_config() %>
+  <!-- import cdn js -->
+  <%- js('https://cdn.staticfile.org/vue/2.7.0/vue.min.js') %>
+  <%- js('https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js') %>
+  <!-- import internal js -->
   <%- js_ex(theme.static_prefix.internal_js, 'utils.js') %>
   <%- js_ex(theme.static_prefix.internal_js, 'color-schema.js') %>
+  <%- js_ex(theme.static_prefix.internal_js, 'api.js') %>
   <%- partial('_partials/plugins/analytics.ejs') %>
 
   <%- inject_point('head') %>

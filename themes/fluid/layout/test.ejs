@@ -12,31 +12,87 @@ page.banner_mask_alpha = theme.index.banner_mask_alpha
 <!-- 文章选项列表-博客主页 -->
 <h1>HHH</h1>
 <%= theme.pageTest.title %>
-<%= page.t %>
+<!-- <% for (let item of page.data) { %>
+  <div class="row">
+    <%- item.date %>
+  </div>
+<% } %> -->
+
+<style type="text/css">
+  #box{
+      border: 1px solid #ccc;
+      padding: 10px;
+      display: flex;
+  }
+  ul{
+      height: 30px;
+      padding: 0;
+      margin: 0;
+  }
+  li{
+      display: block;
+      text-align: center;
+      width: 100px;
+      float: left;
+      list-style: none;
+      cursor: pointer;
+      height: 30px;
+      line-height: 30px;
+  }
+  .choice{
+          background: #409EFF;
+          color: #fff;
+  }
+  .tab-item{
+      display: none;
+  }
+  .show{
+      display: block;
+  }
+</style>
+
 
 <div id="app">
   <p>{{ message }}</p>
 </div>
 
-<script src="https://cdn.staticfile.org/vue/2.7.0/vue.min.js"></script>
-<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+<div id="box">
+  <% for (let idx in page.data) { 
+    let item = page.data[idx]%>
+    <a name="<%- idx %>" class="">
+      <h4><%- item.date %></h4>
+      <% for (let ep of item.episodes) {%>
+        <div>
+          <img src="<%- ep.cover %>" style="
+            width: 100px;
+            height: 100px;
+          ">
+          <p><%- ep.title + '' + ep.pub_index + ' ' + ep.pub_time%></p>
+        </div>
+      <% } %>
+    </a>
+    <hr>
+  <% } %>
+  <!-- <div class="tab-item show">Tab-item1</div>
+  <div class="tab-item">Tab-item2</div>
+  <div class="tab-item">Tab-item3</div> -->
+</div>
+
 
 <script>
 new Vue({
   el: '#app',
   data: {
-    message: 'Hello Vue.js!'
+    message: ''
   }
 })
 
 $(document).ready(function(){
-  $.ajax({
-    url: 'https://www.bilibili.com',
-    method: 'get',
-    success: (data, status, xhr) => {
-      console.log(data)
-    }
-  })
+  // $.ajax(url='/mock', {
+  //   success (res) {
+  //     console.log(res)
+  //   }
+  // })
 })
 </script>
 
