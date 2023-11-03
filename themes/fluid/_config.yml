@@ -1096,11 +1096,24 @@ shoplinks:
   # Member item of page
   items:
     - {
-      title: "Amazon JP",
+      title: "Amazon",
       intro: "amazon.jp",
       link: "https://www.amazon.co.jp/",
       avatar: "/img/favicon.png"
     }
+    - {
+      title: "Suruga-ya",
+      intro: "suruga-ya.jp",
+      link: "https://www.suruga-ya.jp/",
+      avatar: "/img/favicon.png"
+    }
+    - {
+      title: "Amiami Global",
+      intro: "amiami english",
+      link: "https://www.amiami.com/eng/",
+      avatar: "https://www.amiami.com/images/common/site_logo.png"
+    }
+    
 
   onerror_avatar: /img/avatar.png
 
@@ -1134,9 +1147,15 @@ acglinks:
     title: Comic
     items:
       - {
-        title: "绅士漫画",
-        intro: "绅士漫画地址发布页",
+        title: "SS Comic",
+        intro: "SS Comic Index",
         link: "https://wn01.ru/",
+        avatar: "/img/favicon.png"
+      }
+      - {
+        title: "JM Heaven",
+        intro: "JM Index",
+        link: "https://18comic-god.cc/stray/",
         avatar: "/img/favicon.png"
       }
   anime:
@@ -1151,6 +1170,7 @@ acglinks:
   galgame:
     title: Galgame
     items:
+      # 批评空间
       - {
         title: "Vndb",
         intro: "the visual novel database",
@@ -1158,11 +1178,13 @@ acglinks:
         avatar: "https://t.vndb.org/s/angel-bg.jpg"
       }
       - {
-        title: "Galzy",
-        intro: "紫缘社-资源站",
-        link: "https://galzy.eu.org/",
-        avatar: "https://files.imgdb.cn/static/images/6d/04/643baef60d2dde5777a46d04.webp?n=rKz6gq7a&s=9b515722&t=653c133"
+        title: "Erogamescape",
+        intro: "Erogamescape",
+        link: "https://erogamescape.dyndns.org/",
+        avatar: "https://t.vndb.org/s/angel-bg.jpg"
       }
+
+      # 攻略屋
       - {
         title: "Seiya",
         intro: "诚也Galgame攻略屋",
@@ -1170,11 +1192,19 @@ acglinks:
         avatar: "/img/favicon.png"
       }
       - {
-        title: "DLsite",
-        intro: "ACG线上购物商城",
-        link: "https://www.dlsite.com/soft/ranking/total?category=game",
-        avatar: "https://www.dlsite.com/images/web/common/logo/pc/logo-dlsite.png"
+        title: "Sagaoz",
+        intro: "Sagaoz 攻略屋",
+        link: "https://sagaoz.net/",
+        avatar: "/img/favicon.png"
       }
+      - {
+        title: "Galgame Wiki",
+        intro: "Galgame Wiki",
+        link: "https://galgamewiki.blogspot.com",
+        avatar: "/img/favicon.png"
+      }
+
+      # 资源站(from JP to CN)
       - {
         title: "2dj/mikocon",
         intro: "2dj地址导航",
@@ -1187,6 +1217,22 @@ acglinks:
         link: "https://www.ggbases.com/",
         avatar: "/img/favicon.png"
       }
+      - {
+        title: "Galzy",
+        intro: "紫缘社-资源站",
+        link: "https://galzy.eu.org/",
+        avatar: "https://files.imgdb.cn/static/images/6d/04/643baef60d2dde5777a46d04.webp?n=rKz6gq7a&s=9b515722&t=653c133"
+      }
+
+      # 线上购买
+      - {
+        title: "DLsite",
+        intro: "ACG线上购物商城",
+        link: "https://www.dlsite.com/soft/ranking/total?category=game",
+        avatar: "https://www.dlsite.com/images/web/common/logo/pc/logo-dlsite.png"
+      }
+      
+  # 综合资源网站，包含ACG以外类型的资源
   resource:
     title: Resource
     items:
