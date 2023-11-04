@@ -1,5 +1,6 @@
 ---
 title: 【速记】猫忍えくすはーとSPIN!
+date: 2023-10-11 00:00:00
 categories:
 - Gamer
 - Galgame

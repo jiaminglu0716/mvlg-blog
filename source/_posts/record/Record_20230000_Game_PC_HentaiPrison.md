@@ -1,5 +1,6 @@
 ---
 title: 记录
+date: 2023-09-30 00:00:00
 description: 8u
 categories:
 - Gamer

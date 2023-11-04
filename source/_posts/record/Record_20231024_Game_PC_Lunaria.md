@@ -1,5 +1,6 @@
 ---
 title: 【速记】Lunaria
+date: 2023-10-24 00:00:00
 categories:
 - Gamer
 - Galgame

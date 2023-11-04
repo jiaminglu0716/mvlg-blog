@@ -1,5 +1,6 @@
 ---
 title: 【速记】罪ノ光ランデヴー
+date: 2023-09-20 00:00:00
 categories:
 - Gamer
 - Galgame

@@ -1,5 +1,6 @@
 ---
 title: 【速记】終のステラ
+date: 2023-10-13 00:00:00
 categories:
 - Gamer
 - Galgame

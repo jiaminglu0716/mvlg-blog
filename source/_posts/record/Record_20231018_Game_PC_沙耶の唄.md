@@ -1,5 +1,6 @@
 ---
 title: 【速记】沙耶の唄
+date: 2023-10-18 00:00:00
 categories:
 - Gamer
 - Galgame

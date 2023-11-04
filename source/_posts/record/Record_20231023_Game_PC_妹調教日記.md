@@ -1,5 +1,6 @@
 ---
 title: 【速记】妹調教日記
+date: 2023-10-23 00:00:00
 categories:
 - Gamer
 - Galgame

@@ -1,5 +1,6 @@
 ---
 title: 【速记】アメイジング・グレイス
+date: 2023-09-14 00:00:00
 categories:
 - Gamer
 - Galgame

@@ -1,5 +1,6 @@
 ---
 title: 【速记】Dark Blue
+date: 2023-10-20 00:00:00
 categories:
 - Gamer
 - Galgame

@@ -1,5 +1,6 @@
 ---
 title: 【速记】アイカギ
+date: 2023-10-17 00:00:00
 categories:
 - Gamer
 - Galgame

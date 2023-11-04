@@ -1,5 +1,6 @@
 ---
 title: 【速记】School Days HQ
+date: 2023-10-31 00:00:00
 description: Galgame速记文本 >>> 
 categories:
 - Gamer

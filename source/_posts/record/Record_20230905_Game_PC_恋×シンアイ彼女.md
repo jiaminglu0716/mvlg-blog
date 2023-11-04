@@ -1,5 +1,6 @@
 ---
 title: 【速记】恋×シンアイ彼女
+date: 2023-09-05 00:00:00
 categories:
 - Gamer
 - Galgame

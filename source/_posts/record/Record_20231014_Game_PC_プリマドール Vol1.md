@@ -1,5 +1,6 @@
 ---
 title: 【速记】プリマドール Vol1
+date: 2023-10-14 00:00:00
 categories:
 - Gamer
 - Galgame
