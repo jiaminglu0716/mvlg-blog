@@ -90,48 +90,48 @@ hexo.extend.generator.register('_acglinks', function(locals) {
 /**
  * 页面路由注册
  * - path 路由地址
- * - data 传递数据
- * - layout 主题布局模板
+ * - data 传递数据(模板数据 | 纯数据)
+ * - layout 主题布局模板(无模板则默认纯数据)
  */
-hexo.extend.generator.register('_test', async function(locals) {
-  if (this.theme.config.pageTest.enable !== false) {
-    // console.log(Object.keys(this))
-    // console.log(await hexo.extend.helper.get('bilibili')())
+// hexo.extend.generator.register('_test', async function(locals) {
+//   if (this.theme.config.pageTest.enable !== false) {
+//     // console.log(Object.keys(this))
+//     // console.log(await hexo.extend.helper.get('bilibili')())
 
-    const { bangumiTimeline } = require('../requests/bilibili')
-    return {
-      path  : 'test/index.html', 
-      data  : {
-        data: await bangumiTimeline()
-      },
-      layout: 'test'
-    };
-  }
-});
+//     const { bangumiTimeline } = require('../api/bilibili')
+//     return {
+//       path  : 'test/index.html', 
+//       data  : {
+//         data: await bangumiTimeline()
+//       },
+//       layout: 'test'
+//     };
+//   }
+// });
 
-hexo.extend.generator.register('_posts', function(locals) {
-  if (this.theme.config.pageTest.enable !== false) {
-    // console.log(Object.keys(locals.all_posts))
-    // console.log(locals.all_posts.data[0].slug)
-    return {
-      path  : 'posts/index.html', 
-      layout: 'posts'
-    };
-  }
-});
+// hexo.extend.generator.register('_posts', function(locals) {
+//   if (this.theme.config.pageTest.enable !== false) {
+//     // console.log(Object.keys(locals.all_posts))
+//     // console.log(locals.all_posts.data[0].slug)
+//     return {
+//       path  : 'posts/index.html', 
+//       layout: 'posts'
+//     };
+//   }
+// });
 
-hexo.extend.generator.register('_postsc', function(locals) {
-  // console.log(locals.posts.data[0].title);
-  // const posts = [];
-  // locals.posts.map(post => {
-  //   if (post.title.indexOf('【教程】') > -1) 
-  //     posts.push(post)
-  // })
-  return pagination('_c/index.html', locals.posts, {
-    perPage: 10,
-    layout: 'postsc',
-    data: {
-      title: 'postcc'
-    }
-  });
-});
+// hexo.extend.generator.register('_postsc', function(locals) {
+//   // console.log(locals.posts.data[0].title);
+//   // const posts = [];
+//   // locals.posts.map(post => {
+//   //   if (post.title.indexOf('【教程】') > -1) 
+//   //     posts.push(post)
+//   // })
+//   return pagination('_c/index.html', locals.posts, {
+//     perPage: 10,
+//     layout: 'postsc',
+//     data: {
+//       title: 'postcc'
+//     }
+//   });
+// });
