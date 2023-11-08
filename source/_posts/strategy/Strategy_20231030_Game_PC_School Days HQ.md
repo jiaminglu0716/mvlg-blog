@@ -6,10 +6,10 @@ banner_img: https://wallpapercave.com/dwp1x/Ge5HcBh.jpg
 categories:
 - Gamer
 - Strategy
-- PSV
+- PC
 tags:
 - game
-- arpg
+- adv
 - strategy
 - 攻略
 ---
