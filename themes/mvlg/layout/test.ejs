@@ -1,0 +1,81 @@
+<%
+page.layout = "test"
+page.title = theme.pageTest.title || __('test.title')
+if (theme.index.slogan.enable) {
+  page.subtitle = theme.index.slogan.text || config.subtitle || ''
+}
+page.banner_img = theme.index.banner_img
+page.banner_img_height = theme.index.banner_img_height
+page.banner_mask_alpha = theme.index.banner_mask_alpha
+%>
+
+<!-- 文章选项列表-博客主页 -->
+<h1>HHH</h1>
+<%= theme.pageTest.title %>
+
+<style type="text/css">
+  #box{
+      border: 1px solid #ccc;
+      padding: 10px;
+      display: flex;
+  }
+  ul{
+      height: 30px;
+      padding: 0;
+      margin: 0;
+  }
+  li{
+      display: block;
+      text-align: center;
+      width: 100px;
+      float: left;
+      list-style: none;
+      cursor: pointer;
+      height: 30px;
+      line-height: 30px;
+  }
+  .choice{
+          background: #409EFF;
+          color: #fff;
+  }
+  .tab-item{
+      display: none;
+  }
+  .show{
+      display: block;
+  }
+</style>
+
+
+<div id="app">
+  <p>{{ message.info }}</p>
+</div>
+
+<div id="box">
+</div>
+
+
+<script>
+new Vue({
+  el: '#app',
+  data: {
+    message: {
+      info: 'bbq'
+    }
+  },
+  async mounted () {
+    let message = await this.getList()
+    // console.log(message[3])
+    this.$set(this.message, 'info', message[2])
+    // console.log(this.message)
+  },
+  methods: {
+    getList(){
+      return $.ajax(url='/data/gamer/psvgames.tsv');
+    }
+  }
+})
+
+</script>
+
+

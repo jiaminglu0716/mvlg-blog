@@ -1,0 +1,94 @@
+<%
+page.layout = "test"
+page.title = theme.pageTest.title || __('test.title')
+if (theme.index.slogan.enable) {
+  page.subtitle = theme.index.slogan.text || config.subtitle || ''
+}
+page.banner_img = theme.index.banner_img
+page.banner_img_height = theme.index.banner_img_height
+page.banner_mask_alpha = theme.index.banner_mask_alpha
+%>
+
+<!-- 文章选项列表-博客主页 -->
+<h1>HHH</h1>
+<%= theme.pageTest.title %>
+
+<style type="text/css">
+  #box{
+      border: 1px solid #ccc;
+      padding: 10px;
+      display: flex;
+  }
+  ul{
+      height: 30px;
+      padding: 0;
+      margin: 0;
+  }
+  li{
+      display: block;
+      text-align: center;
+      width: 100px;
+      float: left;
+      list-style: none;
+      cursor: pointer;
+      height: 30px;
+      line-height: 30px;
+  }
+  .choice{
+          background: #409EFF;
+          color: #fff;
+  }
+  .tab-item{
+      display: none;
+  }
+  .show{
+      display: block;
+  }
+</style>
+
+
+<div id="app">
+  <p>{{ message }}</p>
+</div>
+
+<div id="box">
+  <% for (let idx in page.data) { 
+    let item = page.data[idx]%>
+    <a name="<%- idx %>" class="">
+      <h4><%- item.date %></h4>
+      <% for (let ep of item.episodes) {%>
+        <div>
+          <img src="<%- ep.cover %>" style="
+            width: 100px;
+            height: 100px;
+          ">
+          <p><%- ep.title + '' + ep.pub_index + ' ' + ep.pub_time%></p>
+        </div>
+      <% } %>
+    </a>
+    <hr>
+  <% } %>
+  <!-- <div class="tab-item show">Tab-item1</div>
+  <div class="tab-item">Tab-item2</div>
+  <div class="tab-item">Tab-item3</div> -->
+</div>
+
+
+<script>
+new Vue({
+  el: '#app',
+  data: {
+    message: ''
+  }
+})
+
+$(document).ready(function(){
+  // $.ajax(url='/mock', {
+  //   success (res) {
+  //     console.log(res)
+  //   }
+  // })
+})
+</script>
+
+
