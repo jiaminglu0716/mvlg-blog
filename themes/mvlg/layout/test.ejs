@@ -9,49 +9,28 @@ page.banner_img_height = theme.index.banner_img_height
 page.banner_mask_alpha = theme.index.banner_mask_alpha
 %>
 
-<!-- 文章选项列表-博客主页 -->
-<h1>HHH</h1>
-<%= theme.pageTest.title %>
 
 <style type="text/css">
-  #box{
-      border: 1px solid #ccc;
-      padding: 10px;
-      display: flex;
-  }
-  ul{
-      height: 30px;
-      padding: 0;
-      margin: 0;
-  }
-  li{
-      display: block;
-      text-align: center;
-      width: 100px;
-      float: left;
-      list-style: none;
-      cursor: pointer;
-      height: 30px;
-      line-height: 30px;
-  }
-  .choice{
-          background: #409EFF;
-          color: #fff;
-  }
-  .tab-item{
-      display: none;
-  }
-  .show{
-      display: block;
-  }
+
 </style>
 
 
 <div id="app">
-  <p>{{ message.info }}</p>
-</div>
-
-<div id="box">
+  <div>
+    <div>
+      <input type="text" 
+        placeholder="please use space to split multi-keyword."
+        v-model="message.keyword"
+        @input="searchData">
+    </div>
+  </div>
+  <div>
+    <ul>
+      <li v-for="item in message.results" v-key="item.game_id">
+        {{ item.ch_name }}
+      </li>
+    </ul>
+  </div>
 </div>
 
 
@@ -60,18 +39,84 @@ new Vue({
   el: '#app',
   data: {
     message: {
-      info: 'bbq'
+      keyword: '',
+      data: [],
+      results: []
     }
   },
-  async mounted () {
-    let message = await this.getList()
-    // console.log(message[3])
-    this.$set(this.message, 'info', message[2])
-    // console.log(this.message)
+  async mounted() {
+    let message = await this.getList();
+    this.$set(this.message, 'data', message.content);
+    // this.searchData('伊苏 丹娜 language:英语');
   },
   methods: {
-    getList(){
-      return $.ajax(url='/data/gamer/psvgames.tsv');
+    getList() {
+      return $.ajax(url='/data/gamer/psv_all.json');
+    },
+    searchData() {
+      let results = this.search(this.message.keyword, this.message.data);
+      this.$set(this.message, 'results', results);
+    },
+    search(keyword, data, defaultKeys=['game_name', 'ch_name']) {
+      // 解析关键词
+      class FilterItem {
+        constructor(key, value) {
+          this.key = key;
+          this.value = value;
+        }
+      }
+      let filters = [];
+      let keywords = [];
+
+      keyword.split(' ').forEach(key => {
+        let idx = key.indexOf(':');
+        key = key.toLowerCase();
+        if (idx > -1) {
+          filters.push(new FilterItem(
+            key.slice(0,idx),
+            key.slice(idx+1)
+          ));
+        } else {
+          keywords.push(key);
+        }
+      });
+
+      // console.log(keywords, filters)
+
+      // 提取数据文件
+      function obj2str(item, keys, sign='/') {
+        let strArr = [];
+        keys.forEach(key => strArr.push(item[key]));
+        return strArr.join(sign);
+      }
+
+      function match(str, mstr) {
+        return str.indexOf(mstr) > -1;
+      }
+
+      function boolArrReduce(arr) {
+        return arr.reduce((p, c) => p & c);
+      }
+
+
+      let results = [];
+
+      for (let item of data) {
+        let s = obj2str(item, defaultKeys).toLowerCase();
+
+        let ks = keywords.map(key => match(s, key));
+        let fs = filters.map(filter => match(item[filter.key].join('/'), filter.value));
+
+        if (
+          (fs.length > 0 && ks.length == 0 && boolArrReduce(fs)) ||
+          (fs.length == 0 && ks.length > 0 && boolArrReduce(ks)) ||
+          (fs.length > 0 && ks.length > 0 && boolArrReduce(fs) && boolArrReduce(ks))
+        ) {
+          results.push(item);
+        }
+      }
+      
+      return results;      
     }
   }
 })
