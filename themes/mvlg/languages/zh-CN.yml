@@ -23,6 +23,11 @@ tag:
   subtitle: '标签'
   post_total: '共计 %d 篇文章'
 
+gamer:
+  menu: '游戏库'
+  title: '游戏库'
+  subtitle: '游戏库'
+
 proxy:
   menu: '代理'
   title: '代理'

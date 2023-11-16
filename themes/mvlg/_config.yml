@@ -356,6 +356,7 @@ navbar:
     - { key: "archive", link: "/archives/", icon: "iconfont icon-archive-fill" }
     - { key: "category", link: "/categories/", icon: "iconfont icon-category-fill" }
     - { key: "tag", link: "/tags/", icon: "iconfont icon-tags-fill" }
+    - { key: "gamer", link: "/gamer/", icon: "iconfont icon-books" }
     - { key: "教程", link: "/info/", icon: "iconfont icon-books" }
     # - { key: "proxy", link: "/proxy/", icon: "iconfont icon-user-fill" }
     - { key: "about", link: "/about/", icon: "iconfont icon-user-fill" }

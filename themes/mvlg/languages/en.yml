@@ -29,6 +29,11 @@ tag:
   subtitle: 'Tags'
   post_total: '%d posts in total'
 
+gamer:
+  menu: 'Gamers'
+  title: 'Gamers'
+  subtitle: 'Gamers'
+
 about:
   menu: 'About'
   title: 'About'

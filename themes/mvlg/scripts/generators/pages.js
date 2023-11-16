@@ -88,19 +88,31 @@ hexo.extend.generator.register('_acglinks', function(locals) {
 });
 
 /**
+ * 3rd-extend func
+ */
+hexo.extend.generator.register('_gamer', async function(locals) {
+  return {
+    path  : 'gamer/index.html', 
+    layout: 'gamer'
+  };
+});
+
+
+
+/**
  * 页面路由注册
  * - path 路由地址
  * - data 传递数据(模板数据 | 纯数据)
  * - layout 主题布局模板(无模板则默认纯数据)
  */
 
-hexo.extend.generator.register('_test', async function(locals) {
-  return {
-    path  : 'test/index.html', 
-    data  : {},
-    layout: 'test'
-  };
-});
+// hexo.extend.generator.register('_test', async function(locals) {
+//   return {
+//     path  : 'test/index.html', 
+//     data  : {},
+//     layout: 'test'
+//   };
+// });
 
 // hexo.extend.generator.register('_test', async function(locals) {
 //   if (this.theme.config.pageTest.enable !== false) {

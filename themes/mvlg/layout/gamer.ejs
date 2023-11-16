@@ -1,0 +1,250 @@
+<%
+page.layout = "test"
+page.title = theme.pageTest.title || __('test.title')
+if (theme.index.slogan.enable) {
+  page.subtitle = theme.index.slogan.text || config.subtitle || ''
+}
+page.banner_img = theme.index.banner_img
+page.banner_img_height = theme.index.banner_img_height
+page.banner_mask_alpha = theme.index.banner_mask_alpha
+%>
+
+
+<style type="text/css">
+
+</style>
+
+
+<div id="app" style="width:100%;">
+  <div>
+    <div>
+      <div>
+        <select style="width: 100%; height: 3rem; text-align: center;">
+          <optgroup :label="group.ch_name" v-for="(group, gidx) in gamer.groups" v-key="gidx">
+            <option v-for="(item, idx) in group.list" v-key="idx"
+              @click="loadData(item.link)">
+              {{ item.type }}
+            </option>
+          </optgroup>
+        </select>
+      </div>
+      <div>
+        <input type="text" 
+          style="width: 100%; height: 3rem; padding: 5px;"
+          placeholder="please use space to split multi-keyword."
+          v-model="message.keyword"
+          @input="searchData" />
+      </div>
+    </div>
+  </div>
+  <div style="margin-top: 1rem;">
+    <ul  style="margin-left: -1rem;">
+      <li v-for="item in message.results" v-key="item.game_id">
+        <div>【{{ item.game_id }}】{{ item.ch_name }}</div>
+        <div style="display: flex; height: 30px;">
+          <label>语言: </label>
+          <p style="margin-right: 5px;" v-for="lang in item.language">{{ lang }}</p>
+        </div>
+        <div style="display: flex; height: 30px;">
+          <label>类型: </label>
+          <p style="margin-right: 5px;" v-for="gen in item.genre">{{ gen }}</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+
+
+<script>
+new Vue({
+  el: '#app',
+  data: {
+    gamer: {
+      groups: [
+        {
+          group: 'Sony',
+          ch_name: '索尼',
+          list: [
+            {
+              type: 'PSV',
+              link: '/data/gamer/psv_all.json'
+            },
+            {
+              type: 'PSP',
+              link: '/data/gamer/psp.json'
+            },
+            {
+              type: 'PS1',
+              link: '/data/gamer/ps1.json'
+            },
+            {
+              type: 'PS2',
+              link: '/data/gamer/ps2jp.json'
+            },
+            {
+              type: 'PS3',
+              link: '/data/gamer/ps3.json'
+            },
+          ]
+        },
+        {
+          group: 'Nintendo',
+          ch_name: '任天堂',
+          list: [
+            {
+              type: 'New 3DS',
+              link: '/data/gamer/3dsnew.json'
+            },
+            {
+              type: '3DS',
+              link: '/data/gamer/3ds.json'
+            },
+            {
+              type: 'NDS',
+              link: '/data/gamer/nds.json'
+            },
+            {
+              type: 'GBA',
+              link: '/data/gamer/gba.json'
+            },
+            {
+              type: 'WII',
+              link: '/data/gamer/wii.json'
+            },
+          ]
+        },
+        {
+          group: 'Microsoft',
+          ch_name: '微软',
+          list: [
+            {
+              type: 'XBOX',
+              link: '/data/gamer/xbox.json'
+            },
+            {
+              type: 'XBOX360',
+              link: '/data/gamer/xbox360.json'
+            },
+          ]
+        },
+        {
+          group: 'Others',
+          ch_name: '未分类',
+          list: [
+            {
+              type: 'FC',
+              link: '/data/gamer/fc.json'
+            },
+            {
+              type: 'N64',
+              link: '/data/gamer/n64.json'
+            },
+            {
+              type: 'SFC',
+              link: '/data/gamer/sfc.json'
+            },
+            {
+              type: 'SS',
+              link: '/data/gamer/ss.json'
+            },
+            {
+              type: 'WSC',
+              link: '/data/gamer/wsc.json'
+            },
+          ]
+        }
+      ]
+    },
+    message: {
+      keyword: '',
+      data: [],
+      results: []
+    }
+  },
+  async mounted() {
+    this.loadData(this.gamer.groups[0].list[0].link)
+    // this.searchData('伊苏 丹娜 language:英语');
+  },
+  methods: {
+    getList(link) {
+      return $.ajax(url=link);
+    },
+    async loadData(link) {
+      // Clear result list
+      this.$set(this.message, 'results', []);
+      // Get data from api
+      let message = await this.getList(link);
+      // Set data
+      this.$set(this.message, 'data', message.content);
+    },
+    searchData() {
+      let results = this.search(this.message.keyword, this.message.data);
+      this.$set(this.message, 'results', results);
+    },
+    search(keyword, data, defaultKeys=['game_name', 'ch_name']) {
+      // 解析关键词
+      class FilterItem {
+        constructor(key, value) {
+          this.key = key;
+          this.value = value;
+        }
+      }
+      let filters = [];
+      let keywords = [];
+
+      keyword.split(' ').forEach(key => {
+        let idx = key.indexOf(':');
+        key = key.toLowerCase();
+        if (idx > -1) {
+          filters.push(new FilterItem(
+            key.slice(0,idx),
+            key.slice(idx+1)
+          ));
+        } else {
+          keywords.push(key);
+        }
+      });
+
+      // console.log(keywords, filters)
+
+      // 提取数据文件
+      function obj2str(item, keys, sign='/') {
+        let strArr = [];
+        keys.forEach(key => strArr.push(item[key]));
+        return strArr.join(sign);
+      }
+
+      function match(str, mstr) {
+        return str.indexOf(mstr) > -1;
+      }
+
+      function boolArrReduce(arr) {
+        return arr.reduce((p, c) => p & c);
+      }
+
+
+      let results = [];
+
+      for (let item of data) {
+        let s = obj2str(item, defaultKeys).toLowerCase();
+
+        let ks = keywords.map(key => match(s, key));
+        let fs = filters.map(filter => match(item[filter.key].join('/'), filter.value));
+
+        if (
+          (fs.length > 0 && ks.length == 0 && boolArrReduce(fs)) ||
+          (fs.length == 0 && ks.length > 0 && boolArrReduce(ks)) ||
+          (fs.length > 0 && ks.length > 0 && boolArrReduce(fs) && boolArrReduce(ks))
+        ) {
+          results.push(item);
+        }
+      }
+      
+      return results;      
+    }
+  }
+})
+
+</script>
+
+
