@@ -11,7 +11,14 @@ page.banner_mask_alpha = theme.index.banner_mask_alpha
 
 
 <style type="text/css">
-
+.search {
+  width: 100%; 
+  height: 3rem; 
+  padding: 5px;
+  border: none; 
+  outline: none;
+  border-bottom: 1px solid grey;
+}
 </style>
 
 
@@ -30,7 +37,7 @@ page.banner_mask_alpha = theme.index.banner_mask_alpha
       </div>
       <div>
         <input type="text" 
-          style="width: 100%; height: 3rem; padding: 5px;"
+          class="search"
           placeholder="please use space to split multi-keyword."
           v-model="message.keyword"
           @input="searchData" />
@@ -40,6 +47,7 @@ page.banner_mask_alpha = theme.index.banner_mask_alpha
   <div style="margin-top: 1rem;">
     <ul  style="margin-left: -1rem;">
       <li v-for="item in message.results" v-key="item.game_id">
+        <img :src="item.img" />
         <div>【{{ item.game_id }}】{{ item.ch_name }}</div>
         <div style="display: flex; height: 30px;">
           <label>语言: </label>
@@ -156,6 +164,7 @@ new Vue({
       ]
     },
     message: {
+      kwl: 0,
       keyword: '',
       data: [],
       results: []
@@ -178,7 +187,17 @@ new Vue({
       this.$set(this.message, 'data', message.content);
     },
     searchData() {
-      let results = this.search(this.message.keyword, this.message.data);
+      let keyword = this.message.keyword;
+
+      // ban backward search
+      if (keyword.length < this.kwl) {
+        this.$set(this.message, 'kwl', keyword.length);
+        return;
+      }
+      // ben start step below 2
+      if (keyword.length < 2) return;
+
+      let results = this.search(keyword, this.message.data);
       this.$set(this.message, 'results', results);
     },
     search(keyword, data, defaultKeys=['game_name', 'ch_name']) {
