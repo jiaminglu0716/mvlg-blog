@@ -26,10 +26,14 @@ page.banner_mask_alpha = theme.index.banner_mask_alpha
   <div>
     <div>
       <div>
-        <select style="width: 100%; height: 3rem; text-align: center;">
-          <optgroup :label="group.ch_name" v-for="(group, gidx) in gamer.groups" v-key="gidx">
-            <option v-for="(item, idx) in group.list" v-key="idx"
-              @click="loadData(item.link)">
+        <select style="width: 100%; height: 3rem; text-align: center;"
+          @change="loadDataEvent($event)">
+          <optgroup :label="group.ch_name" v-for="(group, gidx) in gamer.groups" :key="gidx">
+            <!-- Select标签内@click事件监听失效。以下为弃用代码组
+              <option v-for="(item, idx) in group.list" v-key="idx"
+              @click="loadData(item.link)"> -->
+            <option v-for="(item, idx) in group.list" :key="idx"
+              :value="item.link">
               {{ item.type }}
             </option>
           </optgroup>
@@ -47,7 +51,7 @@ page.banner_mask_alpha = theme.index.banner_mask_alpha
   <div style="margin-top: 1rem;">
     <ul  style="margin-left: -1rem;">
       <li v-for="item in message.results" v-key="item.game_id">
-        <img :src="item.img" />
+        <!-- <img :src="item.img" /> -->
         <div>【{{ item.game_id }}】{{ item.ch_name }}</div>
         <div style="display: flex; height: 30px;">
           <label>语言: </label>
@@ -178,7 +182,11 @@ new Vue({
     getList(link) {
       return $.ajax(url=link);
     },
+    loadDataEvent(event) {
+      this.loadData(event.target.value);
+    },
     async loadData(link) {
+      // link = window.location.origin + link;
       // Clear result list
       this.$set(this.message, 'results', []);
       // Get data from api
