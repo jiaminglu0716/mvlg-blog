@@ -51,7 +51,7 @@ page.banner_mask_alpha = page.banner_mask_alpha || theme.gamer.banner_mask_alpha
       <div v-for="item in message.results" v-key="item.id">
         <a href="" 
           class='list-group-item list-group-item-action font-weight-bolder search-list-title'>
-          【{{ item.id }}】{{ item.cn_name }}
+          【{{ item.id.value }}】{{ item.cn_name }}
         </a>
         <div style="display: flex; line-height: 20px; margin-left: 2rem;">
           <label>语言： </label>
@@ -73,6 +73,13 @@ new Vue({
   el: '#app',
   data: {
     gamer: {
+      gs: new LinkGroupDict()
+        .add('Sony', new LinkGroup()
+          .add(new LinkItem('PSV', '/psv_all.json', 'PSV'))
+          .add(new LinkItem('PSP', '/psp.json', 'PSP'))
+          .add(new LinkItem('PS1', '/ps1.json', 'PS1'))
+          .add(new LinkItem('PS2', '/ps2jp.json', 'PS2'))
+          .add(new LinkItem('PS3', '/ps3.json', 'PS3'))),
       groups: [
         {
           group: 'Sony',
@@ -207,7 +214,7 @@ new Vue({
         this.$set(this.message, 'kwl', keyword.length);
         return;
       }
-      // ben start step below 2
+      // ban start step below 2
       if (keyword.length < 2) return;
 
       let results = this.search(keyword, this.message.data);

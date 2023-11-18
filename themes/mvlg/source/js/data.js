@@ -29,7 +29,7 @@ class GamerDataDTO extends DataDTO {
         this.genres = new Array();
     }
     setID(val) {
-        this.id = val;
+        this.id = new GameID(val);
         return this;
     }
     setName(val) {
@@ -130,5 +130,52 @@ class YL2000DataLoader extends DataLoader {
         });
 
         return results;
+    }
+}
+
+
+/**
+ * 
+ */
+
+
+class LinkItem {
+    constructor(title, link, value='') {
+        this.link = link;
+        this.value = value;
+        this.title = title;
+    }
+}
+
+class LinkGroup {
+    constructor() {
+        this.linkset = new Set();
+        this.name = 'Undefine';
+        this.cn_name = 'Undefine';
+    }
+    setName(val) {
+        this.name = val;
+        return this;
+    }
+    setCNName(val) {
+        this.cn_name = val;
+        return this;
+    }
+    add(link) {
+        this.linkset.add(link);
+        return this;
+    }
+}
+
+class LinkGroupDict {
+    constructor() {
+        this.lib = new Object();
+    }
+    add(gname, group) {
+        this.lib[gname] = group;
+        return this;
+    }
+    query(gname) {
+        return this.lib[gname];
     }
 }
