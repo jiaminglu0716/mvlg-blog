@@ -1,0 +1,172 @@
+---
+title: 【感想】日陰の日葵 - sun in the shade
+date: 2023-11-18 17:39:00
+index_img: /images/galgame/Shiny%20Days/cg-2.jpg
+banner_img: /images/galgame/Shiny%20Days/cg-5.jpg
+mermaid: true
+description: Galgame攻略感想与评价 >>> 
+categories:
+- Gamer
+- Galgame
+- Review
+tags:
+- galgame
+- acg
+- ADV
+- review
+- Doujin
+- 同人
+- 评分
+- 感想
+- 统计
+---
+
+## 状态信息
+### 基本信息
+| 属性 | 数值 |
+| --- | --- |
+| 平台 | PC |
+| 游戏 | 日陰の日葵 - sun in the shade |
+| 原名 | 日陰の日葵 - sun in the shade |
+| 类型 | Doujin |
+| 平台 | Novelgame.jp |
+| 作者 | 心太 |
+| 会社 | - |
+| 成就 | - |
+| 收集 | Full Story Point |
+| 天数 | 1 |
+| 时长 | 1-2h |
+| 系列 | - |
+
+### 游戏信息
+| 属性 | 数值 |
+| --- | --- |
+| 制作人 | 心太 |
+
+### 发行信息
+| 日期 | 版本 |
+| --- | --- |
+| 2021-12-18 | JP PC |
+| 2023-11-07 | CN PC |
+
+
+
+## 状态统计
+### 记录汇总
+| 记录项 | 记录数值 |
+| --- | --- |
+| 天数间隔 | 1 |
+| 有效天数 | 1 |
+| 起始日期 | 2023-11-18 16:04:00 |
+| 结束日期 | 2023-11-18 17:39:00 |
+| 片段数量 | 1 |
+| 总时长 | 01:35:00 |
+| 最短片段 | 01:35:00 |
+| 最长片段 | 01:35:00 |
+
+### 线路汇总
+| 周目 | 线路 | 次数 | 故事时长 | 额外时长 | 游戏时长 | 线路时长 |
+| --- | --- | --- | --- | --- | --- | --- |
+| 1 | Fin | 1 | 01:35:00 | - | 01:35:00 | 01:35:00 |
+
+
+## 游戏评分
+| 评分项 | 分数 | 占比 |
+| --- | --- | --- |
+| 评价 | 8.0 | - |
+| BGM | 8.0 | - |
+| 剧情 | 8.0 | - |
+| 人物 | 7.4 | - |
+| CG | 7.8 | - | 
+| 动画 | - | - |
+
+
+## 游戏分析
+### 布局分析
+| 选项 | 路线 |
+| --- | --- |
+| N | 1 |
+
+### Bug汇总
+- 无CG回放
+- 存档8个位置
+- 不能全屏模式
+- UI不太友好
+
+### 线路汇总
+单线，女主向日葵。
+
+## 评价
+### 标签
+校园、同人、高评、超短、成长、音乐、消逝、青春
+
+### 提示
+无
+
+### 经典
+无
+
+### 感想
+类似于高考，男主是吊车尾，而班主任的教导与向日葵帮助男主以调音师的志向前进，最终得到众多人的感谢。男主在否认的同时发现向日葵存在的消逝，因为她完成了使命，就是男主的成长。剧情普通，但观感不普通，还是挺有触感的。末尾还是有点小感动。bgm一贯风格同人通用型bgm，画风就是建议的水彩风格，但人物大体上还是挺好看的。
+
+## 站点信息
+### 游玩时长
+| 站点 | 时长 | 自动 | 最慢 | 最快 | 正常 |
+| --- | --- | --- | --- | --- | --- | 
+| vndb | 1h5m | 1h30m | 55m | 55m | 55m |
+
+### 站点评分表
+| 站点 | 评分 | 平均 | 人数 | 最高分 | 最低分 | 偏差 |
+| --- | --- | --- | --- | --- | --- |  --- |
+| vndb | 7.26 | 7.26 | 11 | 9 | 5 | - |
+
+### 站点评分区间图
+```mermaid
+pie
+    title Vndb
+    "10分": 0
+    "9-10分" : 1
+    "8-9分" : 4
+    "7-8分" : 4
+    "6-7分" : 1
+    "5-6分" : 1
+    "4-5分" : 0
+    "3-4分" : 0
+    "2-3分" : 0
+    "1-2分" : 0
+    "0-1分" : 0
+```
+
+## 游戏图片
+### CG截图
+{% gi 8 1-2-2-2-1 %}
+![](/images/galgame/Shiny%20Days/cg-5.jpg)
+![](/images/galgame/Shiny%20Days/cg-2.jpg)
+![](/images/galgame/Shiny%20Days/cg-3.jpg)
+![](/images/galgame/Shiny%20Days/cg-4.jpg)
+![](/images/galgame/Shiny%20Days/cg-1.jpg)
+![](/images/galgame/Shiny%20Days/cg-6.jpg)
+![](/images/galgame/Shiny%20Days/cg-7.jpg)
+![](/images/galgame/Shiny%20Days/cg-8.jpg)
+{% endgi %}
+
+### 游戏截图
+{% gi 12 3-3-3-3 %}
+![](/images/galgame/Shiny%20Days/ing-1.jpg)
+![](/images/galgame/Shiny%20Days/ing-2.jpg)
+![](/images/galgame/Shiny%20Days/ing-3.jpg)
+![](/images/galgame/Shiny%20Days/ing-4.jpg)
+![](/images/galgame/Shiny%20Days/ing-5.jpg)
+![](/images/galgame/Shiny%20Days/ing-6.jpg)
+![](/images/galgame/Shiny%20Days/ing-7.jpg)
+![](/images/galgame/Shiny%20Days/ing-8.jpg)
+![](/images/galgame/Shiny%20Days/ing-9.jpg)
+![](/images/galgame/Shiny%20Days/ing-10.jpg)
+![](/images/galgame/Shiny%20Days/ing-11.jpg)
+![](/images/galgame/Shiny%20Days/ing-12.jpg)
+![](/images/galgame/Shiny%20Days/ing-13.jpg)
+{% endgi %}
+
+
+### 相关链接
+[官方公式](https://novelgame.jp/games/show/6056)

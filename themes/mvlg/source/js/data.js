@@ -1,9 +1,19 @@
+/**
+ * Simple data object used to act as search object to find real object.
+ * reduce the usage of RAM and improve the quality of search.
+ */
 class ID {
     constructor(id) {
         this.value = id === undefined ? 'None' : id;
     }
 }
 
+/**
+ * DTO is a basic unit in model.
+ * Model only deal with DTO not object we set from outside.
+ * Facade just like a door, they can give outside object a passport.
+ * Loader contains different facades just like a company. 
+ */
 class DataDTO {}
 
 class DataFacade {}
@@ -86,6 +96,10 @@ class GamerDataDTO extends DataDTO {
     }
 }
 
+/**
+ * YL2000 is not a great sample, but these data from this site, so?
+ * Respect YL2000, now I need to acknowledge the design is not merit, and the next time I need to find great mode to deal with these data. 
+ */
 class YL2000BaseGamerDataFacade extends DataFacade {
     obj2dto(o) {
         return new GamerDataDTO()
@@ -135,7 +149,11 @@ class YL2000DataLoader extends DataLoader {
 
 
 /**
+ * group -> manage link collection just like a team.
+ * dict -> manage and query group via name.
  * 
+ * we often see dict as a company and group is a thread to response a part of job.
+ * And the group need a lots of teams to touch the target which has been defined before we act, such as salers.
  */
 
 
@@ -171,11 +189,11 @@ class LinkGroupDict {
     constructor() {
         this.lib = new Object();
     }
-    add(gname, group) {
-        this.lib[gname] = group;
+    add(group) {
+        this.lib[group.name] = group;
         return this;
     }
-    query(gname) {
-        return this.lib[gname];
+    query(name) {
+        return this.lib[name];
     }
 }
