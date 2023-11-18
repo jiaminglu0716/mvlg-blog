@@ -91,10 +91,12 @@ hexo.extend.generator.register('_acglinks', function(locals) {
  * 3rd-extend func
  */
 hexo.extend.generator.register('_gamer', async function(locals) {
-  return {
-    path  : 'gamer/index.html', 
-    layout: 'gamer'
-  };
+  if (this.theme.config.gamer.enable !== false) {
+    return {
+      path  : 'gamer/index.html', 
+      layout: 'gamer'
+    };
+  }
 });
 
 

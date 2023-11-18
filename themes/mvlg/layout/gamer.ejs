@@ -1,12 +1,10 @@
 <%
-page.layout = "test"
-page.title = theme.pageTest.title || __('test.title')
-if (theme.index.slogan.enable) {
-  page.subtitle = theme.index.slogan.text || config.subtitle || ''
-}
-page.banner_img = theme.index.banner_img
-page.banner_img_height = theme.index.banner_img_height
-page.banner_mask_alpha = theme.index.banner_mask_alpha
+page.layout = "gamer"
+page.title = theme.gamer.title || __('gamer.title')
+page.subtitle = theme.gamer.subtitle || __('gamer.subtitle')
+page.banner_img = page.banner_img || theme.gamer.banner_img
+page.banner_img_height = page.banner_img_height || theme.gamer.banner_img_height
+page.banner_mask_alpha = page.banner_mask_alpha || theme.gamer.banner_mask_alpha
 %>
 
 
@@ -49,19 +47,22 @@ page.banner_mask_alpha = theme.index.banner_mask_alpha
     </div>
   </div>
   <div style="margin-top: 1rem;">
-    <ul  style="margin-left: -1rem;">
-      <li v-for="item in message.results" v-key="item.game_id">
-        <!-- <img :src="item.img" /> -->
-        <div>【{{ item.game_id }}】{{ item.ch_name }}</div>
-        <div style="display: flex; height: 30px;">
-          <label>语言: </label>
-          <p style="margin-right: 5px;" v-for="lang in item.language">{{ lang }}</p>
+    <ul style="margin-left: -2rem;">
+      <div v-for="item in message.results" v-key="item.id">
+        <a href="" 
+          class='list-group-item list-group-item-action font-weight-bolder search-list-title'>
+          【{{ item.id }}】{{ item.cn_name }}
+        </a>
+        <div style="display: flex; line-height: 20px; margin-left: 2rem;">
+          <label>语言： </label>
+          <p style="margin-right: 5px;" v-for="lang in item.langs">{{ lang }}</p>
         </div>
-        <div style="display: flex; height: 30px;">
-          <label>类型: </label>
-          <p style="margin-right: 5px;" v-for="gen in item.genre">{{ gen }}</p>
+        <div style="display: flex; line-height: 20px; margin-left: 2rem;">
+          <label>类型：</label>
+          <p style="margin-right: 5px;" v-for="gen in item.genres">{{ gen }}</p>
         </div>
-      </li>
+      </div>
+      
     </ul>
   </div>
 </div>
@@ -175,8 +176,9 @@ new Vue({
     }
   },
   async mounted() {
-    this.loadData(this.gamer.groups[0].list[0].link)
-    // this.searchData('伊苏 丹娜 language:英语');
+    await this.loadData(this.gamer.groups[0].list[0].link)
+    // 默认搜索列表示例。
+    await this.$set(this.message, 'results', this.search("伊苏 langs:英语", this.message.data));
   },
   methods: {
     getList(link) {
@@ -186,13 +188,16 @@ new Vue({
       this.loadData(event.target.value);
     },
     async loadData(link) {
+      // join the path of link with current domain
       // link = window.location.origin + link;
       // Clear result list
       this.$set(this.message, 'results', []);
       // Get data from api
       let message = await this.getList(link);
+      // to dto list
+      message = await new YL2000DataLoader('PSV', message.content).toList();
       // Set data
-      this.$set(this.message, 'data', message.content);
+      this.$set(this.message, 'data', message);
     },
     searchData() {
       let keyword = this.message.keyword;
@@ -208,7 +213,7 @@ new Vue({
       let results = this.search(keyword, this.message.data);
       this.$set(this.message, 'results', results);
     },
-    search(keyword, data, defaultKeys=['game_name', 'ch_name']) {
+    search(keyword, data, defaultKeys=['name', 'cn_name']) {
       // 解析关键词
       class FilterItem {
         constructor(key, value) {
@@ -232,7 +237,7 @@ new Vue({
         }
       });
 
-      // console.log(keywords, filters)
+      console.log(keywords, filters)
 
       // 提取数据文件
       function obj2str(item, keys, sign='/') {
@@ -257,7 +262,7 @@ new Vue({
 
         let ks = keywords.map(key => match(s, key));
         let fs = filters.map(filter => match(item[filter.key].join('/'), filter.value));
-
+        
         if (
           (fs.length > 0 && ks.length == 0 && boolArrReduce(fs)) ||
           (fs.length == 0 && ks.length > 0 && boolArrReduce(ks)) ||

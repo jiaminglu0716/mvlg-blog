@@ -994,6 +994,19 @@ page:
   banner_img_height: 60
   banner_mask_alpha: 0.3
 
+#---------------------------
+# 游戏库页
+# Custom Page
+#
+# 通过 hexo new page 命令创建的页面
+# Custom Page through `hexo new page`
+#---------------------------
+gamer:
+  enable: true
+  banner_img: /img/cover-6.jpg
+  banner_img_height: 60
+  banner_mask_alpha: 0.3
+
 
 #---------------------------
 # Test (测试新建页面模块)
