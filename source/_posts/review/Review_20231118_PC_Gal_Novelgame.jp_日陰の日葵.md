@@ -1,8 +1,8 @@
 ---
 title: 【感想】日陰の日葵 - sun in the shade
 date: 2023-11-18 17:39:00
-index_img: /images/galgame/Shiny%20Days/cg-2.jpg
-banner_img: /images/galgame/Shiny%20Days/cg-5.jpg
+index_img: /images/galgame/Sun%20In%20The%20Shade/cover.jpg
+banner_img: /images/galgame/Sun%20In%20The%20Shade/cover.jpg
 mermaid: true
 description: Galgame攻略感想与评价 >>> 
 categories:
@@ -138,33 +138,12 @@ pie
 ```
 
 ## 游戏图片
-### CG截图
-{% gi 8 1-2-2-2-1 %}
-![](/images/galgame/Shiny%20Days/cg-5.jpg)
-![](/images/galgame/Shiny%20Days/cg-2.jpg)
-![](/images/galgame/Shiny%20Days/cg-3.jpg)
-![](/images/galgame/Shiny%20Days/cg-4.jpg)
-![](/images/galgame/Shiny%20Days/cg-1.jpg)
-![](/images/galgame/Shiny%20Days/cg-6.jpg)
-![](/images/galgame/Shiny%20Days/cg-7.jpg)
-![](/images/galgame/Shiny%20Days/cg-8.jpg)
-{% endgi %}
-
 ### 游戏截图
-{% gi 12 3-3-3-3 %}
-![](/images/galgame/Shiny%20Days/ing-1.jpg)
-![](/images/galgame/Shiny%20Days/ing-2.jpg)
-![](/images/galgame/Shiny%20Days/ing-3.jpg)
-![](/images/galgame/Shiny%20Days/ing-4.jpg)
-![](/images/galgame/Shiny%20Days/ing-5.jpg)
-![](/images/galgame/Shiny%20Days/ing-6.jpg)
-![](/images/galgame/Shiny%20Days/ing-7.jpg)
-![](/images/galgame/Shiny%20Days/ing-8.jpg)
-![](/images/galgame/Shiny%20Days/ing-9.jpg)
-![](/images/galgame/Shiny%20Days/ing-10.jpg)
-![](/images/galgame/Shiny%20Days/ing-11.jpg)
-![](/images/galgame/Shiny%20Days/ing-12.jpg)
-![](/images/galgame/Shiny%20Days/ing-13.jpg)
+{% gi 4 1-1-2 %}
+![](/images/galgame/Sun%20In%20The%20Shade/cover.jpg)
+![](/images/galgame/Sun%20In%20The%20Shade/ing-1.jpg)
+![](/images/galgame/Sun%20In%20The%20Shade/ing-2.jpg)
+![](/images/galgame/Sun%20In%20The%20Shade/ing-3.jpg)
 {% endgi %}
 
 
