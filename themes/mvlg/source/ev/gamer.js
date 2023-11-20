@@ -35,7 +35,13 @@ const GAMER = {
         .setName('Microsoft')
         .setCNName('任微软')
         .add(new LinkItem('XBOX', '/data/gamer/3ds.json', 'XBOX'))
-        .add(new LinkItem('XBOX360', '/data/gamer/xbox360.json', 'XBOX360'))),
+        .add(new LinkItem('XBOX360', '/data/gamer/xbox360.json', 'XBOX360'))),  
+    Resource: new LinkGroupDict()
+      .add(new LinkGroup()
+        .setName('GameLib')
+        .setCNName('游戏库')
+        .add(new LinkItem('PSVTSV', '/data/resource/psvgames.tsv', 'PSVTSV'))
+        .add(new LinkItem('PSPTSV', '/data/resource/pspgames.tsv', 'PSPTSV'))),
   }
 }
 
@@ -124,8 +130,21 @@ class GamerPageApp {
       data: { gamer: GAMER, message: MESSAGE, text: 'Gamer' },
       async mounted() {
         await this.init();
+        await this.test();
       },
       methods: {
+        async test() {
+          class a {
+            constructor() {
+              this.a = 14
+            }
+            b() {
+              console.log(2)
+            }
+          }
+          console.log(new a()['a'])
+          console.log(Object.keys(new a()))
+        },
         async init() {
           // Init data
           await this.initData();
@@ -159,8 +178,6 @@ class GamerPageApp {
           // event.target.value -> string
           let [ value, link ] = event.target.value.split('|');
           this.loadData(value, link);
-
-          console.log(value, link)
         },
         clearData() {
           this.$set(this.message, 'data', new Array());
@@ -172,18 +189,30 @@ class GamerPageApp {
           this.$set(this.message, 'results', new Array());
         },
         async loadData(value, link) {
-          let message = await this.getList('/data/resource/psvgames.tsv');
           // Clear result list
           this.clearResults();
           // Get data from api
-          // let message = await this.getList(link);
+          let message = await this.getList(link);
           // to dto list
-          // message = await new YL2000DataLoader(value, message.content).toList();
+          switch (this.message.type) {
+            case 'YL2000':
+              message = await new YL2000DataLoader(value, message.content).toList(); break;
+            case 'Resource':
+              switch (value) {
+                case 'PSVTSV':
+                  this.loadPSVTSVData(message); break;
+                default:
+                  console.log(new TSVReader(message));
+              } break;
+            default:
+              message = await new YL2000DataLoader(value, message.content).toList();
+
+          }
           // Set data
-          // this.$set(this.message, 'data', message);
+          this.$set(this.message, 'data', message);
         },
-        async loadTSVData() {
-          console.log(await new TSVReader(message))
+        async loadPSVTSVData(message) {
+          console.log(await new PSVGameTSVReader(message))
         },
         searchFilter() {
           let keyword = this.message.keyword;

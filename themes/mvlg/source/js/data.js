@@ -99,6 +99,85 @@ class GamerDataDTO extends DataDTO {
 }
 
 /**
+ * 待修改
+ */
+class ResourceDataDTO extends DataDTO {
+    constructor() {
+        super();
+        this.id = new GameID();
+        this.name = new String();
+        this.cn_name = new String();
+        this.publisher = new String();
+        this.developer = new String();
+        this.link = new String();
+        this.desc = new String();
+        this.date = new Date();
+        this.region = new String();
+        this.img = new String();
+        this.langs = new Array();
+        this.genres = new Array();
+    }
+    setID(val) {
+        this.id = new GameID(val);
+        return this;
+    }
+    setName(val) {
+        this.name = val;
+        return this;
+    }
+    setCNName(val) {
+        this.cn_name = val;
+        return this;
+    }
+    setPublisher(val) {
+        this.publisher = val;
+        return this;
+    }
+    setDeveloper(val) {
+        this.developer = val;
+        return this;
+    }
+    setLink(val) {
+        this.link = val;
+        return this;
+    }
+    setDesc(val) {
+        this.desc = val;
+        return this;
+    }
+    setDate(val) {
+        this.date = val;
+        return this;
+    }
+    setRegion(val) {
+        this.region = val;
+        return this;
+    }
+    setImage(val) {
+        this.img = val;
+        return this;
+    }
+    addLanguage(val) {
+        this.langs.push(val);
+        return this;
+    }
+    addGenre(val) {
+        this.genres.push(val);
+        return this;
+    }
+    setLanguages(vals) {
+        if (vals instanceof Array)
+            vals.forEach(val => this.addLanguage(val));
+        return this;
+    }
+    setGenres(vals) {
+        if (vals instanceof Array)
+            vals.forEach(val => this.addGenre(val));
+        return this;
+    }
+}
+
+/**
  * YL2000 is not a great sample, but these data from this site, so?
  * Respect YL2000, now I need to acknowledge the design is not merit, and the next time I need to find great mode to deal with these data. 
  */
