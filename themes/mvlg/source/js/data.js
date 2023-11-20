@@ -167,7 +167,7 @@ class LinkItem {
 
 class LinkGroup {
     constructor() {
-        this.linkset = new Set();
+        this.list = [];
         this.name = 'Undefine';
         this.cn_name = 'Undefine';
     }
@@ -180,7 +180,7 @@ class LinkGroup {
         return this;
     }
     add(link) {
-        this.linkset.add(link);
+        this.list.push(link);
         return this;
     }
 }
