@@ -87,11 +87,13 @@ class GamerDataDTO extends DataDTO {
         return this;
     }
     setLanguages(vals) {
-        vals.forEach(val => this.addLanguage(val));
+        if (vals instanceof Array)
+            vals.forEach(val => this.addLanguage(val));
         return this;
     }
     setGenres(vals) {
-        vals.forEach(val => this.addGenre(val));
+        if (vals instanceof Array)
+            vals.forEach(val => this.addGenre(val));
         return this;
     }
 }
@@ -104,7 +106,7 @@ class YL2000BaseGamerDataFacade extends DataFacade {
     obj2dto(o) {
         return new GamerDataDTO()
             .setID(o.game_id)
-            .setName(o.cn_name)
+            .setName(o.game_name)
             .setCNName(o.ch_name)
             .setPublisher(o.publisher)
             .setDeveloper(o.developer)
@@ -122,6 +124,15 @@ class YL2000PSVGamerDataFacade extends DataFacade {
     }
 }
 
+class YL2000PSPGamerDataFacade extends DataFacade {
+    obj2dto(o) {
+        return new YL2000BaseGamerDataFacade().obj2dto(o)
+            .setID(`${o.game_id}|${o.UMD_ID}`)
+            .setDeveloper(o.publisher)
+            .setGenres(new Array(o.genre));
+    }
+}
+
 class YL2000DataLoader extends DataLoader {
     constructor(type, data) {
         super();
@@ -134,6 +145,9 @@ class YL2000DataLoader extends DataLoader {
         switch (this.type) {
             case 'PSV':
                 facade = new YL2000PSVGamerDataFacade();
+                break;
+            case 'PSP':
+                facade = new YL2000PSPGamerDataFacade();
                 break;
             default:
                 facade = new YL2000BaseGamerDataFacade();

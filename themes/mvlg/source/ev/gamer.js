@@ -30,12 +30,12 @@ const GAMER = {
         .setCNName('任微软')
         .add(new LinkItem('XBOX', '/data/gamer/xbox.json', 'XBOX'))
         .add(new LinkItem('XBOX360', '/data/gamer/xbox360.json', 'XBOX360'))),
-      YL3000: new LinkGroupDict()
-        .add(new LinkGroup()
-          .setName('Microsoft')
-          .setCNName('任微软')
-          .add(new LinkItem('XBOX', '/data/gamer/3ds.json', 'XBOX'))
-          .add(new LinkItem('XBOX360', '/data/gamer/xbox360.json', 'XBOX360'))),
+    YL3000: new LinkGroupDict()
+      .add(new LinkGroup()
+        .setName('Microsoft')
+        .setCNName('任微软')
+        .add(new LinkItem('XBOX', '/data/gamer/3ds.json', 'XBOX'))
+        .add(new LinkItem('XBOX360', '/data/gamer/xbox360.json', 'XBOX360'))),
   }
 }
 
@@ -172,16 +172,18 @@ class GamerPageApp {
           this.$set(this.message, 'results', new Array());
         },
         async loadData(value, link) {
-          // join the path of link with current domain
-          // link = window.location.origin + link;
+          let message = await this.getList('/data/resource/psvgames.tsv');
           // Clear result list
           this.clearResults();
           // Get data from api
-          let message = await this.getList(link);
+          // let message = await this.getList(link);
           // to dto list
-          message = await new YL2000DataLoader(value, message.content).toList();
+          // message = await new YL2000DataLoader(value, message.content).toList();
           // Set data
-          this.$set(this.message, 'data', message);
+          // this.$set(this.message, 'data', message);
+        },
+        async loadTSVData() {
+          console.log(await new TSVReader(message))
         },
         searchFilter() {
           let keyword = this.message.keyword;
