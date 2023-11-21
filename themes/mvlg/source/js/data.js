@@ -145,18 +145,6 @@ class GamerDataDTO extends DataDTO {
 }
 
 
-class ResourceDataDTO extends DataDTO {
-    constructor() {
-        super();
-        this.id = new GameID();
-        this.name = new String();
-        this.channel = new Array();
-        this.model();
-        this.cn_name = new String();
-    }
-    setCNName = (val) => this.set('cn_name', val);
-}
-
 // console.log(new ResourceDataDTO().setChannels([222,333]).getChannels())
 /**
  * YL2000 is not a great sample, but these data from this site, so?
@@ -232,15 +220,36 @@ class YL2000XBOX360GamerDataFacade extends DataFacade {
     }
 }
 
-class YL2000DataLoader extends DataLoader {
+class BaseDataLoader extends DataLoader {
     constructor(type, data) {
         super();
         this.type = type;
         this.data = data;
     }
-    toList() {
-        let facade, results = new Array();
+    getFacade() {
+        let facade;
 
+        return facade;
+    }
+    toList() {
+        let facade = this.getFacade();
+        let results = new Array();
+
+        this.data.forEach((object, idx) => {
+            object.index = idx;
+            results.push(facade.obj2dto(object));
+        });
+
+        return results;
+    }
+}
+
+class YL2000DataLoader extends BaseDataLoader {
+    constructor(type, data) {
+        super(type, data);
+    }
+    getFacade() {
+        let facade;
         switch (this.type) {
             case 'PSV': facade = new YL2000PSVGamerDataFacade(); break;
             case 'PSP': facade = new YL2000PSPGamerDataFacade(); break;
@@ -254,15 +263,81 @@ class YL2000DataLoader extends DataLoader {
             case 'XBOX360': facade = new YL2000XBOX360GamerDataFacade(); break;
             default: facade = new YL2000BaseGamerDataFacade();
         }
-
-        this.data.forEach(object => {
-            results.push(facade.obj2dto(object));
-        });
-
-        return results;
+        return facade;
     }
 }
 
+/**
+ * Resource Channel
+ */
+class ResourceChannel {
+    constructor(name, path, pathType, key, keyType) {
+        this.name = name;
+        this.path = path;
+        this.pathType = pathType;
+        this.key = key;
+        this.keyType = keyType;
+    }
+}
+
+class ResourceDataDTO extends DataDTO {
+    constructor() {
+        super();
+        this.id = new ID();
+        this.name = new String();
+        this.channel = new Array();
+        this.model();
+        this.cn_name = new String();
+    }
+    setID = (val) => this.set('id', new ID(val));
+    setCNName = (val) => this.set('cn_name', val);
+}
+
+class PSVTSVResourceDataFacade extends DataFacade {
+    obj2dto(o) {
+        return new ResourceDataDTO()
+            .setID(o.title_id)
+            .setName(o.name)
+            .setCNName(o.name)
+            .addChannel(new ResourceChannel('pkgj', o.pkg_direct_link, 'FILE', o.zrif, 'zRIF'));
+    }
+}
+
+class PSPTSVResourceDataFacade extends DataFacade {
+    obj2dto(o) {
+        return new ResourceDataDTO()
+            .setID(o.title_id)
+            .setName(o.name)
+            .setCNName(o.name)
+            .addChannel(new ResourceChannel('pkgj', o.pkg_direct_link, 'FILE', null, null));
+    }
+}
+
+class NyaaMikoconResourceDataFacade extends DataFacade {
+    obj2dto(o) {
+        return new ResourceDataDTO()
+            .setID(o.index)
+            .setName(o.name)
+            .setCNName(o.name)
+            .addChannel(new ResourceChannel('maganet', o.maganet, 'MAGANET', null, null));
+    }
+}
+
+class ResourceDataLoader extends BaseDataLoader {
+    constructor(type, data) {
+        super(type, data);
+    }
+    getFacade() {
+        let facade;
+        switch (this.type) {
+            case 'PSVTSV': facade = new PSVTSVResourceDataFacade(); break;
+            case 'PSPTSV': facade = new PSPTSVResourceDataFacade(); break;
+            case 'NYAAMIKOCON': facade = new NyaaMikoconResourceDataFacade(); break;
+            default: facade = new YL2000BaseGamerDataFacade();
+        }
+        return facade;
+    }
+}
 
 /**
  * group -> manage link collection just like a team.

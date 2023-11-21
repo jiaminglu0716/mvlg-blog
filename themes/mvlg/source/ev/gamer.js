@@ -41,7 +41,8 @@ const GAMER = {
         .setName('GameLib')
         .setCNName('游戏库')
         .add(new LinkItem('PSVTSV', '/data/resource/psvgames.tsv', 'PSVTSV'))
-        .add(new LinkItem('PSPTSV', '/data/resource/pspgames.tsv', 'PSPTSV'))),
+        .add(new LinkItem('PSPTSV', '/data/resource/pspgames.tsv', 'PSPTSV'))
+        .add(new LinkItem('Nyaa', '/data/resource/nyaa_mikocon.json', 'NYAAMIKOCON'))),
   }
 }
 
@@ -130,21 +131,8 @@ class GamerPageApp {
       data: { gamer: GAMER, message: MESSAGE, text: 'Gamer' },
       async mounted() {
         await this.init();
-        // await this.test();
       },
       methods: {
-        async test() {
-          class a {
-            constructor() {
-              this.a = 14
-            }
-            b() {
-              console.log(2)
-            }
-          }
-          console.log(new a()['a'])
-          console.log(Object.keys(new a()))
-        },
         async init() {
           // Init data
           await this.initData();
@@ -195,15 +183,10 @@ class GamerPageApp {
           let message = await this.getList(link);
           // to dto list
           switch (this.message.type) {
-            case 'YL2000':
+            case 'Game':
               message = await new YL2000DataLoader(value, message.content).toList(); break;
             case 'Resource':
-              switch (value) {
-                case 'PSVTSV':
-                  this.loadPSVTSVData(message); break;
-                default:
-                  console.log(new TSVReader(message));
-              } break;
+              message = await this.loadResourceData(value, message); break;
             default:
               message = await new YL2000DataLoader(value, message.content).toList();
 
@@ -211,8 +194,12 @@ class GamerPageApp {
           // Set data
           this.$set(this.message, 'data', message);
         },
-        async loadPSVTSVData(message) {
-          console.log(await new PSVGameTSVReader(message))
+        async loadResourceData(value, message) {
+          if (value.indexOf('TSV') > -1) {
+            message = await new TSVReader(message);
+            message = message.values;
+          }
+          return new ResourceDataLoader(value, message).toList();
         },
         searchFilter() {
           let keyword = this.message.keyword;
