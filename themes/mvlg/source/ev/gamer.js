@@ -3,7 +3,7 @@
  */
 const GAMER = {
   types: {
-    YL2000: new LinkGroupDict()
+    Game: new LinkGroupDict()
       .add(new LinkGroup()
         .setName('Sony')
         .setCNName('索尼')
@@ -47,7 +47,7 @@ const GAMER = {
 
 const MESSAGE = {
   kwl: new Number(0),
-  type: new String('YL2000'),
+  type: new String('Game'),
   keyword: new String(),
   groups: new Array(),
   data: new Array(),
@@ -130,7 +130,7 @@ class GamerPageApp {
       data: { gamer: GAMER, message: MESSAGE, text: 'Gamer' },
       async mounted() {
         await this.init();
-        await this.test();
+        // await this.test();
       },
       methods: {
         async test() {
