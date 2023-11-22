@@ -40,8 +40,9 @@ class TSVReader {
         // transfer to line data
         let lines = data;
         if (typeof data == 'string')
-            lines = data.split('\r\n');
+            lines = data.split('\n');
 
+        // console.log('TSVLEN', lines.length, typeof lines, lines)
         lines.forEach((line, idx) => {
             let temp = line.split('\t');
 

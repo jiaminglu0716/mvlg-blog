@@ -189,11 +189,14 @@ class GamerPageApp {
           this.$set(this.message, 'data', message);
         },
         async loadResourceData(value, message) {
+          
+          // console.log('MSG1', value, message)
           if (value.indexOf('TSV') > -1) {
             message = await new TSVReader(message);
             message = message.values;
           }
-          console.log(new ResourceDataLoader(value, message).toSearchList())
+          // console.log('MSG', value, message)
+          // console.log('SL', new ResourceDataLoader(value, message).toSearchList())
           return new ResourceDataLoader(value, message).toSearchList();
         },
         searchFilter() {
