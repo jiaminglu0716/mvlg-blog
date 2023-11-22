@@ -30,12 +30,6 @@ const GAMER = {
         .setCNName('任微软')
         .add(new LinkItem('XBOX', '/data/gamer/xbox.json', 'XBOX'))
         .add(new LinkItem('XBOX360', '/data/gamer/xbox360.json', 'XBOX360'))),
-    YL3000: new LinkGroupDict()
-      .add(new LinkGroup()
-        .setName('Microsoft')
-        .setCNName('任微软')
-        .add(new LinkItem('XBOX', '/data/gamer/3ds.json', 'XBOX'))
-        .add(new LinkItem('XBOX360', '/data/gamer/xbox360.json', 'XBOX360'))),  
     Resource: new LinkGroupDict()
       .add(new LinkGroup()
         .setName('GameLib')
@@ -184,11 +178,11 @@ class GamerPageApp {
           // to dto list
           switch (this.message.type) {
             case 'Game':
-              message = await new YL2000DataLoader(value, message.content).toList(); break;
+              message = await new YL2000DataLoader(value, message.content).toSearchList(); break;
             case 'Resource':
               message = await this.loadResourceData(value, message); break;
             default:
-              message = await new YL2000DataLoader(value, message.content).toList();
+              message = await new YL2000DataLoader(value, message.content).toSearchList();
 
           }
           // Set data
@@ -199,7 +193,8 @@ class GamerPageApp {
             message = await new TSVReader(message);
             message = message.values;
           }
-          return new ResourceDataLoader(value, message).toList();
+          console.log(new ResourceDataLoader(value, message).toSearchList())
+          return new ResourceDataLoader(value, message).toSearchList();
         },
         searchFilter() {
           let keyword = this.message.keyword;

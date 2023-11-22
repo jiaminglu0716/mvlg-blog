@@ -60,14 +60,17 @@ page.banner_mask_alpha = page.banner_mask_alpha || theme.gamer.banner_mask_alpha
           class='list-group-item list-group-item-action font-weight-bolder search-list-title'>
           【{{ item.id.value }}】{{ item.cn_name }}
         </a>
-        <div style="display: flex; line-height: 20px; margin-left: 2rem;">
-          <p>语言： </p>
-          <p style="margin-right: 5px;" v-for="lang in item.langs">{{ lang }}</p>
+        <div style="display: flex; line-height: 20px; margin-left: 2rem; margin-top: 14px;"
+          v-for="attr in item.attrs">
+          <div v-if="!isInitData(attr.value)" style="display: flex;">
+            <p style="width: 70px; text-align: right;">{{ attr.key }}</p>：
+            <p style="margin-right: 5px;" v-html="exAttr(attr.value)"></p>
+          </div>
         </div>
-        <div style="display: flex; line-height: 20px; margin-left: 2rem;">
+        <!-- <div style="display: flex; line-height: 20px; margin-left: 2rem;">
           <p>类型：</p>
           <p style="margin-right: 5px;" v-for="gen in item.genres">{{ gen }}</p>
-        </div>
+        </div> -->
       </div>
     </ul>
   </div>
