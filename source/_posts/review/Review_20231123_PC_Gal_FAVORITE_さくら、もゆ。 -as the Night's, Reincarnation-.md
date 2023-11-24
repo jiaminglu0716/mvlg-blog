@@ -1,6 +1,6 @@
 ---
 title: 【感想】さくら、もゆ。-as the Night's, Reincarnation-
-date: 2023-11-08 12:47:00
+date: 2023-11-23 15:37:00
 index_img: /images/galgame/さくら、もゆ/cover.jpg
 banner_img: /images/galgame/さくら、もゆ/cg-1.jpg
 mermaid: true
