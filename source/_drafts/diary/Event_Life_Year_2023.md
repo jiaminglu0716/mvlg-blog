@@ -1,10 +1,18 @@
 ---
 title: 【Event】2023 Timeline
-date: 2023-11-27 18:11:00
+date: 2023-12-31 24:00:00
 desc: Only record events what had happend at that day. If you want to check these status and renew them, you can use todo app to complete these works. 
 ---
 
-- #### Routine
+### Pin
+{% note %}
+- #### Note Tags
+1. Routine / News / Event / Think / Question
+2. Status - Emotion / Weather / Activity / Study
+{% endnote %}
+
+
+
 
 
 ### 11-27
@@ -16,8 +24,9 @@ desc: Only record events what had happend at that day. If you want to check thes
 - #### Event
 1. Play ADV game's branch, Risona's route.
 2. Look through information from TG, Wechat, QQ and Tieba.
+3. Eating seafood scallops tonight with grandma, mother go to the hospital to see and take care her mom. 
 ---
-- #### Think
+- #### Question
 1. Why I have to make friends, and learn some information about how to full use of time and enhance the quality of social interaction.
 2. How to find jobs and make preparation for adjusting self-emotion.
 {% endnote %}
@@ -34,4 +43,5 @@ desc: Only record events what had happend at that day. If you want to check thes
 - #### Think
 1. Even leaving their home, I have not give him the channel to DL GTA5 in steam and point out that u would not give me face in after time I would not to help u solve this problem. If u have any questions, please use search engine Baidu. This is a tip and I will not seriously to chat with u, see u next cc.
 2. The man is not giving me a great impression, such as: honesty and communication.
+3. Sometimes, we need to give up and enhance self-ability. 
 {% endnote %}
