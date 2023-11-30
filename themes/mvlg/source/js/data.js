@@ -249,6 +249,7 @@ class SearchDataDTO extends DataDTO {
         super();
         this.id = new ID();
         this.name = new String();
+        this.image = new String();
         this.setter();
         this.cn_name = new String();
         this.attrs = new Array();
@@ -267,6 +268,7 @@ class DTOService {
             .setID(dto.id)
             .setName(dto.name)
             .setCNName(dto.cn_name)
+            .setImage(dto.img)
             .addAttr('发行商', dto.publisher)
             .addAttr('开发商', dto.developer)
             .addAttr('语言', dto.langs)
@@ -285,6 +287,17 @@ class DTOService {
         })
         
         return sdto;
+    }
+    galgamecard2search(dto) {
+        return new SearchDataDTO()
+            .setID(dto.id)
+            .setName(dto.name)
+            .setCNName(dto.cn_name)
+            .setImage(dto.img)
+            .addAttr('游戏会社', dto.company)
+            .addAttr('发售日', dto.date)
+            .addAttr('全年龄', dto.r18 ? 'no' : 'yes')
+            .addAttr('官中文', dto.ch ? 'yes' : 'no');
     }
 }
 
@@ -445,6 +458,56 @@ class ResourceDataLoader extends BaseDataLoader {
         return facade;
     }
 }
+
+/**
+ * Galgame DTO
+ */
+class GalgameCardDataDTO extends DataDTO {
+    constructor() {
+        super();
+        this.name = new String();
+        this.img = new String();
+        this.company = new String();
+        this.r18 = new Boolean();
+        this.ch = new Boolean();
+        this.date = new Date();
+        this.model();
+        this.id = new ID();
+        this.cn_name = new String();
+    }
+    setID = (val) => this.set('id', new ID(val));
+    setCNName = (val) => this.set('cn_name', val);
+}
+
+class YmgalCardDataFacade extends DataFacade {
+    obj2dto(o) {
+        return new GalgameCardDataDTO()
+            .setID(o.id)
+            .setImg(o.img)
+            .setName(o.name)
+            .setCNName(o.name)
+            .setCompany(o.company)
+            .setR18(o.r18)
+            .setCh(o.ch)
+            .setDate(o.date)
+    }
+}
+
+class GalgameCardDataLoader extends BaseDataLoader {
+    constructor(type, data) {
+        super(type, data);
+        this.func = 'galgamecard2search';
+    }
+    getFacade() {
+        let facade;
+        switch (this.type) {
+            case 'YMGAL': facade = new YmgalCardDataFacade(); break;
+            default: facade = new YmgalCardDataFacade();
+        }
+        return facade;
+    }
+}
+
 
 /**
  * group -> manage link collection just like a team.

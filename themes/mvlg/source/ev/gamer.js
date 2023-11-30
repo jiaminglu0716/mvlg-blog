@@ -1,5 +1,5 @@
 /**
- * Data
+ * Data Routes
  */
 const GAMER = {
   types: {
@@ -37,6 +37,11 @@ const GAMER = {
         .add(new LinkItem('PSVTSV', '/data/resource/psvgames.tsv', 'PSVTSV'))
         .add(new LinkItem('PSPTSV', '/data/resource/pspgames.tsv', 'PSPTSV'))
         .add(new LinkItem('Nyaa', '/data/resource/nyaa_mikocon.json', 'NYAAMIKOCON'))),
+    Galgame: new LinkGroupDict()
+      .add(new LinkGroup()
+        .setName('Galgame')
+        .setCNName('Galgame')
+        .add(new LinkItem('YMGAL', '/data/galgame/ymgal-cards.json', 'YMGAL'))),
   }
 }
 
@@ -181,6 +186,8 @@ class GamerPageApp {
               message = await new YL2000DataLoader(value, message.content).toSearchList(); break;
             case 'Resource':
               message = await this.loadResourceData(value, message); break;
+            case 'Galgame':
+              message = await new GalgameCardDataLoader(value, message).toSearchList(); break;
             default:
               message = await new YL2000DataLoader(value, message.content).toSearchList();
 

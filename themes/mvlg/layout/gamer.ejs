@@ -20,6 +20,42 @@ page.banner_mask_alpha = page.banner_mask_alpha || theme.gamer.banner_mask_alpha
   outline: none;
   border-bottom: 1px solid grey;
 }
+.img-card {
+  display: flex; 
+  flex-direction: row;
+  justify-content: space-around; 
+  margin-top: 14px;
+}
+.img-attr {
+  display: flex; 
+  line-height: 20px;
+}
+
+@media (width < 600px) {
+  .img-card {
+    flex-direction: column;
+  }
+  .img-box {
+    width: 100%;
+    /* background-color: aqua; */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  .img-attr {
+    /* line-height: 8px; */
+    margin-bottom: -10px;
+  }
+  .img-card > .info {
+    margin-top: 10px;
+  }
+}
+
+@media (width < 480px) {
+  .img-box > .img {
+    width: 100%;
+  }
+}
 </style>
 
 
@@ -60,11 +96,18 @@ page.banner_mask_alpha = page.banner_mask_alpha || theme.gamer.banner_mask_alpha
           class='list-group-item list-group-item-action font-weight-bolder search-list-title'>
           【{{ item.id.value }}】{{ item.cn_name }}
         </a>
-        <div style="display: flex; line-height: 20px; margin-left: 2rem; margin-top: 14px;"
-          v-for="attr in item.attrs">
-          <div v-if="!isInitData(attr.value)" style="display: flex;">
-            <p style="width: 70px; text-align: right;">{{ attr.key }}</p>：
-            <p style="margin-right: 5px;" v-html="exAttr(attr.value)"></p>
+        <div class="img-card">
+          <div class="img-box" v-if="item.image.length > 0">
+            <img class="img" :src="item.image" lazyload="false"  style="width: 250px; object-fit: fill;"/>
+          </div>
+          <div class="info">
+            <div class="img-attr"
+              v-for="attr in item.attrs">
+              <div v-if="!isInitData(attr.value)" style="display: flex;">
+                <p style="width: 70px; text-align: right;">{{ attr.key }}</p>：
+                <p style="margin-right: 5px;" v-html="exAttr(attr.value)"></p>
+              </div>
+            </div>
           </div>
         </div>
         <!-- <div style="display: flex; line-height: 20px; margin-left: 2rem;">
