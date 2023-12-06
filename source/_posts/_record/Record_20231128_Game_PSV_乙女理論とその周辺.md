@@ -1,6 +1,6 @@
 ---
-title: 【速记】さくら、もゆ
-date: 2023-11-23 00:00:00
+title: 【速记】乙女理論とその周辺
+date: 2023-11-28 00:00:00
 description: Galgame速记文本 >>> 
 categories:
 - Gamer
