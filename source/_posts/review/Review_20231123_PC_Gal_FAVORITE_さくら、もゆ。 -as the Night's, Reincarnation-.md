@@ -183,7 +183,7 @@ pie
 {% endgi %}
 
 ### 游戏截图
-{% gi 12 3-3-3-3 %}
+{% gi 1 %}
 ![](/images/galgame/さくら、もゆ/cover.jpg)
 {% endgi %}
 
