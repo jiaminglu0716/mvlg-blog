@@ -188,10 +188,11 @@ class OSOVDoubleSignFirstHandler extends DoubleSignFirstHandler {
     this.varSigns.push(sign);
   }
   include(signs) {
-    this.varSigns.concat(signs);
+    this.varSigns = this.varSigns.concat(signs);
     return this;
   }
   signCheck(sign1, sign2) {
+    // console.log('SC', sign1, sign2, this.varSigns, this.varSigns.indexOf(sign2) > -1);
     return sign1 == this.sign && this.varSigns.indexOf(sign2) > -1;
   }
 };
@@ -335,7 +336,8 @@ models.DatetimeFrameStatisticManager = function() {
   this.statistic = function() {
     for (let datetimeFrameStatistic of this.collection) {
       // Check single record.
-      // if (datetimeFrameStatistic.runtime() == 0) console.log(datetimeFrameStatistic)
+      // if (datetimeFrameStatistic.runtime() == 0) 
+      // console.log(datetimeFrameStatistic.start.toLocaleString(), '-', datetimeFrameStatistic.finish.toLocaleString());
       this.totaltime += datetimeFrameStatistic.runtime();
       this.start = new Date(Math.min(this.start, datetimeFrameStatistic.start));
       this.finish = new Date(Math.max(this.finish, datetimeFrameStatistic.finish));
@@ -485,6 +487,7 @@ class DefaultTextLinesManager extends TextLinesManager {
       .addHandler(new SingleSignHandler('d', SignHandler.defaultParser, txt => { this.date.setDate(txt.substring(2)); this.dayCount++; }))
       .addHandler(new OSOVDoubleSignFirstHandler('-', SignHandler.defaultParser, txt => {
         this.tempFrameStatistic = this.datetimeFrameStatisticManager.new().record(TimeHandler.defaultParser(txt.substring(2), this.date), null);
+        // console.log('OSOV', this.date.toLocaleString())
       }).include(['y', 'm', 'd']))
       .addHandler(new SingleSignTextHandler('-', SignHandler.defaultParser, txt => TimeHandler.defaultParser(txt.substring(2), this.date), txt => {
         this.tempFrameStatistic.record(new Date(this.date), txt);
@@ -565,9 +568,10 @@ RecordApp.prototype.run = function(version='v2') {
       core = new RecordV2Core().load(this.data).boot();
   }
 
-  new AppSummary(core);
+  // console.log(new AppSummary(core).md());
+  return new AppSummary(core);
 }
 
 // main
-new RecordApp(lines).run()
+// new RecordApp(lines).run();
 

@@ -23,6 +23,11 @@ tag:
   subtitle: '标签'
   post_total: '共计 %d 篇文章'
 
+record:
+  menu: '记录解析'
+  title: '记录解析'
+  subtitle: '记录解析'
+
 gamer:
   menu: '游戏库'
   title: '游戏库'

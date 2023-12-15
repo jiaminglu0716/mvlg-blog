@@ -99,6 +99,13 @@ hexo.extend.generator.register('_gamer', async function(locals) {
   }
 });
 
+hexo.extend.generator.register('_record', async function(locals) {
+  return {
+    path  : 'record/index.html', 
+    layout: 'record'
+  };
+});
+
 
 
 /**

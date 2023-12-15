@@ -29,10 +29,15 @@ tag:
   subtitle: 'Tags'
   post_total: '%d posts in total'
 
+record:
+  menu: 'Record'
+  title: 'Record'
+  subtitle: 'Record'
+
 gamer:
-  menu: 'Gamers'
-  title: 'Gamers'
-  subtitle: 'Gamers'
+  menu: 'Gamer'
+  title: 'Gamer'
+  subtitle: 'Gamer'
 
 about:
   menu: 'About'

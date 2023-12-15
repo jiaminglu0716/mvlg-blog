@@ -356,6 +356,7 @@ navbar:
     - { key: "archive", link: "/archives/", icon: "iconfont icon-archive-fill" }
     - { key: "category", link: "/categories/", icon: "iconfont icon-category-fill" }
     - { key: "tag", link: "/tags/", icon: "iconfont icon-tags-fill" }
+    - { key: "record", link: "/record/", icon: "iconfont icon-books" }
     - { key: "gamer", link: "/gamer/", icon: "iconfont icon-books" }
     # - { key: "教程", link: "/info/", icon: "iconfont icon-books" }
     # - { key: "proxy", link: "/proxy/", icon: "iconfont icon-user-fill" }
@@ -1109,24 +1110,24 @@ shoplinks:
   # 友链的成员项
   # Member item of page
   items:
-    - {
-      title: "Amazon",
-      intro: "amazon.jp",
-      link: "https://www.amazon.co.jp/",
-      avatar: "/img/favicon.png"
-    }
-    - {
-      title: "Suruga-ya",
-      intro: "suruga-ya.jp",
-      link: "https://www.suruga-ya.jp/",
-      avatar: "/img/favicon.png"
-    }
-    - {
-      title: "Amiami Global",
-      intro: "amiami english",
-      link: "https://www.amiami.com/eng/",
-      avatar: "https://www.amiami.com/images/common/site_logo.png"
-    }
+    # - {
+    #   title: "Amazon",
+    #   intro: "amazon.jp",
+    #   link: "https://www.amazon.co.jp/",
+    #   avatar: "/img/favicon.png"
+    # }
+    # - {
+    #   title: "Suruga-ya",
+    #   intro: "suruga-ya.jp",
+    #   link: "https://www.suruga-ya.jp/",
+    #   avatar: "/img/favicon.png"
+    # }
+    # - {
+    #   title: "Amiami Global",
+    #   intro: "amiami english",
+    #   link: "https://www.amiami.com/eng/",
+    #   avatar: "https://www.amiami.com/images/common/site_logo.png"
+    # }
     
 
   onerror_avatar: /img/avatar.png
@@ -1160,12 +1161,12 @@ acglinks:
   comic:
     title: Comic
     items:
-      - {
-        title: "SS Comic",
-        intro: "SS Comic Index",
-        link: "https://wn01.ru/",
-        avatar: "/img/favicon.png"
-      }
+      # - {
+      #   title: "SS Comic",
+      #   intro: "SS Comic Index",
+      #   link: "https://wnacg01.lol/",
+      #   avatar: "/img/favicon.png"
+      # }
       - {
         title: "JM Heaven",
         intro: "JM Index",
@@ -1211,40 +1212,40 @@ acglinks:
         link: "https://sagaoz.net/",
         avatar: "/img/favicon.png"
       }
-      - {
-        title: "Galgame Wiki",
-        intro: "Galgame Wiki",
-        link: "https://galgamewiki.blogspot.com",
-        avatar: "/img/favicon.png"
-      }
+      # - {
+      #   title: "Galgame Wiki",
+      #   intro: "Galgame Wiki",
+      #   link: "https://galgamewiki.blogspot.com",
+      #   avatar: "/img/favicon.png"
+      # }
 
       # 资源站(from JP to CN)
-      - {
-        title: "2dj/mikocon",
-        intro: "2dj地址导航",
-        link: "https://bbs4.2djgame.net/",
-        avatar: "/img/favicon.png"
-      }
-      - {
-        title: "GGbases",
-        intro: "类似于nyaa",
-        link: "https://www.ggbases.com/",
-        avatar: "/img/favicon.png"
-      }
-      - {
-        title: "Galzy",
-        intro: "紫缘社-资源站",
-        link: "https://galzy.eu.org/",
-        avatar: "https://files.imgdb.cn/static/images/6d/04/643baef60d2dde5777a46d04.webp?n=rKz6gq7a&s=9b515722&t=653c133"
-      }
+      # - {
+      #   title: "2dj/mikocon",
+      #   intro: "2dj地址导航",
+      #   link: "https://bbs4.2djgame.net/",
+      #   avatar: "/img/favicon.png"
+      # }
+      # - {
+      #   title: "GGbases",
+      #   intro: "类似于nyaa",
+      #   link: "https://www.ggbases.com/",
+      #   avatar: "/img/favicon.png"
+      # }
+      # - {
+      #   title: "Galzy",
+      #   intro: "紫缘社-资源站",
+      #   link: "https://galzy.eu.org/",
+      #   avatar: "https://files.imgdb.cn/static/images/6d/04/643baef60d2dde5777a46d04.webp?n=rKz6gq7a&s=9b515722&t=653c133"
+      # }
 
       # 线上购买
-      - {
-        title: "DLsite",
-        intro: "ACG线上购物商城",
-        link: "https://www.dlsite.com/soft/ranking/total?category=game",
-        avatar: "https://www.dlsite.com/images/web/common/logo/pc/logo-dlsite.png"
-      }
+      # - {
+      #   title: "DLsite",
+      #   intro: "ACG线上购物商城",
+      #   link: "https://www.dlsite.com/soft/ranking/total?category=game",
+      #   avatar: "https://www.dlsite.com/images/web/common/logo/pc/logo-dlsite.png"
+      # }
       
   # 综合资源网站，包含ACG以外类型的资源
   resource:
@@ -1284,6 +1285,7 @@ static_prefix:
   internal_css: /css
   internal_img: /img
   internal_ev: /ev
+  internal_plugin: /plugins
 
   anchor: https://lib.baomitu.com/anchor-js/4.3.1/
 

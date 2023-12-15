@@ -188,7 +188,7 @@ class OSOVDoubleSignFirstHandler extends DoubleSignFirstHandler {
     this.varSigns.push(sign);
   }
   include(signs) {
-    this.varSigns.concat(signs);
+    this.varSigns = this.varSigns.concat(signs);
     return this;
   }
   signCheck(sign1, sign2) {
