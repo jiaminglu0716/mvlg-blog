@@ -10,6 +10,8 @@ tags:
 - record
 - 记录
 ---
+
+{% record v2 %}
 v 2
 y 2023
 m 10
@@ -53,3 +55,4 @@ c -1 8 [FD:后宫 End]
 - 1:52
 三篇章看完结束妹线超甜小彩蛋。
 c -1 9 [Mini FD]
+{% endrecord %}

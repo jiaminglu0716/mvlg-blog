@@ -10,6 +10,8 @@ tags:
 - record
 - 记录
 ---
+
+{% record v2 %}
 v 2
 y 2023
 m 10
@@ -18,3 +20,4 @@ d 15
 - 16:26
 (fin)
 c -1 0 [fin]
+{% endrecord %}

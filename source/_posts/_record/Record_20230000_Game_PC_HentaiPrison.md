@@ -11,6 +11,8 @@ tags:
 - record
 - 记录
 ---
+
+{% record v2 %}
 y 2023
 m 7
 d 5
@@ -153,3 +155,4 @@ d 19
 [后日谈END](准备回收cg)
 - 9:25
 回收完hcg[游戏结束]
+{% endrecord %}

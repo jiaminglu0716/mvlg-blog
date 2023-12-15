@@ -10,6 +10,8 @@ tags:
 - record
 - 记录
 ---
+
+{% record v2 %}
 v 2
 y 2023
 m 10
@@ -33,3 +35,4 @@ c 1 4 [回归现实 End 2]
 - 17:40
 over
 c 2 5 [沙耶over End3]
+{% endrecord %}

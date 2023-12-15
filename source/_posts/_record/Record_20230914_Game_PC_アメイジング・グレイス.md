@@ -10,6 +10,8 @@ tags:
 - record
 - 记录
 ---
+
+{% record v2 %}
 v 2
 y 2023
 m 9
@@ -127,3 +129,4 @@ c 0-7 0-9 [Yune TE]
 - 16:47
 结婚宣言，哈哈(少了张sakuya的cg，回去找找)
 c 0-9 1-0 [Yune AFE]
+{% endrecord %}

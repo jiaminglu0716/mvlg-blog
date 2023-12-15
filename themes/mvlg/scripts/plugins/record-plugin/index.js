@@ -554,20 +554,25 @@ class AppSummary extends Summary {
 /**
  * App main 
  */ 
-const RecordApp = function(lines) {
-  this.data = lines;
-}
-RecordApp.prototype.run = function(version='v2') {
-  let core = null;
-  
-  switch (version) {
-    default:
-      core = new RecordV2Core().load(this.data).boot();
+class App {
+  constructor(lines) {
+    this.data = lines;
   }
-
-  new AppSummary(core);
+  run (version='v2') {
+    let core = null;
+    
+    switch (version) {
+      default:
+        core = new RecordV2Core().load(this.data).boot();
+    }
+  
+    return new AppSummary(core);
+  }
 }
 
 // main
-new RecordApp(lines).run()
+// new App(lines).run()
 
+module.exports = {
+  App
+}

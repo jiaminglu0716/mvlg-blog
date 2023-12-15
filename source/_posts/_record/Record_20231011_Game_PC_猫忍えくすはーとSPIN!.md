@@ -10,6 +10,8 @@ tags:
 - record
 - 记录
 ---
+
+{% record v2 %}
 v 2
 y 2023
 m 10
@@ -53,3 +55,4 @@ h完毕，正式进入选项共通。
 - 12:34
 3pCG已破解，就在scene最后一个。
 c -1 1 [SPIN Fin]
+{% endrecord %}

@@ -12,7 +12,7 @@ tags:
 - 记录
 ---
 
-```
+{% record v2 %}
 v 2
 y 2023
 m 11
@@ -106,4 +106,4 @@ c 0 0-6 [True End]
 - 16:09
 美術部三人去打工。
 c 0 0-7 [Normal End]
-```
+{% endrecord %}
