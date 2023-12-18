@@ -3,13 +3,6 @@
  * 1.Achieve original functions, but they still can not be calculated by runtime.
  * 2.Improve the quality of sign handler struction.
  */
-// const fs = require('fs');
-
-// txt = fs.readFileSync('./test', { encoding:'utf8', flag:'r' });
-
-// // txt -> lines
-// lines = txt.split('\r\n')
-// lines = lines.length == 1 ? txt.split('\n') : lines
 
 /**
  * ###################################
@@ -81,6 +74,8 @@ class Stack {
     return this.__stack[0];
   }
 }
+
+class Collection extends Array {};
 
 /**
  * ###################################
@@ -270,7 +265,8 @@ class EventHandler extends Handler {
     let title = txt.substring(titleLIdx+1, titleRIdx);
     let [ prev, cur ] = txt.substring(0, titleLIdx).trim().replace(/\s+/, ' ', 'gi').split(' ');
     
-    return [ prev, cur, title ];
+    let aft = txt.substring(titleLIdx+1);
+    return [ prev, cur, title, aft ];
   }
 }
 
@@ -418,11 +414,18 @@ models.EventRecord = function(id, title, datetime) {
   // branch(top, tail).
   this.topbranchtime = null;
   this.tailbranchtime = null;
+
+  // time(start, end)
+  this.starttime = null;
+  this.endtime = null;
 }
-models.EventRecordLink = function(prev=false, data=null) {
+models.EventRecordLink = function(prev=false, data=null, leaf=false) {
   this.prev = prev;
   this.data = data;
   this.indeg = 0;
+
+  // self-define leafs to print
+  this.leaf = leaf;
 }
 models.EventRecordLinkManager = function() {
   this.collection = new Object();
@@ -444,11 +447,12 @@ models.EventRecordLinkManager = function() {
   }
 
   // Event Manager
-  this.event = function(pid, eventRecord) {
+  this.event = function(pid, eventRecord, leaf=false) {
     let plink = this.query(pid);
     if (plink) plink.indeg++;
-    let eventRecordLink = new models.EventRecordLink(plink, eventRecord);
+    let eventRecordLink = new models.EventRecordLink(plink, eventRecord, leaf);
     this.collection[eventRecordLink.data.id] = eventRecordLink;
+    return eventRecordLink;
   }
   this.query = function(id) {
     return this.collection[id] == undefined ? false : this.collection[id];
@@ -464,6 +468,21 @@ models.EventRecordLinkManager = function() {
     }
     return ids;
   }
+  this.queryDefineLeafIds = function() {
+    let ids = new Array();
+    for (let node of Object.values(this.collection)) {
+      if (node.leaf) {
+        ids.push(node.data.id);
+      }
+    }
+    return ids;
+  }
+  this.queryAllLeafIds = function() {
+    let ids = new Set();
+    let tmp = this.queryLeafIds().concat(this.queryDefineLeafIds());
+    tmp.forEach(id => ids.add(id));
+    return new Array(...ids);
+  }
   this.queryByIds = function(ids) {
     let results = new Array();
     for (let id of ids) {
@@ -471,10 +490,12 @@ models.EventRecordLinkManager = function() {
     }
     return results;
   }
-  this.querySortByDatetime = function() {
-    return this.toArray().sort((p, c) => p.data.datetime - c.data.datetime);
+  this.querySortLinksByDatetime = function(links) {
+    return links.sort((p, c) => p.data.datetime - c.data.datetime);
   }
-
+  this.querySortByDatetime = function() {
+    return this.querySortLinksByDatetime(this.toArray());
+  }
   // Time Frame Calculation
   // Runtime
   this.calculateEventRuntime = function() {
@@ -510,9 +531,9 @@ models.EventRecordLinkManager = function() {
     return this;
   }
   // Top Branch Time
-  this.calculateEventTopBranchtime = function() {
+  this.calculateEventTopBranchtime = function(links) {
     if (this.datetimeFrameStatisticManager == null) return false;
-    let links = this.toArray();
+    links = links || this.toArray();
     // Test with leafs
     // let links = this.queryByIds(this.queryLeafIds());
     
@@ -547,9 +568,9 @@ models.EventRecordLinkManager = function() {
     return this;
   }
   // Tail Branch Time
-  this.calculateEventTailBranchtime = function() {
+  this.calculateEventTailBranchtime = function(links) {
     if (this.datetimeFrameStatisticManager == null) return false;
-    let links = this.toArray();
+    links = links || this.toArray();
     
     for (let link of links) {
       let node = link.prev;
@@ -569,8 +590,57 @@ models.EventRecordLinkManager = function() {
     
     return this;
   }
+  // Time(Start, End)
+  this.calculateEventTime = function() {
+    if (this.datetimeFrameStatisticManager == null) return false;
+    let links = this.querySortByDatetime();
+    let starttime = 0;
+    
+    for (let link of links) {
+      link.data.starttime = starttime;
+      starttime += link.data.runtime;
+      link.data.endtime = starttime;
+    }
+    
+    return this;
+  }
 }
 
+/**
+ * Group Event Models
+ */
+models.EventLinkGroup = function(name) {
+  this.name = name;
+  this.values = new Collection();
+  this.runtime = 0;
+
+  this.add = function(value) {
+    this.values.push(value);
+    return this;
+  }
+}
+
+models.EventGroupManager = function() {
+  this.groups = new Collection();
+  this.eventRecordLinkManager = null;
+
+  this.group = function(group) {
+    this.groups.push(group);
+    return this;
+  }
+  this.setEventRecordLinkManager = function(eventRecordLinkManager) {
+    this.eventRecordLinkManager = eventRecordLinkManager;
+  }
+  this.calculateEventGroupRuntime = function() {
+    for (let group of groups) {
+      for (let id of group.values) {
+        let link = this.eventRecordLinkManager.collection[id];
+        group.runtime += link.data.runtime;
+      }
+    }
+    return this;
+  }
+}
 
 /**
  * Official Record 
@@ -584,6 +654,9 @@ class DefaultTextLinesManager extends TextLinesManager {
     this.datetimeFrameStatisticManager = new models.DatetimeFrameStatisticManager();
 
     this
+      /**
+       * v1 - basic time record
+       */
       .addHandler(new SingleSignHandler('y', SignHandler.defaultParser, txt => this.date.setFullYear(txt.substring(2))))
       .addHandler(new SingleSignHandler('m', SignHandler.defaultParser, txt => this.date.setMonth(int(txt.substring(2))-1, this.date.getDate())))
       .addHandler(new SingleSignHandler('d', SignHandler.defaultParser, txt => { this.date.setDate(txt.substring(2)); this.dayCount++; }))
@@ -599,23 +672,43 @@ class DefaultTextLinesManager extends TextLinesManager {
 /**
  * Record Core
  */
-class Core {};
-class RecordV2Core extends Core {
-  constructor() {
-    super();
-    this.eventRecordLinkManager = new models.EventRecordLinkManager();
-    this.textLinesManager = new DefaultTextLinesManager();
-    this.datetimeFrameStatisticManager = this.textLinesManager.datetimeFrameStatisticManager;
-    
-    // Event
-    this.textLinesManager.addHandler(new SingleSignHandler('c', SignHandler.defaultParser, txt => {
-      let [ prev, cur, title ] = EventHandler.defaultParser(txt.substring(2));
-      this.eventRecordLinkManager.event(prev, new models.EventRecord(cur, title, new Date(this.textLinesManager.date)));
-    }));
-  }
+class Core {
   load(data) {
     this.data = data;
     return this;
+  }
+};
+class RecordV1Core extends Core {
+  constructor() {
+    super();
+    this.textLinesManager = new DefaultTextLinesManager();
+    this.datetimeFrameStatisticManager = this.textLinesManager.datetimeFrameStatisticManager;
+  }
+  boot() {
+    let idx = 0;
+    while (idx < this.data.length) {
+      let next = this.textLinesManager.runHandler(this.data, idx);
+      idx += next;
+    }
+    this.datetimeFrameStatisticManager.statistic();
+    return this;
+  }
+}
+class RecordV2Core extends RecordV1Core {
+  constructor() {
+    super();
+    this.eventRecordLinkManager = new models.EventRecordLinkManager();
+    // Event
+    /**
+     * v2 - event tree time record
+     */
+    this.textLinesManager.addHandler(new SingleSignHandler('c', SignHandler.defaultParser, txt => {
+      let [ prev, cur, title, aft ] = EventHandler.defaultParser(txt.substring(2));
+      this.eventRecordLinkManager.event(prev, 
+        new models.EventRecord(cur, title, new Date(this.textLinesManager.date)), 
+        aft.indexOf('s') > -1
+      );
+    }));
   }
   boot() {
     let idx = 0;
@@ -626,7 +719,34 @@ class RecordV2Core extends Core {
     this.datetimeFrameStatisticManager.statistic();
     this.eventRecordLinkManager.setDatetimeFrameStatisticManager(this.datetimeFrameStatisticManager);
     this.eventRecordLinkManager.calculateEventRuntime().calculateEventTotaltime()
-      .calculateEventTopBranchtime().calculateEventTailBranchtime();
+      .calculateEventTopBranchtime().calculateEventTailBranchtime().calculateEventTime();
+    return this;
+  }
+};
+class RecordV3Core extends RecordV2Core {
+  constructor() {
+    super();
+    this.eventRecordLinkManager = new models.EventRecordLinkManager();
+    this.eventGroupManager = new models.EventGroupManager();
+    // Event
+    /**
+     * v3 - [Group] event group statistic & timeline group statistic
+     */
+    // this.textLinesManager.addHandler(new SingleSignHandler('g', SignHandler.defaultParser, txt => {
+    //   let [ gname, eid ] = txt.substring(2).split(' ');
+    //   this.eventGroupManager.group(new models.EventLinkGroup(gname))
+    // }));
+  }
+  boot() {
+    let idx = 0;
+    while (idx < this.data.length) {
+      let next = this.textLinesManager.runHandler(this.data, idx);
+      idx += next;
+    }
+    this.datetimeFrameStatisticManager.statistic();
+    this.eventRecordLinkManager.setDatetimeFrameStatisticManager(this.datetimeFrameStatisticManager);
+    this.eventRecordLinkManager.calculateEventRuntime().calculateEventTotaltime()
+      .calculateEventTopBranchtime().calculateEventTailBranchtime().calculateEventTime();
     return this;
   }
 };
@@ -652,16 +772,18 @@ class AppSummary extends Summary {
     '| 最长片段 | ' + TimeHandler.hourFormat(core.datetimeFrameStatisticManager.maxtime) + ' |\n'
     
     // Branch data
-    this.ntxt = '| 周目 | 事件 | 事件时长 | 事件长支时长 | 事件短支时长 | 总时长 |\n' +
-    '| --- | --- | --- | --- | --- | --- |\n';
+    this.ntxt = '| 周目 | 事件 | 起始时间 | 结束时间 | 事件时长 | 事件长支时长 | 事件短支时长 | 总时长 |\n' +
+    '| --- | --- | --- | --- | --- | --- | --- | --- |\n';
     try {
       let eventRecordLinkManager = core.eventRecordLinkManager;
-      let events = eventRecordLinkManager.queryByIds(eventRecordLinkManager.queryLeafIds());
+      let events = eventRecordLinkManager.querySortLinksByDatetime(eventRecordLinkManager.queryByIds(eventRecordLinkManager.queryAllLeafIds()));
       for (let idx in events) {
         let event = events[idx];
-        this.ntxt += '\n' +
+        this.ntxt += '' +
           `| ${int(idx)+1} ` +
           `| ${event.data.title} ` +
+          `| ${TimeHandler.hourFormat(event.data.starttime)} ` +
+          `| ${TimeHandler.hourFormat(event.data.endtime)} ` +
           `| ${TimeHandler.hourFormat(event.data.runtime)} ` +
           `| ${TimeHandler.hourFormat(event.data.topbranchtime)} ` +
           `| ${TimeHandler.hourFormat(event.data.tailbranchtime)} ` +
@@ -688,11 +810,12 @@ class App {
     let core = null;
     
     switch (version) {
-      default:
-        core = new RecordV2Core().load(this.data).boot();
+      case 'v1': core = new RecordV1Core(); break;
+      case 'v2': core = new RecordV2Core(); break;
+      default: core = new RecordV2Core();
     }
     
-    return core;
+    return core.load(this.data).boot();
   }
   run() {
     return new AppSummary(this.__core);
@@ -700,7 +823,12 @@ class App {
 }
 
 // main
-// new App(lines).run()
+
+// const fs = require('fs');
+// txt = fs.readFileSync('./test', { encoding:'utf8', flag:'r' });
+// lines = txt.split('\r\n')
+// lines = lines.length == 1 ? txt.split('\n') : lines
+// console.log(new App(lines).run().md());
 
 module.exports = {
   App
