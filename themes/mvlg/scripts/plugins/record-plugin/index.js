@@ -77,6 +77,17 @@ class Stack {
 
 class Collection extends Array {};
 
+// Simple module
+const util = {
+  cnext(init, cond, next, func) {
+    let tmp = init;
+    while (cond(tmp)) {
+      let back = func(tmp);
+      tmp = next(tmp, back);
+    }
+  }
+}
+
 /**
  * ###################################
  * 
@@ -685,11 +696,7 @@ class RecordV1Core extends Core {
     this.datetimeFrameStatisticManager = this.textLinesManager.datetimeFrameStatisticManager;
   }
   boot() {
-    let idx = 0;
-    while (idx < this.data.length) {
-      let next = this.textLinesManager.runHandler(this.data, idx);
-      idx += next;
-    }
+    util.cnext(0, x => x < this.data.length, (c, p) => c + p, idx => this.textLinesManager.runHandler(this.data, idx));
     this.datetimeFrameStatisticManager.statistic();
     return this;
   }
@@ -711,11 +718,7 @@ class RecordV2Core extends RecordV1Core {
     }));
   }
   boot() {
-    let idx = 0;
-    while (idx < this.data.length) {
-      let next = this.textLinesManager.runHandler(this.data, idx);
-      idx += next;
-    }
+    util.cnext(0, x => x < this.data.length, (c, p) => c + p, idx => this.textLinesManager.runHandler(this.data, idx));
     this.datetimeFrameStatisticManager.statistic();
     this.eventRecordLinkManager.setDatetimeFrameStatisticManager(this.datetimeFrameStatisticManager);
     this.eventRecordLinkManager.calculateEventRuntime().calculateEventTotaltime()
@@ -802,9 +805,9 @@ class AppSummary extends Summary {
  * App main 
  */ 
 class App {
-  constructor(lines) {
+  constructor(lines, version='v2') {
     this.data = lines;
-    this.__core = this.core();
+    this.__core = this.core(version);
   }
   core(version='v2') {
     let core = null;
@@ -824,12 +827,12 @@ class App {
 
 // main
 
-// const fs = require('fs');
-// txt = fs.readFileSync('./test', { encoding:'utf8', flag:'r' });
-// lines = txt.split('\r\n')
-// lines = lines.length == 1 ? txt.split('\n') : lines
-// console.log(new App(lines).run().md());
+const fs = require('fs');
+txt = fs.readFileSync('./test', { encoding:'utf8', flag:'r' });
+lines = txt.split('\r\n')
+lines = lines.length == 1 ? txt.split('\n') : lines
+console.log(new App(lines).run().md());
 
 module.exports = {
-  App
+  App, AppSummary, AppConfig
 }
