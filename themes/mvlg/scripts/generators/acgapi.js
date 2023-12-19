@@ -3,7 +3,7 @@ const request = axios;
 
 hexo.extend.generator.register('_s', function(locals) {
 
-  console.log()
+  // console.log()
   return {
     path  : 's/index.html', 
     data: {

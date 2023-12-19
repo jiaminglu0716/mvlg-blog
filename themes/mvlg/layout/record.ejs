@@ -53,7 +53,9 @@ new Vue({
   methods: {},
   computed: {
     html() {
-      return marked.parse(new RecordApp(this.message.value.split('\n')).run().md());
+      // console.log(new RecordApp(this.message.value.split('\n')).run().md());
+      // return marked.parse(new RecordApp(this.message.value.split('\n')).run().md());
+      return new RecordApp(this.message.value.split('\n')).run().md().replaceAll('\n', '<br>');
     }
   }
 });
