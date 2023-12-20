@@ -48,6 +48,12 @@ Date.prototype.format = function (fmt) {
   return fmt;
 }
 
+
+Date.SECONDTIMESTAMP = 1000;
+Date.MINUTETIMESTAMP = 60000;
+Date.HOURTIMESTAMP = 3600000;
+Date.DAYTIMESTAMP = 3600000 * 24;
+
 // data struction
 /**
  * Stack
@@ -145,11 +151,8 @@ class TimeHandler extends Handler {
       this.timeUnitFormat(second)
     ].join(':')
   }
-  static calDay(start, finish) {
-    let du = 1000 * 3600 * 24;
-    start = Math.floor(start / du);
-    finish = Math.floor(finish / du);
-    return finish - start + 1;
+  static dayGap(start, finish) {
+    return Math.round(((finish-start) + Date.DAYTIMESTAMP) / Date.DAYTIMESTAMP);
   }
 };
 class LineHandler extends TextHandler {};
@@ -393,7 +396,7 @@ models.DatetimeFrameStatisticManager = function() {
       this.mintime = Math.min(this.mintime, datetimeFrameStatistic.runtime());
       this.maxtime = Math.max(this.maxtime, datetimeFrameStatistic.runtime());
     }
-    this.days = TimeHandler.calDay(this.start, this.finish)
+    this.days = TimeHandler.dayGap(this.start, this.finish)
   }
   // Calculate
   this.caltime = function(date) {
@@ -856,8 +859,8 @@ class App {
   }
   test() {
      let core = new RecordV3Core().load(this.data).boot();
-     let eventGroupManager = core.eventGroupManager;
-    console.log(eventGroupManager.groups)
+    //  let eventGroupManager = core.eventGroupManager;
+    // console.log(eventGroupManager.groups)
   }
 }
 
