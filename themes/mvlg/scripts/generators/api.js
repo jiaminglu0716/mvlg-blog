@@ -10,14 +10,14 @@ const path = require('path');
 const data_dir = path.join(hexo.source_dir, 'data');
 const gamer_dir = path.join(data_dir, 'gamer');
 
-hexo.extend.generator.register('_s', function(locals) {
+// hexo.extend.generator.register('_s1', function(locals) {
 
-  return {
-    path  : 's/index.html', 
-    data: {
-      t: fs.readFileSync(path.join(gamer_dir, 'psvgames.tsv'))
-    },
-    layout: 'test'
-  };
-});
+//   return {
+//     path  : 'test/index.html', 
+//     data: {
+//       t: fs.readFileSync(path.join(gamer_dir, 'psvgames.tsv'))
+//     },
+//     layout: 'test'
+//   };
+// });
 

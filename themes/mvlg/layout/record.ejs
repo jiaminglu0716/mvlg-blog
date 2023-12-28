@@ -9,7 +9,7 @@ page.banner_mask_alpha = page.banner_mask_alpha || theme.gamer.banner_mask_alpha
 
 
 <%- js_ex(theme.static_prefix.internal_plugin, 'record-plugin/index.js') %>
-<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<!-- <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script> -->
 
 <div id="app" style="width:100%;display:flex;justify-content:space-around;">
   <div style="width:45%;">
@@ -25,30 +25,41 @@ page.banner_mask_alpha = page.banner_mask_alpha || theme.gamer.banner_mask_alpha
 
 
 <script> 
+let TXT = `
+y 2023
+m 6
+d 10
+- 10:20
+- 12:30
+GGG
+- 14:40
+TTT
+`;
+
 new Vue({
   el: '#app',
   data: { 
     message: {
-      value: '# title',
-      html: marked.parse('# title') 
+      value: TXT,
+      html: ''
     }
   },
   async mounted() {
-    marked.setOptions({
-      renderer: new marked.Renderer(),
-      highlight: function(code, lang) {
-        const hljs = require('highlight.js');
-        const language = hljs.getLanguage(lang) ? lang : 'plaintext';
-        return hljs.highlight(code, { language }).value;
-      },
-      langPrefix: 'hljs language-', // highlight.js css expects a top-level 'hljs' class.
-      pedantic: false,
-      gfm: true,
-      breaks: false,
-      sanitize: false,
-      smartypants: false,
-      xhtml: false
-    });
+    // marked.setOptions({
+    //   renderer: new marked.Renderer(),
+    //   highlight: function(code, lang) {
+    //     const hljs = require('highlight.js');
+    //     const language = hljs.getLanguage(lang) ? lang : 'plaintext';
+    //     return hljs.highlight(code, { language }).value;
+    //   },
+    //   langPrefix: 'hljs language-', // highlight.js css expects a top-level 'hljs' class.
+    //   pedantic: false,
+    //   gfm: true,
+    //   breaks: false,
+    //   sanitize: false,
+    //   smartypants: false,
+    //   xhtml: false
+    // });
   },
   methods: {},
   computed: {

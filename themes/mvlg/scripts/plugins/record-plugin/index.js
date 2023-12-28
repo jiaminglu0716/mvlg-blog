@@ -152,7 +152,20 @@ class TimeHandler extends Handler {
     ].join(':')
   }
   static dayGap(start, finish) {
-    return Math.round(((finish-start) + Date.DAYTIMESTAMP) / Date.DAYTIMESTAMP);
+    start = new Date(start);
+    finish = new Date(finish);
+    start.setHours(0);
+    start.setMinutes(0);
+    start.setSeconds(0);
+    finish.setHours(0);
+    finish.setMinutes(0);
+    finish.setSeconds(0);
+
+    // console.log(start.toLocaleString(), finish.toLocaleString());
+    // console.log((finish-start) / Date.DAYTIMESTAMP);
+    // console.log(((finish-start) + Date.DAYTIMESTAMP) / Date.DAYTIMESTAMP);
+    // console.log(Math.ceil((finish-start) / Date.DAYTIMESTAMP));
+    return ((finish-start) + Date.DAYTIMESTAMP) / Date.DAYTIMESTAMP;
   }
 };
 class LineHandler extends TextHandler {};
@@ -898,14 +911,14 @@ class App {
   test() {
      let core = new RecordV3Core().load(this.data).boot();
      let eventGroupManager = core.eventGroupManager;
-    console.log(eventGroupManager.groups)
+    // console.log(eventGroupManager.groups)
   }
 }
 
 // main
 
 // const fs = require('fs');
-// txt = fs.readFileSync('./test', { encoding:'utf8', flag:'r' });
+// txt = fs.readFileSync('./test1', { encoding:'utf8', flag:'r' });
 // lines = txt.split('\r\n')
 // lines = lines.length == 1 ? txt.split('\n') : lines
 // console.log(new App(lines, 'v3').run().md());

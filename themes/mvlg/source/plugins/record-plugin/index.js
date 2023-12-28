@@ -151,8 +151,22 @@ class TimeHandler extends Handler {
       this.timeUnitFormat(second)
     ].join(':')
   }
+  
   static dayGap(start, finish) {
-    return Math.round(((finish-start) + Date.DAYTIMESTAMP) / Date.DAYTIMESTAMP);
+    start = new Date(start);
+    finish = new Date(finish);
+    start.setHours(0);
+    start.setMinutes(0);
+    start.setSeconds(0);
+    finish.setHours(0);
+    finish.setMinutes(0);
+    finish.setSeconds(0);
+
+    // console.log(start.toLocaleString(), finish.toLocaleString());
+    // console.log((finish-start) / Date.DAYTIMESTAMP);
+    // console.log(((finish-start) + Date.DAYTIMESTAMP) / Date.DAYTIMESTAMP);
+    // console.log(Math.ceil((finish-start) / Date.DAYTIMESTAMP));
+    return ((finish-start) + Date.DAYTIMESTAMP) / Date.DAYTIMESTAMP;
   }
 };
 class LineHandler extends TextHandler {};
