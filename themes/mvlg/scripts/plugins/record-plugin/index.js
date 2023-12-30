@@ -678,7 +678,7 @@ models.EventGroupManager = function() {
   }
   this.groupConcat = function(name, childs) {
     let group = this.exists(name) ? this.query(name) : this.create(name);
-    // console.log(name, childs, group)
+    console.log(name, childs, group)
     for (let child of childs) {
       let g = this.query(child);
       if (!g) continue;
@@ -870,11 +870,12 @@ class AppSummary extends Summary {
       let groups = eventGroupManager.values();
       let count = 1;
       for (let group of groups) {
+        let gs = group.extendGroupNames.join('、').trim();
         this.gtxt += '' +
           `| ${count++} ` +
           `| ${group.name} ` +
           `| ${TimeHandler.hourFormat(group.runtime)} ` + 
-          `| ${group.extendGroupNames.join('、')} |\n`;
+          `| ${gs.length > 0 ? gs : '-'} |\n`;
       }
     } catch {
       this.gtxt += '| - | - | - | - |\n';
@@ -918,7 +919,7 @@ class App {
 // main
 
 // const fs = require('fs');
-// txt = fs.readFileSync('./test1', { encoding:'utf8', flag:'r' });
+// txt = fs.readFileSync('./test', { encoding:'utf8', flag:'r' });
 // lines = txt.split('\r\n')
 // lines = lines.length == 1 ? txt.split('\n') : lines
 // console.log(new App(lines, 'v3').run().md());
