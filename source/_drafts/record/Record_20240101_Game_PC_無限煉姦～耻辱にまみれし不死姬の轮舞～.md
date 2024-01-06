@@ -1,6 +1,6 @@
 ---
 title: 【速记】無限煉姦～耻辱にまみれし不死姬の轮舞～
-date: 2023-01-01 00:00:00
+date: 2024-01-01 00:00:00
 description: Galgame速记文本 >>> 
 categories:
 - Gamer

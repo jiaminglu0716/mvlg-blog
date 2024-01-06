@@ -1,8 +1,8 @@
 ---
 title: 【感想】無限煉姦～耻辱にまみれし不死姬の轮舞～
 date: 2024-01-01 09:36:40
-index_img: 
-banner_img: 
+index_img: /images/galgame/無限煉姦～耻辱にまみれし不死姬の轮舞～/SC.jpg
+banner_img: /images/galgame/無限煉姦～耻辱にまみれし不死姬の轮舞～/cg-7.jpg
 mermaid: true
 description: Galgame攻略感想与评价 >>> 
 categories:
