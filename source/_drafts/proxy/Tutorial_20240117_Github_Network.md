@@ -1,0 +1,74 @@
+---
+title: Tutorial - Github Network
+date: 2024-01-17 10:23:00
+category: 
+- Tutorial
+- Github
+tags: 
+- tutorial
+- github
+- dns
+- window
+- linux
+---
+
+### DNS
+#### Local DNS
+Window
+```bat
+cd C:\Windows\System32\drivers\etc
+code hosts
+```
+Linux(Ubuntu)
+```shell
+sudo vi /etc/hosts
+```
+
+#### Test Connectivity
+```shell
+ping github.com
+ping www.github.com
+```
+
+#### Real DNS (Test on Jan 17th, 2024)
+```
+# update: 20220222
+# Github Hosts
+# domain: github.com
+140.82.113.4 github.com
+140.82.114.9 nodeload.github.com
+140.82.112.5 api.github.com
+140.82.112.10 codeload.github.com
+185.199.108.133 raw.github.com
+185.199.108.153 training.github.com
+185.199.108.153 assets-cdn.github.com
+185.199.108.153 documentcloud.github.com
+140.82.114.17 help.github.com
+
+# domain: githubstatus.com
+185.199.108.153 githubstatus.com
+
+# domain: fastly.net
+199.232.69.194 github.global.ssl.fastly.net
+
+# domain: githubusercontent.com
+185.199.108.133 raw.githubusercontent.com
+185.199.108.154 pkg-containers.githubusercontent.com
+185.199.108.133 cloud.githubusercontent.com
+185.199.108.133 gist.githubusercontent.com
+185.199.108.133 marketplace-screenshots.githubusercontent.com
+185.199.108.133 repository-images.githubusercontent.com
+185.199.108.133 user-images.githubusercontent.com
+185.199.108.133 desktop.githubusercontent.com
+185.199.108.133 avatars.githubusercontent.com
+185.199.108.133 avatars0.githubusercontent.com
+185.199.108.133 avatars1.githubusercontent.com
+185.199.108.133 avatars2.githubusercontent.com
+185.199.108.133 avatars3.githubusercontent.com
+185.199.108.133 avatars4.githubusercontent.com
+185.199.108.133 avatars5.githubusercontent.com
+185.199.108.133 avatars6.githubusercontent.com
+185.199.108.133 avatars7.githubusercontent.com
+185.199.108.133 avatars8.githubusercontent.com
+# End of the section
+```
