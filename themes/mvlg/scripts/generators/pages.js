@@ -123,13 +123,26 @@ hexo.extend.generator.register('_record', async function(locals) {
 //   };
 // });
 
+// hexo.extend.generator.register('_test', async function(locals) {
+//     // console.log(Object.keys(this))
+//     // console.log(await hexo.extend.helper.get('bilibili')())
+
+//   const { bangumiTimeline } = require('../api/bilibili')
+//   return {
+//     path  : 'test', 
+//     data  : {
+//       data: await bangumiTimeline()
+//     }
+//   };
+// });
+
 hexo.extend.generator.register('_test', async function(locals) {
-    // console.log(Object.keys(this))
-    // console.log(await hexo.extend.helper.get('bilibili')())
+  // console.log(Object.keys(this))
+  // console.log(await hexo.extend.helper.get('bilibili')())
 
   const { bangumiTimeline } = require('../api/bilibili')
   return {
-    path  : 'test', 
+    path  : 'api/test.json', 
     data  : {
       data: await bangumiTimeline()
     }
