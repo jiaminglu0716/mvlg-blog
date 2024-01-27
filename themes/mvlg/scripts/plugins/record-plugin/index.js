@@ -83,6 +83,29 @@ class Stack {
 
 class Collection extends Array {};
 
+/**
+ * Lock
+ */
+class Lock {};
+
+class SimpleLock extends Lock {
+  constructor() {
+    super();
+    this._lock = false;
+  }
+  lock() {
+    this._lock = true;
+    return this;
+  }
+  release() {
+    this._lock = false;
+    return this;
+  }
+  status() {
+    return this._lock
+  }
+};
+
 // Simple module
 const util = {
   cnext(init, cond, next, func) {
@@ -316,6 +339,46 @@ class TextLinesManager extends Manager {
     return 1;
   }
 };
+
+class TextConfigManager extends Manager {
+  constructor(data) {
+    super();
+    this.lock = new SimpleLock();
+    this.data = data;
+    this._config = new Object();
+    this.last = 0;
+  }
+  run() {
+    for (let idx in this.data) {
+      let line = this.data[idx];
+      line = line.trim();
+      // Define the boundary of config text
+      if (line === '---') {
+        if (this.lock.status()) {
+          this.lock.release();
+          // Return txt index excluding config txt which has been handled.
+          this.last = Math.min(parseInt(idx) + 2, this.data.length);
+          break;
+        } else {
+          this.lock.lock();
+        }
+      // Set Config Dict ( Sample: core: v3 )
+      } else if (this.lock.status()) {
+        try {
+          let [key, value] = line.split(':');
+          this._config[key] = value.trim();
+        } catch {
+          console.log('[ERROR] Config has invalid attributes. -> ' + line);
+          continue;
+        }
+      }
+    }
+    return this;
+  }
+  export() {
+    return this._config;
+  }
+}
 
 // ###########################
 //
@@ -896,7 +959,16 @@ class App {
   }
   core(version='v3') {
     let core = null;
+
+    let configManager = new TextConfigManager(lines).run();
+
+    let config = configManager.export();
+    let data = this.data.slice(configManager.last, this.data.length);
+    // console.log(data);
     
+    version = config.core || config.version || config.v || version;
+    // console.log(version);
+
     switch (version) {
       case 'v1': core = new RecordV1Core(); break;
       case 'v2': core = new RecordV2Core(); break;
@@ -904,7 +976,7 @@ class App {
       default: core = new RecordV3Core();
     }
     
-    return core.load(this.data).boot();
+    return core.load(data).boot();
   }
   run() {
     return new AppSummary(this.__core);
@@ -924,6 +996,8 @@ class App {
 // lines = lines.length == 1 ? txt.split('\n') : lines
 // console.log(new App(lines, 'v3').run().md());
 // new App(lines).test();
+// console.log(new TextConfigManager(lines).run().export())
+// console.log(new TextConfigManager(lines).run().last)
 
 module.exports = {
   App, AppSummary, AppConfig
