@@ -960,7 +960,7 @@ class App {
   core(version='v3') {
     let core = null;
 
-    let configManager = new TextConfigManager(lines).run();
+    let configManager = new TextConfigManager(this.data).run();
 
     let config = configManager.export();
     let data = this.data.slice(configManager.last, this.data.length);
