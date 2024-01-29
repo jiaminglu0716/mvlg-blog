@@ -1,0 +1,12 @@
+<div class="container">
+  <table class="table table-striped">
+    <tbody>
+      <% Object.keys(data).forEach((key, ridx) => { %>
+        <tr>
+          <th  class="text-left align-middle"><%- key %></th>
+          <td  class="text-center align-middle"><%- data[key] %></td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>

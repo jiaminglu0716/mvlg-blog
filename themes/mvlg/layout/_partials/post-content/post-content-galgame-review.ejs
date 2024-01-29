@@ -1,0 +1,173 @@
+<% let snames = Object.values(page.info.name).filter(name => name != null); %>
+    
+<!-- Slider Bar Beginning -->
+<%- partial('_partials/base/slider/slider', { images: page.images.cg.map(img => {
+  img.src = page.images.dir + '/' + img.src; 
+  return img;
+}) }) %>
+<!-- Slider Bar Ending -->
+
+
+<!-- Name Sub Bar Beginning -->
+<div class="d-flex mb-4 p-1">
+  <div class="m-auto">
+    <% for (let sname of snames) { %>
+      <small class="text-muted"><%- sname %></small>
+    <% } %>
+  </div>
+</div>
+<!-- Name Sub Bar Ending -->
+
+
+<!-- Event List Bar Beginning -->
+<h2>Event History</h2>
+<% for (let item of page.playhis) { %>
+  <% let idx = item.no; %>
+
+  <!-- Title -->
+  <div class="ml-3">
+    <div class="d-flex mb-3" style="height:2rem; line-height: 2rem;">
+      <span class="align-middle mr-3" style="font-size: 1.7rem;">Times: <%- idx %></span>
+      <span class="text-muted mr-2" style="line-height: 2.5rem;">Speed: <%- item.speed %></span>
+      <span class="text-muted" style="line-height: 2.5rem;">Status: <%- item.status %></span>
+    </div>
+    <div>
+      <% let release = page.info.release[idx]; %>
+      <h5><%- release.name %></h5>
+      <span><%- release.date %></span>
+      <span><%- release.region %></span>
+      <span><%- release.platform %></span>
+      <% if (release.r18) { %>
+        <span>R18</span>
+      <% } %>
+      <% if (release.disk) { %>
+        <span>Disk</span>
+      <% } %>
+      <% if (release.dl) { %>
+        <span>DL</span>
+      <% } %>
+      <div>
+        <%- release.desc %>
+      </div>
+    </div>
+    <div>
+      <h3>description</h3>
+      <%- item.desc %>
+    </div> 
+  </div>
+
+  <div class="d-md-flex">
+    <!-- Score -->
+    <div class="col-md-5">
+      <h3 class="text-left ml-3">Score</h3>
+      <%- partial('_partials/base/table/table-lr-kv', { data: page.score[idx] }) %>
+    </div>
+
+    <!-- Playtime -->
+    <div class="col-md-7">
+      <h3 class="text-left ml-3">Playtime</h3>
+      <% 
+        let playtime = page.playtime[idx];
+      %>
+      <%- partial('_partials/base/table/table-lr-kv', { data: playtime }) %>
+    </div>
+  </div>
+
+  <!-- Event List -->
+  <h3 class="text-center">Event</h3>
+  <%- partial('_partials/base/table/table', { title: page.eventList.title.jp, data: page.eventList.his[idx] }) %>
+
+  <!-- Event Group List -->
+  <h3 class="text-center">Event Group</h3>
+  <%- partial('_partials/base/table/table', { title: page.eventGroupList.title.jp, data: page.eventGroupList.his[idx] }) %>
+
+<% } %>
+<!-- Event List Bar Ending -->
+
+
+<!-- Review Beginning -->
+<h2>Review</h2>
+<div class="container">
+  <!-- Tips -->
+  <div>
+    <h3>Tips</h3>
+    <ol style="margin-left: -1rem;">
+      <% for (let tip of page.review.tips) { %>
+        <li><%- tip %></li>
+      <% } %>
+    </ol>
+  </div>
+
+  <!-- Short Review -->
+  <% if (page.review.short.filter(x => x.date != null && x.content != null).length > 0) { %>
+    <div>
+      <h3>Short Review</h3>
+      <div>
+        <% for (let review of page.review.short) { %>
+          <div class="card border-radius mb-4">
+            <div class="card-body">
+              <p class="card-text"><%- review.content %></p>
+              <small class="text-muted"><%- review.date %></small>
+            </div>
+          </div>
+        <% } %>
+        </div>
+    </div>
+  <% } %>
+
+  <!-- Long Review -->
+  <% if (page.review.long.filter(x => x.date != null && x.content != null && x.title != null).length > 0) { %>
+    <div>
+      <h3>Long Review</h3>
+      <div>
+        <% for (let review of page.review.long) { %>
+          <div class="card border-radius mb-4">
+            <div class="card-body">
+              <h5 class="card-title"><%- review.title %></h5>
+              <h6 class="card-subtitle mb-2 text-muted"><%- review.date %></h6>
+              <p class="card-text"><%- review.content %></p>
+              <% for (let tag of review.tags) { %>
+                <a href="/tags/<%- tag %>" class="card-link m-0 text-muted"><small>#<%- tag %></small></a>
+              <% } %>
+            </div>
+          </div>
+        <% } %>
+        </div>
+    </div>
+  <% } %>
+
+</div>
+<!-- Review Ending -->
+
+<!-- 3rd Review Beginning -->
+<h2>Review Forum</h2>
+<div class="container">
+  <!-- Playtime -->
+  <% let oplaytime = page['3rd-playtime']; %>
+  <% Object.keys(oplaytime).forEach(forum => { %>
+    <% let table = oplaytime[forum]; %>
+    <h3>Playtime - <%- forum.toUpperCase() %></h3>
+    <%- partial('_partials/base/table/table-tb-kv', { data: table }) %>
+  <% }) %>
+  <!-- Playtime End -->
+
+  <!-- Score -->
+  <% let oscore = page['3rdscore']; %>
+  <% Object.keys(oscore).forEach(forum => { %>
+    <% 
+      let table = oscore[forum]; 
+      let range = table['range'];
+      delete table['range'];
+    %>
+    <h3>Score - <%- forum.toUpperCase() %></h3>
+    <%- partial('_partials/base/table/table-tb-kv', { data: table }) %>
+
+    <%- partial('_partials/base/table/table-tb-kv', { data: range.reverse() }) %>
+  <% }) %>
+  <!-- Score End -->
+</div>
+<!-- 3rd Review Ending -->
+
+<!-- Appendix Content Beginning -->
+<%- page.content %>
+<!-- Appendix Content Ending -->

@@ -2,8 +2,18 @@
 # Template Display Config(Use to judge the display status of post)
 config:
   # default is select default post template to display post content, and these data will no be displayed with spcial format.
+  # content type
+  ctype: galgame
+  # game type
+  gtype: story
+  # record type
   type: data
-  format: yml 
+  # record format
+  format: yml
+
+#########################################
+#   Hexo System Default Configuration   #
+#########################################
 
 # Blog Basic Information
 title: ホワイトアルバム２
@@ -19,46 +29,27 @@ categories:
 - Galgame
 - Review
 # Tags for blog
-tags:
-- galgame
-- acg
-- ADV
-- review
-- 评分
-- 感想
-- 统计
+tags: [
+  # Basic
+  'galgame', 'acg', 'ADV', 'review', '评分', '感想', '统计',
 
-# Element
-- 恋爱
-- 白学家
-- 三角
-- 胃药
-- 心理描写
-- 细节
-- 写实
-- 校园
-- 职场
-- 成长
-- 坚强
-- 柔弱
+  # Element
+  '恋爱', '白学家', '三角', '胃药', '心理描写', '细节', '写实', '校园', '职场', '成长', '坚强', '柔弱',
 
-# Character
-- 东马
-- 雪莱
-- 小春
-- 千晶
-- 麻理
+  # Character
+  '东马', '雪菜', '小春', '千晶', '麻理',
 
-# Staff
-- 丸户史明
-- 中村毅
+  # Staff
+  '丸户史明', '中村毅',
 
-# Chapter
-- IC
-- CC
-- Coda
-- DigitalNovel
-- VoiceDrama
+  # Chapter
+  'IC', 'CC', 'Coda', 'Digital Novel', 'Voice Drama'
+]
+
+
+#########################################
+#         Blog Body Data Field          #
+#########################################
 
 # Galgame Information
 info:
@@ -66,11 +57,12 @@ info:
     jp: ホワイトアルバム２
     cn: 白色相簿2
     en: WHITE ALBUM2
-  shortname:
-  - WA2
+  shortname: ['WA2']
   developer: ['Leaf', 'AQUAPLUS', 'STING']
   publishers:
     jp: ['Leaf', 'AQUAPLUS']
+    cn: []
+    en: []
   staff:
     script:
     - name: 丸户史明
@@ -96,30 +88,26 @@ info:
       primary: false
       desc: 主役はCCの原画サポート
   release:
-  - no: 1
-    date: 2018-02-14
-    name: WHITE ALBUM2 EXTENDED EDITION
-    r18: true
-    disk: true
-    dl: true
-    platform: window
-    link: 
-    branch: Tree
-    desc: Main Story(IC + CC + CODA) + Special Content(Mini Story + Digital Novel + Voice Drama)
+    1:
+      date: 2018-02-14
+      name: WHITE ALBUM2 EXTENDED EDITION
+      region: jp
+      r18: true
+      disk: true
+      dl: true
+      platform: window
+      link: 
+      branch: Tree
+      desc: Main Story(IC + CC + CODA) + Special Content(Mini Story + Digital Novel + Voice Drama)
   links:
-  - title: IC公式
-    link: https://leaf.aquaplus.jp/product/wa2ic/
-  - title: CC公式
-    link: https://leaf.aquaplus.jp/product/wa2cc
-  - title: Extended Edition公式
-    link: https://leaf.aquaplus.jp/product/wa2cc/product.html#wa2ex
-  - title: Anime公式
-    link: http://whitealbum2.jp/
+  - { title: "IC公式", link: "https://leaf.aquaplus.jp/product/wa2ic/" }
+  - { title: "CC公式", link: "https://leaf.aquaplus.jp/product/wa2cc" }
+  - { title: "Extended Edition公式", link: https://leaf.aquaplus.jp/product/wa2cc/product.html#wa2ex }
+  - { title: "Anime公式", link: http://whitealbum2.jp/ }
 
 # Classification
 classification:
-  series:
-  - WHITE ALBUM
+  series: ['WHITE ALBUM']
 
 # Play game info record
 playhis:
@@ -237,26 +225,17 @@ eventGroupList:
 images:
   dir: /images/galgame/ホワイトアルバム２
   cover: 
-  - src: cover.jpg
-    alt: Game Cover
+  - { src: "cover.jpg", alt: "Game Cover" }
   play:
   cg: 
-  - src: cg-1.jpg
-    alt: 
-  - src: cg-2.jpg
-    alt: 
-  - src: cg-3.jpg
-    alt: 
-  - src: cg-4.jpg
-    alt: 
-  - src: cg-5.jpg
-    alt: 
-  - src: cg-6.jpg
-    alt: 
-  - src: cg-7.jpg
-    alt: 
-  - src: cg-8.jpg
-    alt:
+  - { src: "cg-1.jpg", alt: "" }
+  - { src: "cg-2.jpg", alt: "" }
+  - { src: "cg-3.jpg", alt: "" }
+  - { src: "cg-4.jpg", alt: "" }
+  - { src: "cg-5.jpg", alt: "" }
+  - { src: "cg-6.jpg", alt: "" }
+  - { src: "cg-7.jpg", alt: "" }
+  - { src: "cg-8.jpg", alt: "" }
   flowchart:
 
 # Game Review
@@ -321,7 +300,9 @@ review:
     content: 
   long: 
   - date: 2024-01-28 21:19:48
+    title: 白色相簿2一周目初体验
     content: 整体来说就是慢性胃药。药效没有动漫版本的IC急性胃疼，但是看的过程就是胃疼。对应的东T没有想象的虐，但是过程中胃部有不少疼痛麻痹症状发生。结局主体偏向是雪菜。个人属于雪菜党，主要还是这TV版本不当人，虐菜太狠。还有就是雪菜也是乌丸认定的亲女儿，相对的在人物塑造方面较为饱满，至于东马，那个只能用大明星视角看。游戏本体的话可以从行为上分析雪菜，分析不出来的部分可以借助小说补全的细节来分析。有些人是因为小说而变成雪菜党。个人雪菜党的原因是首先是TV版本最喜欢的角色，其次是这人物在游戏中的性格特性有所共鸣，最后就是她的爱很纯粹，遇上春希这种渣男把雪菜折磨成另一个样子，但自始自终都是一致的心意。不求什么，只要在身边就好。显得爱很卑微。另一方面是东马，爱却不表达，IC猛烈放手，CODA却反插一脚。IC可以说是竞争，但CODA的雪菜都是关系确立的，这显然成为另一个风暴漩涡，拆散雪菜。结尾来说，浮气线很cool，但最终还是看不共戴天。东马的抛弃让春希不成样，甚至抛弃雪菜，无法面对现实，这里的抛弃是伦理上无法接受这种现实。后面还是看开，加上雪菜自始至终的爱，最后彻底放下东马。至于东T就是无视身边的一切看法，私奔去欧洲发展。但是。。。最终结果就是有一方愿意放下手。春希有点渣，但顾及两方情感幸福，时不时在嘴上进行言语妥协，导致最终始终无法脱钩的恋爱三角。这部目前是心目的至高神之一。准备看看白学1的社会胃疼剧情。
+    tags: ['初体验', 'WA2', '三角恋']
 
 # Friend links to relative post.
 links:

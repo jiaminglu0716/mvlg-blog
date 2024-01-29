@@ -44,7 +44,11 @@ page.banner_mask_alpha = page.banner_mask_alpha || theme.post.banner_mask_alpha
             <% } else { %>
               <div class="markdown-body">
                 <%- inject_point('postMarkdownBegin') %>
-                <%- page.content %>
+                <% if (page.config) { %>
+                  <%- partial('_partials/post-content/post-content-galgame-review') %>
+                <% } else { %>
+                  <%- page.content %>
+                <% } %>
                 <%- inject_point('postMarkdownEnd') %>
               </div>
             <% } %>
