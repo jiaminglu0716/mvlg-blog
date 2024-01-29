@@ -1,10 +1,22 @@
-<%
-page.banner_img = page.banner_img || theme.post.banner_img
+<% 
 page.banner_img_height = page.banner_img_height || theme.post.banner_img_height
 page.banner_mask_alpha = page.banner_mask_alpha || theme.post.banner_mask_alpha
+
+if (
+  page.config && 
+  page.config.ctype == 'galgame' && 
+  page.config.gtype == 'story' &&
+  page.config.type == 'data'
+) {
+  let src = page.images.dir + '/' + page.images.banner.src;
+  page.banner_img = src || page.banner_img || theme.post.banner_img;
+  page.title = page.info.name.jp || page.title;
+} else {
+  page.banner_img = page.banner_img || theme.post.banner_img;
+} 
 %>
 
-<!-- 详情页博客页面 -->
+
 <div class="container-fluid nopadding-x">
   <div class="row nomargin-x">
     <div class="side-col d-none d-lg-block col-lg-2">
@@ -44,7 +56,12 @@ page.banner_mask_alpha = page.banner_mask_alpha || theme.post.banner_mask_alpha
             <% } else { %>
               <div class="markdown-body">
                 <%- inject_point('postMarkdownBegin') %>
-                <% if (page.config) { %>
+                <% if (
+                  page.config && 
+                  page.config.ctype == 'galgame' && 
+                  page.config.gtype == 'story' &&
+                  page.config.type == 'data'
+                ) { %>
                   <%- partial('_partials/post-content/post-content-galgame-review') %>
                 <% } else { %>
                   <%- page.content %>

@@ -19,6 +19,66 @@
 <!-- Name Sub Bar Ending -->
 
 
+<!-- Basic Information Beginning -->
+<div class="container">
+  <div><b>Developer</b>: <%- page.info.developer.join(' & ') %></div>
+  <div><b>Publisher</b>: <%- page.info.publishers.jp.join(' & ') %></div>
+  <div><b>Staff</b>:
+    <table class="table table-striped mt-2 ml-2">
+      <thead>
+        <tr>
+          <th class="text-center align-middle">名前</th>
+          <th class="text-center align-middle">担当</th>
+          <th class="text-center align-middle">主役</th>
+          <th class="text-center align-middle">紹介</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% let staff = page.info.staff; %>
+        <!-- Script Staff -->
+        <% if (staff.script) staff.script.forEach(person => { %>
+          <tr>
+            <td class="text-center align-middle"><%- person.name %></td>
+            <td class="text-center align-middle">脚本</td>
+            <td class="text-center align-middle"><%- person.primary ? 'はい' : 'いいえ' %></td>
+            <td class="text-center align-middle"><%- person.desc %></td>
+          </tr>
+        <% }) %>
+        <!-- Voice Staff -->
+        <% if (staff.voice) staff.voice.forEach(person => { %>
+          <tr>
+            <td class="text-center align-middle"><%- person.name %></td>
+            <td class="text-center align-middle">原画</td>
+            <td class="text-center align-middle"><%- person.primary ? 'はい' : 'いいえ' %></td>
+            <td class="text-center align-middle"><%- person.desc %></td>
+          </tr>
+        <% }) %>
+        <!-- Artist Staff -->
+        <% if (staff.artist) staff.artist.forEach(person => { %>
+          <tr>
+            <td class="text-center align-middle"><%- person.name %></td>
+            <td class="text-center align-middle">原画</td>
+            <td class="text-center align-middle"><%- person.primary ? 'はい' : 'いいえ' %></td>
+            <td class="text-center align-middle"><%- person.desc %></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+  <div><b>Links</b>: 
+    <% page.info.links.forEach(link => { %>
+      <span><a href="<%- link.link %>"><%- link.title %></a></span>
+    <% }) %>
+  </div>
+  <div><b>Forum</b>: 
+    <% page.links.forEach(link => { %>
+      <span><a href="<%- link.link %>"><%- link.title %></a></span>
+    <% }) %>
+  </div>
+</div>
+<!-- Basic Information Ending -->
+
+
 <!-- Event List Bar Beginning -->
 <h2>Event History</h2>
 <% for (let item of page.playhis) { %>
@@ -135,7 +195,6 @@
         </div>
     </div>
   <% } %>
-
 </div>
 <!-- Review Ending -->
 

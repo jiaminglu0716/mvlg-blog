@@ -70,10 +70,6 @@ info:
       primary: true
       desc: 脚本の主役担当者
     voice:
-    - character: 
-      name: 
-      no: [1]
-      primary: true 
     artist:
     - name: 中村毅
       no: [1]
@@ -224,8 +220,8 @@ eventGroupList:
 # Game images(if we set dir we can get src with the format of that "dir + path" -> dir: /src and path: /cg-3.jpg || cg-3.jpg -> /src/cg-3.jpg)
 images:
   dir: /images/galgame/ホワイトアルバム２
-  cover: 
-  - { src: "cover.jpg", alt: "Game Cover" }
+  cover: { src: "cover.jpg", alt: "Game Cover" }
+  banner: { src: "cg-1.jpg", alt: "Game Cover" }
   play:
   cg: 
   - { src: "cg-1.jpg", alt: "" }
