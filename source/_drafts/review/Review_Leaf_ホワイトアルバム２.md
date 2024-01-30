@@ -91,6 +91,8 @@ info:
       r18: true
       disk: true
       dl: true
+      # static | dynamic | anime | 3D - r -> H-dynamic
+      cg: ['static', 'H-static']
       platform: window
       link: 
       branch: Tree
@@ -104,6 +106,10 @@ info:
 # Classification
 classification:
   series: ['WHITE ALBUM']
+  types: ['ADV', 'GAL']
+  play: ['Text']
+  playeles: []
+  bgeles: ['Snow', 'Winter', 'Christmas']
 
 # Play game info record
 playhis:
@@ -118,11 +124,70 @@ playhis:
 # score(n/10), range(10-1)
 score:
   1:
-    grand: 9.5
-    bgm: 9.4
-    story: 9.5
-    character: 9.3
-    cg: 9.0
+    # Game Score Standard
+    base:
+      # Basic Standard
+      # Feel
+      grand: 9.5
+      story: 9.5 
+      persistence: 9.5
+      emotion: 9.5
+      # Eye
+      character: 9.3
+      cg: 9.0
+      # Ear
+      sound: 9.5
+      voice: 9.5
+      bgm: 9.4
+      # Control
+      control_ui: 8.0
+      control_auto: 9.0
+      control_easy_of_use: 9.0
+      # role
+      protagonist_substitution: 7.0
+      heroine_substitution: 9.0
+      role_substitution: 7.5
+      role_diversity: 7.0
+      role_number: 8.0
+      # play
+      play_interactivity: 5.0
+      play_playability: 5.0
+      play_durability: 9.0
+      play_diversity: 5.0
+      # archive
+      archive: 9.0
+      archive_auto_save: 7.0
+      archive_save: 9.0
+      archive_num: 7.0
+    r18:
+      # R18 part
+      r18_grand: 8.0
+      # The design of game
+      r18_design_breast: 8.0
+      r18_design_layout: 8.0
+      # The HS effect according to this position they insert
+      r18_story: 9.0
+      r18_story_insert: 9.0
+      r18_story_develop: 9.0
+      # The feel when we use this cg or game to do something let us feel great
+      r18_game_used: 7.5
+      # The cg effect according sub standards
+      r18_cg: 7.5
+      r18_cg_used: 7.0
+      r18_cg_fleshy_feel: 7.0
+      r18_cg_color: 6.5
+      # The action of human
+      r18_play_active: 8.0
+      r18_play_emotion: 9.0
+      r18_play_position: 6.0
+      r18_play_facial_expression: 7.0
+      # The feel of Jyoyu san's voice
+      r18_voice: 9.0
+      # The effect of sound and bgm
+      r18_sound: 9.0
+      r18_sound_effect: 9.0 
+      r18_bgm: 9.0
+
 
 3rdscore:
   vndb:
@@ -236,6 +301,9 @@ images:
 
 # Game Review
 review:
+  story:
+    # Normal Speed :: <15: short; <35: normal; <50: long; 
+    length: long
   tips:
   - 动画版本只有IC，且是东马偏向的剧情，雪莱党会被虐死。CC + Coda是故事核心。IC主要是三角势力平衡的故事背景描述。Extended Edition 整合了 IC + CC + Coda还有收录了许多细节内容。具体设定补充有官方设定集，但不代表是正确的。当作品出名的一定程度后，其解释权不为作者所拥有。
   routes:
