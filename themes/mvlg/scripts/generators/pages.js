@@ -136,18 +136,18 @@ hexo.extend.generator.register('_record', async function(locals) {
 //   };
 // });
 
-hexo.extend.generator.register('_test', async function(locals) {
-  // console.log(Object.keys(this))
-  // console.log(await hexo.extend.helper.get('bilibili')())
+// hexo.extend.generator.register('_test', async function(locals) {
+//   // console.log(Object.keys(this))
+//   // console.log(await hexo.extend.helper.get('bilibili')())
 
-  const { bangumiTimeline } = require('../api/bilibili')
-  return {
-    path  : 'api/test.json', 
-    data  : {
-      data: await bangumiTimeline()
-    }
-  };
-});
+//   const { bangumiTimeline } = require('../api/bilibili')
+//   return {
+//     path  : 'api/test.json', 
+//     data  : {
+//       data: await bangumiTimeline()
+//     }
+//   };
+// });
 
 // hexo.extend.generator.register('_posts', function(locals) {
 //   if (this.theme.config.pageTest.enable !== false) {
@@ -174,4 +174,14 @@ hexo.extend.generator.register('_test', async function(locals) {
 //       title: 'postcc'
 //     }
 //   });
+// });
+
+/**
+ * Test Field
+ */
+// hexo.extend.generator.register('_test', async function(locals) {
+//   return {
+//     path  : 'test.html',
+//     layout: 'test'
+//   };
 // });

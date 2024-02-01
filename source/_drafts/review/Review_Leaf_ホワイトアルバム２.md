@@ -358,10 +358,17 @@ review:
     patch: false
     patch_link: 
   slogan:
-  - 
+  - { sentence: "梦里不觉秋已深，余情岂是为他人。", writer: "冬马和纱", collection: "白色相簿2", resource: "CN-Network" }
+  - { sentence: "深秋与君伴，一去不复返，只留回忆泛滥；与最爱的你，共度的夏季，已经迎来结束；蓦然雪化，且静候，飞雪再临之时。", writer: "丸户史明", collection: "白色相簿2", resource: "CN-Network" }
+  - { sentence: "为什么会变成这样呢……第一次有了喜欢的人。有了能做一辈子朋友的人。两件快乐事情重合在一起。而这两份快乐，又给我带来更多的快乐。得到的，本该是像梦境一般幸福的时间……但是，为什么，会变成这样呢……", writer: "小木曾雪菜", collection: "白色相簿2", resource: "CN-Network" }
+  - { sentence: "白色相簿”什么的，已经无所谓了。因为已经不再有歌，值得去唱了。传达不了的恋情，已经不需要了。因为已经不再有人，值得去爱了。", writer: "", collection: "白色相簿2", resource: "CN-Network" }
+  - { sentence: "晨意微寒秋渐深，侧伴无事俏佳人。", writer: "", collection: "白色相簿2", resource: "CN-Network" }
+  - { sentence: "为什么，还要出现在我的面前;为什么，同意我呆在你身边;为什么，总是说些不清不楚的话;为什么，总是摆着一副好像对我一点也不讨厌的态度;为什么，没有来听我的钢琴;为什么，不能接受我啊。", writer: "冬马和纱", collection: "白色相簿2", resource: "CN-Network" }
+  - { sentence: "先从我眼前消失的是你吧！？擅自跑到我无法触及的地方去的人是你吧！明明遥不可及，却又近在咫尺，先想出这种拷问方式的人是你吧！明明是这样，为什么还非得被你责备不可啊……？像那样……每天、每天，在我的眼前，剐着我的心……还说这全都是我的错……太残忍了啊……", writer: "冬马和纱", collection: "白色相簿2", resource: "CN-Network" }
+  - { sentence: "我们只有不断地演戏，才能够留在彼此的身边。", writer: "和泉千晶", collection: "白色相簿2", resource: "CN-Network" }
   short: 
-  - date:
-    content: 
+  - date: 2024-02-01 08:24:00
+    content: 虽然推完游戏，可是如今对其感情仍是刻骨铭心，太妙了。先以神作对其进行评价。有时间再补PSV版本，PC版本估计不会再碰了。至于实体的话已经入手，目前已经作为收藏品食用。
   long: 
   - date: 2024-01-28 21:19:48
     title: 白色相簿2一周目初体验

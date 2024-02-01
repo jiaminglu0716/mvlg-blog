@@ -1,8 +1,31 @@
+<!-- 
+  @author: mvlg
+  @updateat: 2024/2/1 10:34:00
+  @type: post
+  @target: galgame review
+  @component: post content
+  @desc: Use to display data we have define in our post and their format is yml || yaml.
+-->
+
+<!-- 
+  As my know, this page will be saved in the same ROM and wait me to use it again.
+  So, if we have change some vars and use them at the next time, we will get the var result we have updated.
+
+  How to resolve this problem:
+  1. Add some conditions to judge before we exec.
+  2. If the vae is object and we need to exec DML command, we need to deep clone these target data.
+  3. Learn to use private field to limit the exec range of command.
+  4. ......
+-->
+
+
 <% let snames = Object.values(page.info.name).filter(name => name != null); %>
     
 <!-- Slider Bar Beginning -->
 <%- partial('_partials/base/slider/slider', { images: page.images.cg.map(img => {
-  img.src = page.images.dir + '/' + img.src; 
+  <!-- Reload the page and the page will use the link we updated -->
+  if (img.src.indexOf(page.images.dir) == -1) 
+    img.src = page.images.dir + '/' + img.src;
   return img;
 }) }) %>
 <!-- Slider Bar Ending -->
@@ -48,7 +71,7 @@
         <% if (staff.voice) staff.voice.forEach(person => { %>
           <tr>
             <td class="text-center align-middle"><%- person.name %></td>
-            <td class="text-center align-middle">原画</td>
+            <td class="text-center align-middle">女优</td>
             <td class="text-center align-middle"><%- person.primary ? 'はい' : 'いいえ' %></td>
             <td class="text-center align-middle"><%- person.desc %></td>
           </tr>
@@ -206,6 +229,25 @@
   </div>
 
   <!-- Short Review -->
+  <% if (page.review.slogan) { %>
+    <div>
+      <h3>Slogan</h3>
+      <div>
+        <% for (let slogan of page.review.slogan) { %>
+          <div class="card border-radius mb-4">
+            <div class="card-body">
+              <p class="card-text"><%- slogan.sentence %></p>
+              <div class="d-flex justify-content-end">
+                <small class="text-muted">—— <%- slogan.writer %>《<%- slogan.collection %>》from <%- slogan.resource %></small>
+              </div>
+            </div>
+          </div>
+        <% } %>
+        </div>
+    </div>
+  <% } %>
+
+  <!-- Short Review -->
   <% if (page.review.short.filter(x => x.date != null && x.content != null).length > 0) { %>
     <div>
       <h3>Short Review</h3>
@@ -261,13 +303,14 @@
   <% let oscore = page['3rdscore']; %>
   <% Object.keys(oscore).forEach(forum => { %>
     <% 
-      let table = oscore[forum]; 
+      let otable = oscore[forum]; 
+      <!-- deep clone table object -->
+      let table = deepclone(otable);
       let range = table['range'];
       delete table['range'];
     %>
     <h3>Score - <%- forum.toUpperCase() %></h3>
     <%- partial('_partials/base/table/table-tb-kv', { data: table }) %>
-
     <%- partial('_partials/base/table/table-tb-kv', { data: range.reverse() }) %>
   <% }) %>
   <!-- Score End -->
