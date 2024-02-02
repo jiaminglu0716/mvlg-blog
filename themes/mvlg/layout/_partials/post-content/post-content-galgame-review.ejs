@@ -208,9 +208,10 @@
   <%- partial('_partials/base/table/table', { title: page.eventList.title.jp, data: page.eventList.his[idx] }) %>
 
   <!-- Event Group List -->
-  <h3 class="text-center">Event Group</h3>
-  <%- partial('_partials/base/table/table', { title: page.eventGroupList.title.jp, data: page.eventGroupList.his[idx] }) %>
-
+  <% if (page.eventGroupList.his && page.eventGroupList.his[idx]) { %>
+    <h3 class="text-center">Event Group</h3>
+    <%- partial('_partials/base/table/table', { title: page.eventGroupList.title.jp, data: page.eventGroupList.his[idx] }) %>
+  <% } %>
 <% } %>
 <!-- Event List Bar Ending -->
 
