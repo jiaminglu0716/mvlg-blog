@@ -186,12 +186,10 @@
           <h3 class="text-left ml-3">Score</h3>
           <%- partial('_partials/base/table/table-lr-kv', { data: page.score[idx].base }) %>
         </div>
-        <% if (page.score[idx].r18) { %>
-          <div>
-            <h3 class="text-left ml-3">R Score</h3>
-            <%- partial('_partials/base/table/table-lr-kv', { data: page.score[idx].r18 }) %>
-          </div>
-        <% } %>
+        <div>
+          <h3 class="text-left ml-3">R Score</h3>
+          <%- partial('_partials/base/table/table-lr-kv', { data: page.score[idx].r18 }) %>
+        </div>
       </div>
     </div>
 
@@ -296,21 +294,11 @@
   <!-- Playtime -->
   <% let oplaytime = page['3rd-playtime']; %>
   <% Object.keys(oplaytime).forEach(forum => { %>
-    <h3>Playtime - <%- forum.toUpperCase() %></h3>
-    <% 
-      let table = oplaytime[forum]; 
-      let dlist = new Array();
-      table instanceof Array ? dlist = deepclone(table) : dlist.push(table);
-    %>
-    <% dlist.forEach(table => { %>
-      <h4>[<%- table.id %>] <%- table.title %> - <%- table.updateAt %></h4>
-      <%
-        let temp = deepclone(table);
-        delete temp['id'];
-        delete temp['title'];
-        delete temp['updateAt'];
+    <% let tables = oplaytime[forum]; %>
+    <% tables.forEach(table => { 
+      console.log(table)
       %>
-      <%- partial('_partials/base/table/table-tb-kv', { data: temp }) %>
+      <h3>Playtime - <%- forum.toUpperCase() %></h3>
     <% }) %>
   <% }) %>
   <!-- Playtime End -->
@@ -318,23 +306,18 @@
   <!-- Score -->
   <% let oscore = page['3rdscore']; %>
   <% Object.keys(oscore).forEach(forum => { %>
-    <h3>Score - <%- forum.toUpperCase() %></h3>
     <% 
-      let table = oscore[forum]; 
-      let dlist = new Array();
-      table instanceof Array ? dlist = deepclone(table) : dlist.push(table);
+      let tables = oscore[forum]; 
     %>
-    <% dlist.forEach(table => { %>
-      <h4>[<%- table.id %>] <%- table.title %> - <%- table.updateAt %></h4>
+    <% tables.forEach(table => { %>
       <%
-        let temp = deepclone(table);
+        <!-- deep clone table object -->
+        table = deepclone(table);
         let range = table['range'];
-        delete temp['id'];
-        delete temp['title'];
-        delete temp['updateAt'];
-        delete temp['range'];
+        delete table['range'];
       %>
-      <%- partial('_partials/base/table/table-tb-kv', { data: temp }) %>
+      <h3>Score - <%- forum.toUpperCase() %></h3>
+      <%- partial('_partials/base/table/table-tb-kv', { data: table }) %>
       <%- partial('_partials/base/table/table-tb-kv', { data: range.reverse() }) %>
     <% }) %>
   <% }) %>

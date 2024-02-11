@@ -1,0 +1,17 @@
+<% let oscore = page['3rdscore']; %>
+  <% Object.keys(oscore).forEach(forum => { %>
+    <% 
+      let tables = oscore[forum]; 
+    %>
+    <% tables.forEach(table => { %>
+      <%
+        <!-- deep clone table object -->
+        table = deepclone(table);
+        let range = table['range'];
+        delete table['range'];
+      %>
+      <h3>Score - <%- forum.toUpperCase() %></h3>
+      <%- partial('_partials/base/table/table-tb-kv', { data: table }) %>
+      <%- partial('_partials/base/table/table-tb-kv', { data: range.reverse() }) %>
+    <% }) %>
+  <% }) %>

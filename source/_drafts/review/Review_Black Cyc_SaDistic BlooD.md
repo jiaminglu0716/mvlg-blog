@@ -191,6 +191,8 @@ score:
 3rdscore:
   vndb:
     id: v26721
+    title: SaDistic BlooD
+    updateAt: 2024-02-01
     rank: 10981
     grand: 6.22
     avg: 6.22
@@ -215,6 +217,9 @@ playtime:
 
 3rd-playtime:
   vndb:
+    id: v26721
+    title: SaDistic BlooD
+    updateAt: 2024-02-01
     cover: 4h
     total: 4h
     fast: 3h

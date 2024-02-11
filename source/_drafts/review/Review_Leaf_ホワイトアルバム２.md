@@ -192,6 +192,8 @@ score:
 3rdscore:
   vndb:
     id: v7771
+    title: ホワイトアルバム２
+    updateAt: 2024-01-28
     rank: 2
     grand: 9.0
     avg: 9.0
@@ -216,6 +218,9 @@ playtime:
 
 3rd-playtime:
   vndb:
+    id: v7771
+    title: ホワイトアルバム２
+    updateAt: 2024-01-28
     cover: 72h46m
     total: 73h36m
     fast: 50h

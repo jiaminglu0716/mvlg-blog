@@ -17,7 +17,7 @@ config:
 
 # Blog Basic Information
 title: 時計仕掛けのレイライン
-date: 2024-01-28 20:35:48
+date: 2024-02-09 15:53:00
 description: Galgame攻略感想与评价 >>> 
 
 # Config Setting for 3rd-plugins
@@ -34,16 +34,7 @@ tags: [
   'galgame', 'acg', 'ADV', 'review', '评分', '感想', '统计',
 
   # Element
-  '恋爱', '白学家', '三角', '胃药', '心理描写', '细节', '写实', '校园', '职场', '成长', '坚强', '柔弱',
-
-  # Character
-  '东马', '雪菜', '小春', '千晶', '麻理',
-
-  # Staff
-  '丸户史明', '中村毅',
-
-  # Chapter
-  'IC', 'CC', 'Coda', 'Digital Novel', 'Voice Drama'
+  '魔法', '学院', '人偶', '灵魂', '悬疑', '夜之魔法', '魔法阵', '灵魂', '魔女', '时停', '异世界', '同心异体', '同化', '拯救', '救赎', '独特画风', '战斗', '热血'
 ]
 
 
@@ -100,7 +91,7 @@ info:
       disk: false
       dl: true
       # static | dynamic | anime | 3D - r -> H-dynamic
-      cg: ['static', 'H-static']
+      cg: ['static']
       platform: psv
       link: 
       branch: Tree
@@ -123,7 +114,7 @@ playhis:
   version_no: 1
   status: all
   speed: normal
-  desc: Record (時計仕掛けのレイライン －残影の夜が明ける時－ + 時計仕掛けのレイライン －朝霧に散る花－ + 時計仕掛けのレイライン -陽炎に彷徨う魔女-) and predict 時計仕掛けのレイライン －黄昏時の境界線－ with 15h or 20h.
+  desc: Record (時計仕掛けのレイライン －残影の夜が明ける時－ + 時計仕掛けのレイライン －朝霧に散る花－ + 時計仕掛けのレイライン -陽炎に彷徨う魔女-) and predict 時計仕掛けのレイライン －黄昏時の境界線－ with 18h.
 
 
 # score(n/10), range(10-1)
@@ -141,19 +132,19 @@ score:
       character: 9.3
       cg: 9.0
       # Ear
-      sound: 9.5
-      voice: 9.5
-      bgm: 9.4
+      sound: 9.0
+      voice: 9.2
+      bgm: 9.2
       # Control
-      control_ui: 8.0
-      control_auto: 9.0
+      control_ui: 9.0
+      control_auto: 8.0
       control_easy_of_use: 9.0
       # role
-      protagonist_substitution: 7.0
-      heroine_substitution: 9.0
-      role_substitution: 7.5
-      role_diversity: 7.0
-      role_number: 8.0
+      protagonist_substitution: 8.0
+      heroine_substitution: 8.0
+      role_substitution: 8.0
+      role_diversity: 8.0
+      role_number: 8.5
       # play
       play_interactivity: 5.0
       play_playability: 5.0
@@ -162,70 +153,87 @@ score:
       # archive
       archive: 9.0
       archive_auto_save: 7.0
-      archive_save: 9.0
-      archive_num: 7.0
-    r18:
-      # R18 part
-      r18_grand: 8.0
-      # The design of game
-      r18_design_breast: 8.0
-      r18_design_layout: 8.0
-      # The HS effect according to this position they insert
-      r18_story: 9.0
-      r18_story_insert: 9.0
-      r18_story_develop: 9.0
-      # The feel when we use this cg or game to do something let us feel great
-      r18_game_used: 7.5
-      # The cg effect according sub standards
-      r18_cg: 7.5
-      r18_cg_used: 7.0
-      r18_cg_fleshy_feel: 7.0
-      r18_cg_color: 6.5
-      # The action of human
-      r18_play_active: 8.0
-      r18_play_emotion: 9.0
-      r18_play_position: 6.0
-      r18_play_facial_expression: 7.0
-      # The feel of Jyoyu san's voice
-      r18_voice: 9.0
-      # The effect of sound and bgm
-      r18_sound: 9.0
-      r18_sound_effect: 9.0 
-      r18_bgm: 9.0
+      archive_save: 8.0
+      archive_num: 6.0
 
 
 3rdscore:
   vndb:
-    id: v7771
-    rank: 2
-    grand: 9.0
-    avg: 9.0
+  - id: v16212
+    title: 時計仕掛けのレイライン －朝霧に散る花－
+    rank: 148
+    grand: 8.17
+    avg: 8.17
+    max: 10.0
+    min: 3.0
+    num: 702
+    num_rank: 360
+    gap: -1
+    range: [83, 191, 284, 105, 23, 11, 4, 1, 0, 0, 0]
+    updateAt: 2024-02-11
+  - id: v11093
+    title: 時計仕掛けのレイライン －残影の夜が明ける時－
+    rank: 275
+    grand: 7.97
+    avg: 7.97
+    max: 10.0
+    min: 3.0
+    num: 837
+    num_rank: 304
+    gap: -1
+    range: [49, 222, 356, 153, 35, 13, 6, 2, 0, 0, 0]
+    updateAt: 2024-02-11
+  - id: v10016
+    title: 時計仕掛けのレイライン －黄昏時の境界線－
+    rank: 2866
+    grand: 7.15
+    avg: 7.15
     max: 10.0
     min: 1.0
-    num: 2665
-    num_rank: 87
+    num: 1549
+    num_rank: 164
     gap: -1
-    range: [1437, 624, 310, 121, 70, 38, 22, 14, 11, 18, 0]
+    range: [48, 150, 460, 535, 204, 85, 40, 15, 9, 3, 0]
+    updateAt: 2024-02-11
 
 # Record play time if we play times more than one.
 playtime:
   1:
-    granddays: 17
-    playdays: 17
-    startat: 2024-01-12 00:09:48
-    finishat: 2024-01-28 20:35:48
-    piecenum: 33
-    minpiece: 00:29:00
-    maxpiece: 12:07:00
-    grandtime: 121:52:00
+    granddays: 7
+    playdays: 7
+    startat:  2024-02-03 16:07:00
+    finishat: 2024-02-09 15:53:00
+    piecenum: 18
+    minpiece: 00:04:00
+    maxpiece: 05:49:00
+    grandtime: 53:40:00
 
 3rd-playtime:
   vndb:
-    cover: 72h46m
-    total: 73h36m
-    fast: 50h
-    normal: 80h
-    slow: 100h2m
+  - id: v16212
+    title: 時計仕掛けのレイライン －朝霧に散る花－
+    cover: 16h54m
+    total: 15h28m
+    fast: 12h
+    normal: 18h32m
+    slow: 30h
+    updateAt: 2024-02-11
+  - id: v11093
+    title: 時計仕掛けのレイライン －残影の夜が明ける時－
+    cover: 18h
+    total: 17h49m
+    fast: 13h42m
+    normal: 18h46m
+    slow: 31h30m
+    updateAt: 2024-02-11
+  - id: v10016
+    title: 時計仕掛けのレイライン －黄昏時の境界線－
+    cover: 17h
+    total: 16h17m
+    fast: 11h6m
+    normal: 17h
+    slow: 32h
+    updateAt: 2024-02-11
 
 # Event his, and the his number is the times of playhis.
 eventList:
@@ -235,6 +243,22 @@ eventList:
     en: ['Times', 'Event', 'Start At', 'Finish At', 'Event Time', 'Long Branch Time', 'Short Branch Time', 'Grand Time']
   his:
     1:
+    - ['1', 'ハイト Fin', '08:17:00', '10:55:00', '02:38:00', '10:55:00', '05:37:00', '10:55:00']
+    - ['2', '二人 Fin', '13:46:00', '16:16:00', '02:30:00', '13:38:00', '05:21:00', '13:38:00']
+    - ['3', 'Fin 2nd:D rank CG', '16:16:00', '24:55:00', '08:39:00', '19:47:00', '11:30:00', '19:47:00']
+    - ['4', 'Fin 2nd:SSS rank CG:skip', '24:55:00', '25:48:00', '00:53:00', '06:11:00', '06:11:00', '06:11:00']
+    - ['5', 'True Fin 3rd:SSS rank CG', '35:58:00', '43:33:00', '07:35:00', '23:56:00', '10:14:00', '23:56:00']
+    - ['6', 'True Fin 3rd:SS rank CG:skip', '43:33:00', '43:45:00', '00:12:00', '16:33:00', '02:51:00', '16:33:00']
+    - ['7', 'True Fin 3rd:S rank CG:skip', '43:45:00', '43:56:00', '00:11:00', '13:53:00', '00:25:00', '13:53:00']
+    - ['8', 'True Fin 3rd:A rank CG:skip', '43:56:00', '44:10:00', '00:14:00', '13:42:00', '06:12:00', '13:42:00']
+    - ['9', 'True Fin 3rd:E rank CG:skip', '44:27:00', '44:36:00', '00:09:00', '07:56:00', '00:12:00', '07:56:00']
+    - ['10', 'True Fin 3rd:B rank CG:skip', '44:36:00', '44:52:00', '00:16:00', '07:59:00', '00:29:00', '07:59:00']
+    - ['11', 'True Fin 3rd:C rank CG:skip', '44:52:00', '45:07:00', '00:15:00', '07:59:00', '00:16:00', '07:59:00']
+    - ['12', 'True Fin 3rd:D rank CG:skip', '45:07:00', '45:17:00', '00:10:00', '07:57:00', '00:13:00', '07:57:00']
+    - ['13', 'シグマ Fin', '45:17:00', '50:23:00', '05:06:00', '29:02:00', '15:20:00', '29:02:00']
+    - ['14', 'IF:リト Fin', '50:23:00', '52:23:00', '02:00:00', '00:00:00', '00:00:00', '02:00:00']
+    - ['15', 'Mini Story: 再びの夢物語', '52:23:00', '53:11:00', '00:48:00', '00:00:00', '00:00:00', '00:48:00']
+    - ['16', 'Mini Story: 初めてのお料理チャレンジ', '53:11:00', '53:40:00', '00:29:00', '00:00:00', '00:00:00', '00:29:00']
 
 eventGroupList:
   title:
@@ -243,10 +267,19 @@ eventGroupList:
     en: ['Index', 'Event Group', 'Group Time', 'Sub Event&Group']
   his:
     1:
+    - ['1', '2nd:save', '11:08:00', '-']
+    - ['2', '3rd:save', '10:27:00', '-']
+    - ['3', '2nd:end', '14:40:00', '-']
+    - ['4', '3rd:end', '09:02:00', '-']
+    - ['5', '4th:end', '05:06:00', '-']
+    - ['6', 'Another_Story', '03:17:00', '-']
+    - ['7', 'Story_2nd', '25:48:00', '2nd:save、2nd:end']
+    - ['8', 'Story_3rd', '19:29:00', '3rd:save、3rd:end']
+    - ['9', 'Story_4th', '05:06:00', '4th:end']
 
 # Game images(if we set dir we can get src with the format of that "dir + path" -> dir: /src and path: /cg-3.jpg || cg-3.jpg -> /src/cg-3.jpg)
 images:
-  dir: /images/galgame/ホワイトアルバム２
+  dir: /images/galgame/時計仕掛けのレイライン
   cover: { src: "cover.jpg", alt: "Game Cover" }
   banner: { src: "cg-1.jpg", alt: "Game Cover" }
   play:
@@ -267,72 +300,24 @@ review:
     # Normal Speed :: <15: short; <35: normal; <50: long; 
     length: long
   tips:
-  - 动画版本只有IC，且是东马偏向的剧情，雪莱党会被虐死。CC + Coda是故事核心。IC主要是三角势力平衡的故事背景描述。Extended Edition 整合了 IC + CC + Coda还有收录了许多细节内容。具体设定补充有官方设定集，但不代表是正确的。当作品出名的一定程度后，其解释权不为作者所拥有。
+  - 第一、二部有两个评级CG，第三部有8个评级CG，第四部属于单线后日谈。
   routes:
-  - chapter: IC
-    platform: all
-    release_no:
-    exclude_no: 
-    known_no: [1]
-    routes:
-    - name: 
-      update: false
-      desc: 
-  - chapter: CC
-    platform: all
-    release_no:
-    routes:
-    - name: 
-      update: false
-      desc: 
-  - chapter: CODA
-    platform: all
-    release_no: all
-    routes:
-    - name: 
-      update: false
-      desc: 
-  - chapter: MINI STORY
-    platform: all
-    release_no: all
-    routes:
-    - name: 
-      update: false
-      desc: 
-  - chapter: DIGITAL NOVEL
-    platform: all
-    release_no: all
-    routes:
-    - name: 
-      update: false
-      desc: 
-  - chapter: VOICE DRAMA
-    platform: all
-    release_no: all
-    routes:
-    - name: 
-      update: false
-      desc: 
   bug:
-  - platform:
-    release_no:
-    desc: 
-    patch: false
-    patch_link: 
   slogan:
-  - { sentence: "梦里不觉秋已深，余情岂是为他人。", writer: "冬马和纱", collection: "白色相簿2", resource: "CN-Network" }
   short: 
-  - date: 2024-02-01 08:24:00
-    content:
+  - date: 2024-02-11 22:53:00
+    content: 跟动漫的魔法学院题材风格相似，基本上可以当番剧看。除了一开始，后面基本上眼球都离不开文本，太精彩了。某种意义上可以算神作，另一方面，这个游戏是从二手魔法恋爱日记的实体盒上找到的游戏推荐卡，后面感觉这波不亏。另外共通的BGM不少，尤其是回忆场景片段。
   long: 
-  - date: 2024-01-28 21:19:48
-    title: 白色相簿2一周目初体验
-    content: 
-    tags: ['初体验', 'WA2', '三角恋']
+  - date: 2024-02-11 22:50:00
+    title: 一周目初体验
+    content: 世界是魔法的世界。魔法则是实现特定目的的道具。魔法不是愿望的容器，它不能实现所有，但魔法可以带来无法想象的一切。开始可能有点无聊，但当设定得到深入了解后，那个夜与真相便是游戏觉醒的转折点。后面看得热血沸腾。这里特指氛围感。这一切都是无硝烟的斗争，而斗争源于解决方法的负面效果。但感觉核心还是没有理解自己到底是什么。也就是全部都是基于方案一不可行的条件下执行。而第一部就是方案一。这里的每个人都有自己的生存理由与始末。这令我十分感动。我看到的一切不是路人，而是有自己背景故事充实的人。这里的人都很善良，只是。。。有点难以描述，即使看完，内心依旧无限激动。每天晚上都会梦回到剧情，内心无限激动与惆怅。总体来说，moko傲娇赛高，莉塔风味的告白更是一大观赏点。两大绝世美人如果能够攻略就好了。好了，有钱后再补回游戏实体，包括PC和游戏机版本。
+    tags: ['魔法', '学院', '人偶', '灵魂', '悬疑', '夜之魔法', '魔法阵', '灵魂', '魔女', '时停', '异世界', '同心异体', '同化', '拯救', '救赎', '独特画风', '战斗', '热血']
 
 # Friend links to relative post.
 links:
-- { title: "VNDB - 時計仕掛けのレイライン -朝霧に散る花－", link: "https://vndb.org/v16212", icon: "" }
-- { title: "2DFan - 時計仕掛けのレイライン -陽炎に彷徨う魔女-", link: "https://2dfan.org/subjects/11245", icon: "" }
+- { title: "[VNDB] 時計仕掛けのレイライン －朝霧に散る花－", link: "https://vndb.org/v16212", icon: "" }
+- { title: "[VNDB] 時計仕掛けのレイライン －残影の夜が明ける時－", link: "https://vndb.org/v11093", icon: "" }
+- { title: "[VNDB] 時計仕掛けのレイライン －黄昏時の境界線－", link: "https://vndb.org/v10016", icon: "" }
+- { title: "[2DFan] 時計仕掛けのレイライン -陽炎に彷徨う魔女-", link: "https://2dfan.org/subjects/11245", icon: "" }
 ---
 

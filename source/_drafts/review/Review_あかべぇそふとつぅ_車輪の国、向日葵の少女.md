@@ -229,6 +229,8 @@ score:
 3rdscore:
   vndb:
     id: v57
+    title: 車輪の国、向日葵の少女
+    updateAt: 2024-02-03
     rank: 150
     grand: 8.17
     avg: 8.17
@@ -253,6 +255,9 @@ playtime:
 
 3rd-playtime:
   vndb:
+    id: v57
+    title: 車輪の国、向日葵の少女
+    updateAt: 2024-02-03
     cover: 30h
     total: 30h
     fast: 21h
