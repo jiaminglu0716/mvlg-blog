@@ -2,7 +2,7 @@ name: Actions CI - Next.js version 12 static site export, GitHub Actions Build a
 on:
   workflow_dispatch:
   push:
-    branches: [main]
+    branches: [master]
 # 执行的一项或多项任务
 jobs:
   build-and-deploy:

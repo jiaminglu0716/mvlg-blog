@@ -12,6 +12,7 @@ function HomePage() {
       <Avatar size={100} src="/desk.jpg" />
       <Container>
         <div className="space-y-6">
+          <h1>Test</h1>
           <h1 className="text-2xl font-bold">
             Hey, I'm a Senior Software Engineer at Company. I enjoy working with
             Next.js and crafting beautiful front-end experiences.
