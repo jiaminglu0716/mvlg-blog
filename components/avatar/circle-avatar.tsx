@@ -1,5 +1,4 @@
 import { CSSProperties } from "react";
-import { sizeBox } from "../../utils/style";
 
 type CircleAvatarProps = {
   className?: string;
@@ -8,6 +7,13 @@ type CircleAvatarProps = {
   src?: string;
   alt?: string;
 };
+
+function sizeBox(size) {
+  return {
+    width: size,
+    height: size,
+  };
+}
 
 export default function CircleAvatar({
   style,
