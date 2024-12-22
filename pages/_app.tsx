@@ -2,7 +2,6 @@ import "tailwindcss/tailwind.css";
 
 import type { AppProps } from "next/app";
 import Head from "next/head";
-import Header from "../components/header";
 import { Auth0Provider } from "@auth0/auth0-react";
 
 export default function MyApp({ Component, pageProps }: AppProps) {
@@ -20,9 +19,7 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         <title>mvlg</title>
       </Head>
 
-      <Header />
-
-      <main className="py-14">
+      <main className="p-0 m-0">
         <Component {...pageProps} />
       </main>
     </Auth0Provider>

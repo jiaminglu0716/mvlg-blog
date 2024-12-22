@@ -4,6 +4,8 @@ module.exports = {
   content: [
     "./pages/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
+    "./containers/**/*.{js,ts,jsx,tsx}",
+    "./views/**/*.{js,ts,jsx,tsx}",
   ],
   variants: {
     extend: {
@@ -11,4 +13,10 @@ module.exports = {
     },
   },
   plugins: [require("@tailwindcss/typography")],
+  theme: {
+    fontFamily: {
+      sans: ["Comic Sans", "sans-serif"],
+      serif: ["Comic Sans MS", "ui-sans-serif"],
+    },
+  },
 };

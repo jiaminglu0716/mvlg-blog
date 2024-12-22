@@ -1,32 +1,16 @@
 import type { InferGetStaticPropsType } from "next";
-import Link from "next/link";
-import Container from "../../components/common/container";
-import { getAllTags } from "../../modules";
+import { PostQueryService } from "../../services/post/query/PostQueryService";
+import TagsView from "../../views/web/tags-view";
 
-export default function TagPage({
+export default function TagsPage({
   allTags,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  return (
-    <Container>
-      {allTags.length ? (
-        allTags.map((tag) => {
-          return (
-            <article key={tag.link} className="mb-10">
-              <Link href={tag.link} className="text-lg leading-6 font-bold">
-                {tag.title}
-              </Link>
-            </article>
-          );
-        })
-      ) : (
-        <p>No tags yet :/</p>
-      )}
-    </Container>
-  );
+  return <TagsView tags={allTags} />;
 }
 
 export async function getStaticProps() {
-  const allTags = getAllTags();
+  const postQueryRepository = new PostQueryService();
+  const allTags = postQueryRepository.listTags();
 
   return {
     props: { allTags },

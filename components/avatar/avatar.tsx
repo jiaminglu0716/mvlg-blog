@@ -2,18 +2,14 @@ import Image from "next/image";
 
 type AvatarProps = {
   size: number;
-  src: string;
+  src?: string;
+  alt?: string;
 };
 
-export default function Avatar({ size, src }: AvatarProps) {
+export default function Avatar({ size, src, alt }: AvatarProps) {
   return (
-    <div
-      style={{
-        width: size,
-        height: size,
-      }}
-    >
-      <Image src={src} alt="" width={size} height={size} />
+    <div>
+      <Image src={src} alt={alt ?? "Avatar"} width={size} height={size} />
     </div>
   );
 }

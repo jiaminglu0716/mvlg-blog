@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "es2022",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
@@ -21,7 +21,9 @@
     "**/*.ts",
     "**/*.tsx",
     "tailwind.config.js",
-    "postcss.config.js"
+    "postcss.config.js",
+    "pages/posts/.copy.tsx",
+    "pages/archives/.[[...page]].tsx"
   ],
   "exclude": ["node_modules"]
 }
