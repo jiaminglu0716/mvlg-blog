@@ -19,7 +19,7 @@ export default function PostListItem({ post }: { post: QListPost }) {
         <div className="w-46 p-2">
           <Image
             className="rounded-lg"
-            src={"/desk.jpg"}
+            src={"./desk.jpg"}
             alt="my desk"
             width={200}
             height={200}

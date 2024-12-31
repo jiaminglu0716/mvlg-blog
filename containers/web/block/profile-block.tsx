@@ -18,7 +18,7 @@ function ProfilePostStatContainer({ stat }: { stat: QPostStats }) {
   return (
     <div className="flex">
       <div className="m-3">
-        <CircleAvatar size="80px" src="/desk.jpg" />
+        <CircleAvatar size="80px" src="./desk.jpg" />
       </div>
       <div className="flex-1 my-3 mr-3">
         <div className="font-bold text-lg my-1">Mashiro Shinto</div>

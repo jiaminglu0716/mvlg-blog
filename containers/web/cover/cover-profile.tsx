@@ -21,7 +21,7 @@ export function CoverProfileModuleContainer() {
 
   return (
     <div>
-      <CircleAvatar className="m-auto" src="/desk.jpg" size={"150px"} />
+      <CircleAvatar className="m-auto" src="./desk.jpg" size={"150px"} />
 
       <h2
         className={classNames(
