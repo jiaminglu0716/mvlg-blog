@@ -7,7 +7,7 @@ import { QPostStats } from "../../../services/post/query/QPostStat";
 import { QListTag } from "../../../services/post/query/QListTag";
 import Container from "../../../components/container/container";
 import TagBlockContainer from "../block/tags-block";
-import { QCountTagList } from "../../../services/post/query/QCountTagList";
+import { QCountTag } from "../../../services/post/query/QCountTagList";
 
 export default function BlockLayoutContainer({
   posts,
@@ -21,7 +21,7 @@ export default function BlockLayoutContainer({
   tags: QListTag[];
   archives: ArchiveLinkY1M;
   stat: QPostStats;
-  toptags: QCountTagList;
+  toptags: QCountTag[];
   children: React.ReactNode;
 }) {
   return (

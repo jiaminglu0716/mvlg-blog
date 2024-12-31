@@ -5,10 +5,7 @@ import RadiusContainer from "../../../components/container/radius-container";
 import IconChevronRight from "../../../components/icons/icon-chevron-right";
 import { classNames } from "../../../lib/utils";
 import { Router } from "../../../config/router-config";
-import {
-  QCountTag,
-  QCountTagList,
-} from "../../../services/post/query/QCountTagList";
+import { QCountTag } from "../../../services/post/query/QCountTagList";
 import { DivProps } from "../../../components/common/props";
 
 export default function TagBlockContainer<T>({
@@ -19,7 +16,7 @@ export default function TagBlockContainer<T>({
   className,
   ...props
 }: {
-  tags: QCountTagList;
+  tags: QCountTag[];
   config?: {
     limit?: number;
   };
