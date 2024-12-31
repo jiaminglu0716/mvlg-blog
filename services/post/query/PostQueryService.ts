@@ -7,7 +7,7 @@ import { QListTag } from "./QListTag";
 import { QPostStats } from "./QPostStat";
 import { Pagination } from "../../common/utils/Pagination";
 import { Router } from "../../../config/router-config";
-import { QCountTag, QCountTagList } from "./QCountTagList";
+import { QCountTag } from "./QCountTagList";
 
 export class PostQueryService {
   private readonly POST_DIR = "posts";
@@ -158,7 +158,7 @@ export class PostQueryService {
     );
   }
 
-  public countTags(): QCountTagList {
+  public countTags(): QCountTag[] {
     const countDict = {};
     const posts = this.listPosts(["tags"]);
 
@@ -177,7 +177,7 @@ export class PostQueryService {
     });
   }
 
-  public topTags(limit: number = 10): QCountTagList {
+  public topTags(limit: number = 10): QCountTag[] {
     const countTags = this.countTags();
 
     return countTags
