@@ -179,9 +179,11 @@ export class PostQueryService {
 
   public topTags(limit: number = 10): QCountTag[] {
     const countTags = this.countTags();
+    countTags.sort((a: QCountTag, b: QCountTag) => b.count - a.count);
 
-    return countTags
-      .toSorted((a: QCountTag, b: QCountTag) => b.count - a.count)
-      .slice(0, countTags.length > limit ? limit : countTags.length);
+    return countTags.slice(
+      0,
+      countTags.length > limit ? limit : countTags.length
+    );
   }
 }
