@@ -1,1 +1,0 @@
-self.__SSG_MANIFEST=new Set(["\u002F","\u002Farchives","\u002Fdate\u002F[year]\u002F[month]\u002F[[...page]]","\u002Flinks","\u002Fpost\u002F[...slugs]","\u002Fposts\u002F[[...page]]","\u002Ftag\u002F[tag]\u002F[[...page]]","\u002Ftags","\u002Ftest","\u002Ftest2"]);self.__SSG_MANIFEST_CB&&self.__SSG_MANIFEST_CB()
