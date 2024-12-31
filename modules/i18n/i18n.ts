@@ -26,7 +26,7 @@ export function getLocales() {
 }
 
 export function switchLocale(locale: string): boolean {
-  const locales: string[] = getLocales();
+  const locales: string[] = [];
   if (locales.includes(locale)) {
     i18nCache.set(cacheKeys.default, locale);
     return true;
