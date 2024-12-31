@@ -1,9 +1,10 @@
 import { MutableRefObject, useEffect, useRef, useState } from "react";
-import useScrollLoading from "./useScrollLoading";
+import useScrollLoading, { ScrollLoadingConfig } from "./useScrollLoading";
 
-export default function useScrollPagination(
-  data: any[]
-): [any[], MutableRefObject<any>] {
+export default function useScrollPagination<T>(
+  data: T[],
+  config: ScrollLoadingConfig = { biase: 20, wait: 100 }
+): [T[], MutableRefObject<T>] {
   const [page, setPage] = useState(0);
   const [items, setItems] = useState([]);
   const ref = useRef(null);
@@ -39,7 +40,7 @@ export default function useScrollPagination(
   /**
    * @ScrollLoad
    */
-  useScrollLoading(load, page, items);
+  useScrollLoading(load, [page, items], config);
 
   return [items, ref];
 }

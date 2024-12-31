@@ -1,9 +1,10 @@
 import Image from "next/image";
-import RadiusContainer from "../../../../components/common/radius-container";
+import RadiusContainer from "../../../../components/container/radius-container";
 import Link from "next/link";
 import { QListPost } from "../../../../services/post/query/QListPost";
 import distanceToNow from "../../../../lib/dateRelative";
 import IconStarFill from "../../../../components/icons/icon-star-fill";
+import { Router } from "../../../../config/router-config";
 
 function limit(text: string, limit: number = 20) {
   const len = text.length;
@@ -37,7 +38,7 @@ export default function PostListItem({ post }: { post: QListPost }) {
                   <Link
                     key={index}
                     className="mr-2"
-                    href={`/tag/${tag}`}
+                    href={Router.tag(tag)}
                   >{`#${limit(tag, 8)}`}</Link>
                 ))
                 .filter((_, index: number) => {

@@ -5,18 +5,25 @@ import { ArchiveQueryService } from "../../../../services/post/query/ArchiveQuer
 import { PostQueryService } from "../../../../services/post/query/PostQueryService";
 import PostsView from "../../../../views/web/posts-view";
 import { InferGetStaticPropsType } from "next";
+import BlockLayoutContainer from "../../../../containers/web/layout";
+import { LayoutQueryService } from "../../../../services/layout/query/LayoutQueryService";
 
 export default function DatePostsPage({
   posts,
   pagination,
   condition,
+  layout,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  return PostsView({ posts, pagination, condition });
+  return (
+    <BlockLayoutContainer {...layout}>
+      <PostsView posts={posts} pagination={pagination} condition={condition} />
+    </BlockLayoutContainer>
+  );
 }
 
 const postQueryService = new PostQueryService();
 const archiveQueryService = new ArchiveQueryService();
-const pageSize = 3;
+const pageSize = 10;
 
 type Params = {
   params: {
@@ -67,6 +74,7 @@ export async function getStaticProps({ params }: Params) {
       condition: {
         endWith: datestr,
       },
+      layout: new LayoutQueryService().queryLayoutData(),
     },
   };
 }

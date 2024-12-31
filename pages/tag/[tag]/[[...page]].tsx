@@ -1,5 +1,6 @@
 import { postFields } from "../../../modules";
 import { Pagination } from "../../../services/common/utils/Pagination";
+import { LayoutQueryService } from "../../../services/layout/query/LayoutQueryService";
 import { PostQueryService } from "../../../services/post/query/PostQueryService";
 import PostsPage from "../../posts/[[...page]]";
 
@@ -33,7 +34,11 @@ export async function getStaticProps({ params }: Params) {
   const total = postQueryService.countPostsByTag(tag);
 
   return {
-    props: { posts, pagination: pagination.get(total) },
+    props: {
+      posts,
+      pagination: pagination.get(total),
+      layout: new LayoutQueryService().queryLayoutData(),
+    },
   };
 }
 

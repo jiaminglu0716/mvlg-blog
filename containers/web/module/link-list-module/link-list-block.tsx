@@ -1,5 +1,5 @@
 import ButtonSM from "../../../../components/button/button-sm";
-import RadiusContainer from "../../../../components/common/radius-container";
+import RadiusContainer from "../../../../components/container/radius-container";
 import IconCircle from "../../../../components/icons/icon-circle";
 
 export default function LinkListBlock({ link }: { link: any }) {

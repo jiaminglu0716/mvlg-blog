@@ -1,7 +1,7 @@
 import SVG from "../common/image/svg";
-import { IconBlockProps } from "../common/props";
+import { IconProps } from "../common/props";
 
-export default function IconSNSTwitterBlockFillReverse(props: IconBlockProps) {
+export default function IconSNSTwitterBlockFillReverse(props: IconProps) {
   return (
     <SVG {...props}>
       <path

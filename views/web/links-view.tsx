@@ -4,7 +4,7 @@ import ViewContainer from "../../components/container/view-container";
 import LinkListContainer from "../../containers/web/module/link-list-module";
 
 export default function LinksView({ links }) {
-  const [items, ref] = useScrollPagination(links);
+  const [items, ref] = useScrollPagination<any>(links);
 
   return (
     <ViewContainer>

@@ -1,18 +1,25 @@
 import type { InferGetStaticPropsType } from "next";
 import { PostQueryService } from "../../services/post/query/PostQueryService";
 import TagsView from "../../views/web/tags-view";
+import BlockLayoutContainer from "../../containers/web/layout";
+import { LayoutQueryService } from "../../services/layout/query/LayoutQueryService";
 
 export default function TagsPage({
-  allTags,
+  tags,
+  layout,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  return <TagsView tags={allTags} />;
+  return (
+    <BlockLayoutContainer {...layout}>
+      <TagsView tags={tags} />
+    </BlockLayoutContainer>
+  );
 }
 
 export async function getStaticProps() {
   const postQueryRepository = new PostQueryService();
-  const allTags = postQueryRepository.listTags();
+  const tags = postQueryRepository.listTags();
 
   return {
-    props: { allTags },
+    props: { tags, layout: new LayoutQueryService().queryLayoutData() },
   };
 }

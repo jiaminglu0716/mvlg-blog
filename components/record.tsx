@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { trad } from "../modules/record";
 
 export default function Record() {
-  const [ppp, setPPP] = useState(
+  const [text, setText] = useState(
     trad([
       "y 2024",
       "m 12",
@@ -16,7 +16,7 @@ export default function Record() {
   );
 
   function SSS() {
-    setPPP(
+    setText(
       trad([
         "y 2024",
         "m 6",
@@ -45,7 +45,7 @@ export default function Record() {
 
   return (
     <div>
-      <p>/// {ppp} ///</p>
+      <p>/// {text} ///</p>
       <p onClick={SSS}>Change</p>
     </div>
   );

@@ -23,7 +23,7 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: true,
     loader: "akamai",
-    path: "",
+    path: "https://jiaminglu0716.github.io/mvlg-blog",
   },
   output: "export",
   reactStrictMode: true,

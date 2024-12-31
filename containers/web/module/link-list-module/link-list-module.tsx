@@ -1,5 +1,5 @@
 import ButtonCenter from "../../../../components/button/button-center";
-import RadiusContainer from "../../../../components/common/radius-container";
+import RadiusContainer from "../../../../components/container/radius-container";
 import LinkListBlock from "./link-list-block";
 
 export default function LinkListModule({ category }) {

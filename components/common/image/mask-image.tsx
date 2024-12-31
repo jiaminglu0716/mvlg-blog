@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { classNames, classNameToArray } from "../../../lib/utils";
-import { useEffect, useState } from "react";
 
 type MaskImageProps = {
   src: string;

@@ -1,21 +1,11 @@
 import React from "react";
 import ButtonSM from "./button-sm";
-import { ClickEvent } from "../common/types";
 import IconChevronRight from "../icons/icon-chevron-right";
+import { DivProps } from "../common/props";
 
-type NextButtonSMProps = {
-  onClick: ClickEvent;
-  className?: string;
-  style?: { [key: string]: any };
-};
-
-export default function NextButtonSM({
-  onClick,
-  style,
-  className,
-}: NextButtonSMProps) {
+export default function NextButtonSM(props: DivProps) {
   return (
-    <ButtonSM className={className} style={style} onClick={onClick}>
+    <ButtonSM {...props}>
       <IconChevronRight size="24" />
     </ButtonSM>
   );

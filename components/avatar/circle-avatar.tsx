@@ -1,12 +1,8 @@
-import { CSSProperties } from "react";
+import { DetailedHTMLProps, ImgHTMLAttributes } from "react";
 
 type CircleAvatarProps = {
-  className?: string;
-  style?: CSSProperties;
   size: string;
-  src?: string;
-  alt?: string;
-};
+} & DetailedHTMLProps<ImgHTMLAttributes<HTMLImageElement>, HTMLImageElement>;
 
 function sizeBox(size) {
   return {
@@ -15,15 +11,10 @@ function sizeBox(size) {
   };
 }
 
-export default function CircleAvatar({
-  style,
-  className,
-  size,
-  src,
-  alt,
-}: CircleAvatarProps) {
+export default function CircleAvatar(props: CircleAvatarProps) {
+  const { style, size, src, alt, ...subprops } = props;
   return (
-    <div className={className} style={{ ...sizeBox(size), ...style }}>
+    <div style={{ ...sizeBox(size), ...style }} {...subprops}>
       <img
         className="rounded-full"
         src={src}

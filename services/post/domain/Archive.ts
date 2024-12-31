@@ -1,7 +1,6 @@
-import { and, eq } from "revt-toolkit";
 import { Post } from "./Post";
-import { getDayTimestamp } from "../../../lib/date";
 import { findDictFromArray, last, top } from "../../../lib/array";
+import { Router } from "../../../config/router-config";
 
 export type ArchiveY2MD<T extends any> = {
   year: number;
@@ -12,11 +11,23 @@ export type ArchiveY2MD<T extends any> = {
   }[];
 }[];
 
+export type ArchiveLinkY1M = {
+  year: number;
+  months: {
+    month: number;
+    Link: string;
+  }[];
+}[];
+
 export class Archive {
   private _posts: Post[];
 
   public constructor() {
     this._posts = [];
+  }
+
+  public static archive(): Archive {
+    return new Archive();
   }
 
   public posts(posts: Post[]): this {
@@ -90,5 +101,37 @@ export class Archive {
     });
 
     return y2md;
+  }
+
+  public linkByY1M(): ArchiveLinkY1M {
+    const y1m = [];
+
+    this._posts.forEach((post: Post) => {
+      const date = post.getDate();
+      const [year, month] = [date.getFullYear(), date.getMonth() + 1];
+
+      let yearItem = findDictFromArray(y1m, (value) => value["year"] == year);
+
+      if (!yearItem) {
+        yearItem = { year, months: [] };
+        y1m.push(yearItem);
+      }
+
+      const months = yearItem["months"];
+
+      let monthItem = findDictFromArray(
+        months,
+        (value) => value["month"] == month
+      );
+
+      if (!monthItem) {
+        months.push({
+          month,
+          link: Router.date(year, month),
+        });
+      }
+    });
+
+    return y1m;
   }
 }

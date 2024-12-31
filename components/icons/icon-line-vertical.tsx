@@ -1,7 +1,7 @@
 import SVG from "../common/image/svg";
-import { IconBlockProps } from "../common/props";
+import { IconProps } from "../common/props";
 
-export default function IconVerticalLine(props: IconBlockProps) {
+export default function IconVerticalLine(props: IconProps) {
   const height = props.height ?? 24;
   return (
     <SVG

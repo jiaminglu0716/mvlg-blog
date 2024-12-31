@@ -4,6 +4,7 @@ import IconSNSTwitterBlockFillReverse from "../../../components/icons/icon-sns-t
 import IconChevronDown from "../../../components/icons/icon-chevron-down";
 import BounceButtonSM from "../../../components/button/bounce-button-sm";
 import { classNames } from "../../../lib/utils";
+import { Router } from "../../../config/router-config";
 
 export function CoverProfileModuleContainer() {
   const links = [];
@@ -45,7 +46,7 @@ export default function CoverProfileContainer() {
       <div>
         <CoverProfileModuleContainer />
         <BounceButtonSM className="mt-10">
-          <Link href={"/"}>
+          <Link href={Router.home()}>
             <IconChevronDown fill={"#F2F2F2"} size="40px" />
           </Link>
         </BounceButtonSM>

@@ -4,11 +4,18 @@ import { QListPost } from "../../services/post/query/QListPost";
 import { PostQueryService } from "../../services/post/query/PostQueryService";
 import { Post } from "../../services/post/domain/Post";
 import ArchivesView from "../../views/web/archives-view";
+import BlockLayoutContainer from "../../containers/web/layout";
+import { LayoutQueryService } from "../../services/layout/query/LayoutQueryService";
 
 export default function ArchivesPage({
   archives,
+  layout,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  return <ArchivesView archives={archives} />;
+  return (
+    <BlockLayoutContainer {...layout}>
+      <ArchivesView archives={archives} />
+    </BlockLayoutContainer>
+  );
 }
 
 export async function getStaticProps() {
@@ -16,7 +23,7 @@ export async function getStaticProps() {
     .listPosts(["link", "title", "date"])
     .map((post: QListPost) => Post.post().load(post));
 
-  const y2md = new Archive()
+  const y2md = Archive.archive()
     .posts(posts)
     .sorted(false)
     .byY2MD<QListPost>((post) => post.get(["link", "title"]));
@@ -24,6 +31,7 @@ export async function getStaticProps() {
   return {
     props: {
       archives: y2md,
+      layout: new LayoutQueryService().queryLayoutData(),
     },
   };
 }

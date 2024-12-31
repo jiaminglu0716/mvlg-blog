@@ -1,22 +1,19 @@
-export type SizeBoxProps = {
-  width?: string;
-  height?: string;
-};
-
-export type SquareBoxProps = {
-  size?: string;
-};
+import { SVGProps } from "./image/svg";
 
 /**
  * Icon-Props
  */
-export type IconBlockProps = {
-  size?: string;
-  height?: string;
-  width?: string;
-  viewSize?: string;
-  fill?: string;
-  stroke?: string;
-  filled?: string;
-  className?: string;
+export type IconProps = Omit<SVGProps, "children">;
+
+/**
+ * Default Attributes Props
+ */
+export type DivProps = React.HTMLAttributes<HTMLDivElement>;
+
+export type ClickEvent = (event: React.MouseEvent) => void;
+
+export type BlockValueType<T> = {
+  text: string;
+  value: T;
+  onClick: ClickEvent;
 };

@@ -3,6 +3,8 @@ import { postFields } from "../../modules";
 import { PostQueryService } from "../../services/post/query/PostQueryService";
 import { Pagination } from "../../services/common/utils/Pagination";
 import PostsView from "../../views/web/posts-view";
+import { LayoutQueryService } from "../../services/layout/query/LayoutQueryService";
+import BlockLayoutContainer from "../../containers/web/layout";
 
 const postQueryService = new PostQueryService();
 
@@ -11,8 +13,14 @@ const pageSize = 10;
 export default function PostsPage({
   posts,
   pagination,
+  layout,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  return PostsView({ posts, pagination });
+  return (
+    <BlockLayoutContainer {...layout}>
+      <PostsView posts={posts} pagination={pagination} />
+    </BlockLayoutContainer>
+  );
+  return;
 }
 
 type Params = {
@@ -35,7 +43,11 @@ export async function getStaticProps({ params }: Params) {
   const total = postQueryService.countPosts();
 
   return {
-    props: { posts, pagination: pagination.get(total) },
+    props: {
+      posts,
+      pagination: pagination.get(total),
+      layout: new LayoutQueryService().queryLayoutData(),
+    },
   };
 }
 

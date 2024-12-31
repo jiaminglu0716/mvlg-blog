@@ -1,18 +1,9 @@
 import { classNames, classNameToArray } from "../../lib/utils";
-import RadiusContainer from "../common/radius-container";
-import { ClickEvent } from "../common/types";
+import { DivProps } from "../common/props";
+import RadiusContainer from "../container/radius-container";
 
-export default function ButtonCenter({
-  children,
-  className,
-  style,
-  onClick,
-}: {
-  children: React.ReactNode;
-  className?: string;
-  style?: { [key: string]: any };
-  onClick?: ClickEvent;
-}) {
+export default function ButtonCenter(props: DivProps) {
+  const { children, className, ...subprops } = props;
   return (
     <RadiusContainer
       className={classNames(
@@ -21,8 +12,7 @@ export default function ButtonCenter({
         "items-center",
         ...classNameToArray(className)
       )}
-      style={style}
-      onClick={onClick}
+      {...subprops}
     >
       {children}
     </RadiusContainer>

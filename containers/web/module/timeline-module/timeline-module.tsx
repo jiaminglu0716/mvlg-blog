@@ -1,5 +1,5 @@
 import ButtonCenter from "../../../../components/button/button-center";
-import RadiusContainer from "../../../../components/common/radius-container";
+import RadiusContainer from "../../../../components/container/radius-container";
 import TimelineBlock from "./timeline-block";
 import { classNames } from "../../../../lib/utils";
 

@@ -1,7 +1,7 @@
 import SVG from "../common/image/svg";
-import { IconBlockProps } from "../common/props";
+import { IconProps } from "../common/props";
 
-export default function IconCircle(props: IconBlockProps) {
+export default function IconCircle(props: IconProps) {
   return (
     <SVG
       fill="none"

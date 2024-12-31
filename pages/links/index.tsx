@@ -1,10 +1,17 @@
 import type { InferGetStaticPropsType } from "next";
 import LinksView from "../../views/web/links-view";
+import BlockLayoutContainer from "../../containers/web/layout";
+import { LayoutQueryService } from "../../services/layout/query/LayoutQueryService";
 
 export default function LinksPage({
   links,
+  layout,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  return <LinksView links={links} />;
+  return (
+    <BlockLayoutContainer {...layout}>
+      <LinksView links={links} />
+    </BlockLayoutContainer>
+  );
 }
 
 export async function getStaticProps() {
@@ -120,6 +127,6 @@ export async function getStaticProps() {
     },
   ];
   return {
-    props: { links },
+    props: { links, layout: new LayoutQueryService().queryLayoutData() },
   };
 }

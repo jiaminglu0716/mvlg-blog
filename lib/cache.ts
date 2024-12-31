@@ -1,16 +1,16 @@
-export class Cache {
-  private cache: Map<string, any>;
+export class Cache<T> {
+  private cache: Map<string, T>;
 
   public constructor() {
-    this.cache = new Map<string, any>();
+    this.cache = new Map<string, T>();
   }
 
-  public set(key: string, value: any): this {
+  public set(key: string, value: T): this {
     this.cache.set(key, value);
     return this;
   }
 
-  public get(key: string): any {
+  public get(key: string): T {
     return this.cache.get(key);
   }
 }

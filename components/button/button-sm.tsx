@@ -1,21 +1,10 @@
 import React from "react";
 import { classNames, classNameToArray } from "../../lib/utils";
 import ButtonCenter from "./button-center";
-import { ClickEvent } from "../common/types";
+import { DivProps } from "../common/props";
 
-type ButtonSMProps = {
-  children: React.ReactNode;
-  className?: string;
-  style?: { [key: string]: any };
-  onClick?: ClickEvent;
-};
-
-export default function ButtonSM({
-  children,
-  className,
-  style,
-  onClick,
-}: ButtonSMProps) {
+export default function ButtonSM(props: DivProps) {
+  const { className, children, ...subprops } = props;
   return (
     <ButtonCenter
       className={classNames(
@@ -24,8 +13,7 @@ export default function ButtonSM({
         "text-sm",
         ...classNameToArray(className)
       )}
-      onClick={onClick}
-      style={style}
+      {...subprops}
     >
       {children}
     </ButtonCenter>

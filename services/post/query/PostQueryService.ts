@@ -6,6 +6,8 @@ import { PostRepository } from "../infrastructure/PostRepository";
 import { QListTag } from "./QListTag";
 import { QPostStats } from "./QPostStat";
 import { Pagination } from "../../common/utils/Pagination";
+import { Router } from "../../../config/router-config";
+import { QCountTag, QCountTagList } from "./QCountTagList";
 
 export class PostQueryService {
   private readonly POST_DIR = "posts";
@@ -96,7 +98,7 @@ export class PostQueryService {
     const tags: QListTag[] = Array.from(tagset).map((tag) => {
       return {
         title: tag,
-        link: `/tag/${tag}`,
+        link: Router.tag(tag),
       };
     });
 
@@ -118,5 +120,68 @@ export class PostQueryService {
     stats.tags = Array.from(tagset).length;
 
     return stats;
+  }
+
+  private match(str: string, mask: string): boolean {
+    if (str.includes(mask)) return true;
+    if (
+      ((str: string, mask: string) => {
+        let count = 0;
+        for (let i = 0; i < mask.length; i++) {
+          const char = mask[i];
+          if (str.includes(char)) {
+            count++;
+          }
+        }
+        return count == mask.length;
+      })(str, mask)
+    )
+      return true;
+    return false;
+  }
+
+  public listByTitle(keyword: string, limit?: number): QListPost[] {
+    let count = 0;
+    return this.listPostsByFilter(
+      (post: Post) => {
+        const status = this.match(
+          post.getTitle().toLowerCase(),
+          keyword.toLowerCase()
+        );
+        if (status) {
+          count++;
+        }
+
+        return status && (limit ? count <= limit : true);
+      },
+      ["star", "title", "link"]
+    );
+  }
+
+  public countTags(): QCountTagList {
+    const countDict = {};
+    const posts = this.listPosts(["tags"]);
+
+    posts.forEach((post: QListPost) => {
+      post.tags?.forEach((tag: string) => {
+        if (!countDict[tag]) countDict[tag] = 0;
+        countDict[tag] += 1;
+      });
+    });
+
+    return Object.keys(countDict).map((tag: string) => {
+      return {
+        title: tag,
+        count: countDict[tag],
+      };
+    });
+  }
+
+  public topTags(limit: number = 10): QCountTagList {
+    const countTags = this.countTags();
+
+    return countTags
+      .toSorted((a: QCountTag, b: QCountTag) => b.count - a.count)
+      .slice(0, countTags.length > limit ? limit : countTags.length);
   }
 }

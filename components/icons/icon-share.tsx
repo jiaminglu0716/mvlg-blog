@@ -1,7 +1,7 @@
 import SVG from "../common/image/svg";
-import { IconBlockProps } from "../common/props";
+import { IconProps } from "../common/props";
 
-export default function IconShare(props: IconBlockProps) {
+export default function IconShare(props: IconProps) {
   return (
     <SVG
       fill="none"

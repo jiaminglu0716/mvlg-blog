@@ -1,12 +1,10 @@
-type SVGProps = {
+export type SVGProps = {
   size?: string;
   viewSize?: string;
   viewBox?: string;
-  fill?: string;
-  stroke?: string;
   children: React.ReactNode;
   [key: string]: any;
-};
+} & React.SVGProps<SVGSVGElement>;
 
 export default function SVG({
   size,
