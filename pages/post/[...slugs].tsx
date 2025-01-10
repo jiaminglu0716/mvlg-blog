@@ -1,11 +1,11 @@
 import type { InferGetStaticPropsType } from "next";
-import markdownToHtml from "../../lib/markdownToHtml";
-import { PostQueryService } from "../../services/post/query/PostQueryService";
-import { PostRepository } from "../../services/post/infrastructure/PostRepository";
-import { QListPost } from "../../services/post/query/QListPost";
-import PostView from "../../views/web/post-view";
-import BlockLayoutContainer from "../../containers/web/layout";
-import { LayoutQueryService } from "../../services/layout/query/LayoutQueryService";
+import { PostQueryService } from "../../server/services/post/query/PostQueryService";
+import { PostRepository } from "../../server/services/post/infrastructure/PostRepository";
+import { QListPost } from "../../server/services/post/query/QListPost";
+import PostView from "../../web/views/web/post-view";
+import BlockLayoutContainer from "../../web/containers/web/layout";
+import { LayoutQueryService } from "../../server/services/layout/query/LayoutQueryService";
+import { markdownToHtml } from "../../web/common";
 
 export default function PostPage({
   post,
@@ -27,13 +27,10 @@ type Params = {
 export async function getStaticProps({ params }: Params) {
   const postRepository = new PostRepository();
   const post: QListPost = postRepository.bySlugs(params.slugs).get();
-  const content = await markdownToHtml(post.content || "");
-
   return {
     props: {
       post: {
         ...post,
-        content,
       },
       layout: new LayoutQueryService().queryLayoutData(),
     },

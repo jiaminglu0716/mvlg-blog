@@ -1,9 +1,18 @@
 import { eq, or } from "revt-toolkit";
 import { distinct } from "../../lib/array";
-import { QListPost } from "../../services/post/query/QListPost";
-import { QListTag } from "../../services/post/query/QListTag";
+import { PostType, TagType } from "../interfaces/api";
+import { Router } from "../common";
 
 export class PostService {
+  public toPost(post: PostType): PostType {
+    post.href = Router.post(post.link);
+    return post;
+  }
+
+  public toPosts(posts: PostType[]): PostType[] {
+    return posts.map(this.toPost);
+  }
+
   private match(str: string, mask: string): boolean {
     return or(
       str.includes(mask),
@@ -18,13 +27,13 @@ export class PostService {
   }
 
   public searchPosts(
-    posts: QListPost[],
+    posts: PostType[],
     keyword: string,
     limit?: number
-  ): QListPost[] {
+  ): PostType[] {
     let count = 0;
     return posts
-      .filter((post: QListPost) => {
+      .filter((post: PostType) => {
         const status = this.match(
           post.title.toLowerCase(),
           keyword.toLowerCase()
@@ -35,23 +44,24 @@ export class PostService {
 
         return status && (limit ? count <= limit : true);
       })
-      .map((post: QListPost) => {
+      .map((post: PostType) => {
         return {
           star: post.star,
           title: post.title,
           link: post.link,
+          href: Router.post(post.link),
         };
       });
   }
 
   public searchTags(
-    tags: QListTag[],
+    tags: TagType[],
     keyword: string,
     limit?: number
-  ): QListTag[] {
+  ): TagType[] {
     let count = 0;
     return tags
-      .filter((tag: QListTag) => {
+      .filter((tag: TagType) => {
         const status = this.match(
           tag.title.toLowerCase(),
           keyword.toLowerCase()
@@ -62,10 +72,10 @@ export class PostService {
 
         return status && (limit ? count <= limit : true);
       })
-      .map((tag: QListTag) => {
+      .map((tag: TagType) => {
         return {
           title: tag.title,
-          link: tag.link,
+          href: Router.tag(tag.title),
         };
       });
   }
@@ -74,8 +84,8 @@ export class PostService {
     keyword: string,
     props?: {
       limit?: number;
-      posts?: QListPost[];
-      tags?: QListTag[];
+      posts?: PostType[];
+      tags?: TagType[];
       tagLimit?: number;
       postLimit?: number;
     }

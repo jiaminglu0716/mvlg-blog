@@ -1,0 +1,26 @@
+{
+  "name": "mvlg",
+  "avatar": "/desk.jpg",
+  "sns": [
+    {
+      "type": "telegram",
+      "link": ""
+    },
+    {
+      "type": "whatsapp",
+      "link": ""
+    },
+    {
+      "type": "instagram",
+      "link": ""
+    },
+    {
+      "type": "facebook",
+      "link": ""
+    },
+    {
+      "type": "github",
+      "link": ""
+    }
+  ]
+}

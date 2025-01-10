@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
     "target": "es2022",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
@@ -13,17 +17,25 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "incremental": true
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   },
   "include": [
-    "next-env.d.ts",
-    "remark-html.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "tailwind.config.js",
-    "postcss.config.js",
+    "next-env.d.ts",
+    "pages/archives/.[[...page]].tsx",
     "pages/posts/.copy.tsx",
-    "pages/archives/.[[...page]].tsx"
+    "postcss.config.js",
+    "remark-html.d.ts",
+    "tailwind.config.js",
+    ".next/types/**/*.ts"
   ],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules"
+  ]
 }

@@ -4,13 +4,14 @@
  * @type {import('next').NextConfig}
  **/
 import { NextConfig } from "next";
+import path from "path";
 
 const isGithubActions = process.env.GITHUB_ACTIONS || false;
 let assetPrefix = "";
 let basePath = "";
 
 if (isGithubActions) {
-  // 去掉 `<owner>/`
+  // remove `<owner>/`
   const repo = process.env.GITHUB_REPOSITORY.replace(/.*?\//, "");
 
   assetPrefix = `/${repo}/`;
@@ -18,6 +19,7 @@ if (isGithubActions) {
 }
 
 const nextConfig: NextConfig = {
+  compress: true,
   basePath,
   assetPrefix,
   images: {
@@ -27,6 +29,13 @@ const nextConfig: NextConfig = {
   },
   output: "export",
   reactStrictMode: true,
+  experimental: {
+    largePageDataBytes: 100 * 1024 * 1024,
+  },
+  sassOptions: {
+    includePaths: ["./web/styles/"],
+    silenceDeprecations: ["legacy-js-api"],
+  },
 };
 
 export default nextConfig;

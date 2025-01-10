@@ -1,7 +1,6 @@
-import { postFields } from "../../../modules";
-import { Pagination } from "../../../services/common/utils/Pagination";
-import { LayoutQueryService } from "../../../services/layout/query/LayoutQueryService";
-import { PostQueryService } from "../../../services/post/query/PostQueryService";
+import { Pagination } from "../../../lib/pagination";
+import { LayoutQueryService } from "../../../server/services/layout/query/LayoutQueryService";
+import { PostQueryService } from "../../../server/services/post/query/PostQueryService";
 import PostsPage from "../../posts/[[...page]]";
 
 export default PostsPage;
@@ -20,17 +19,23 @@ export async function getStaticProps({ params }: Params) {
   const tag = params.tag;
   const argpage = params.page;
 
+  const postFields = [
+    "slugs",
+    "title",
+    "excerpt",
+    "date",
+    "link",
+    "tags",
+    "cover",
+  ];
+
   const page = argpage
     ? parseInt(argpage[0]) > 1
       ? parseInt(argpage[0])
       : 1
     : 1;
   const pagination = Pagination.pagination(page, pageSize);
-  const posts = postQueryService.listPostsByTag(
-    tag,
-    postFields.note,
-    pagination
-  );
+  const posts = postQueryService.listPostsByTag(tag, postFields, pagination);
   const total = postQueryService.countPostsByTag(tag);
 
   return {

@@ -1,5 +1,5 @@
 ---
-title: "A Long-expected Party"
+title: "A Long-expected Party CP12"
 excerpt: "Gandalf arrives in the Shire for Bilbo's Farewell Birthday Party.
 Bilbo leaves the Shire permanently."
 date: 2024-03-02
@@ -16,3 +16,15 @@ corrupti aut. Expedita culpa aut deleniti officiis.
 
 Porro eum id sit quia expedita. Alias expedita asperiores. Corporis ex eum atque
 cum ea.
+asdas
+[asd](/desk.abc)
+![/desk1.jpg](/desk.jpg)
+![/desk2.jpg](/desk.jpg)
+asdasdaas
+![/desk3.jpg](/desk.jpg)
+asdasd
+
+```mermaid
+graph LR
+    Start --> Stop
+```

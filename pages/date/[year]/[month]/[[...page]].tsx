@@ -1,12 +1,12 @@
 import { and, eq } from "revt-toolkit";
-import { postFields } from "../../../../modules";
-import { Pagination } from "../../../../services/common/utils/Pagination";
-import { ArchiveQueryService } from "../../../../services/post/query/ArchiveQueryService";
-import { PostQueryService } from "../../../../services/post/query/PostQueryService";
-import PostsView from "../../../../views/web/posts-view";
+
+import { Pagination } from "../../../../lib/pagination";
+import { ArchiveQueryService } from "../../../../server/services/post/query/ArchiveQueryService";
+import { PostQueryService } from "../../../../server/services/post/query/PostQueryService";
+import PostsView from "../../../../web/views/web/posts-view";
 import { InferGetStaticPropsType } from "next";
-import BlockLayoutContainer from "../../../../containers/web/layout";
-import { LayoutQueryService } from "../../../../services/layout/query/LayoutQueryService";
+import BlockLayoutContainer from "../../../../web/containers/web/layout";
+import { LayoutQueryService } from "../../../../server/services/layout/query/LayoutQueryService";
 
 export default function DatePostsPage({
   posts,
@@ -40,6 +40,17 @@ export async function getStaticProps({ params }: Params) {
   const datestr = `${year}/${month}`;
   const date = new Date(datestr);
 
+  const postFields = [
+    "slugs",
+    "title",
+    "excerpt",
+    "date",
+    "link",
+    "tags",
+    "cover",
+    "star",
+  ];
+
   const page = argpage
     ? parseInt(argpage[0]) > 1
       ? parseInt(argpage[0])
@@ -63,7 +74,7 @@ export async function getStaticProps({ params }: Params) {
         eq(date.getFullYear(), post.getDate().getFullYear()),
         eq(date.getMonth(), post.getDate().getMonth())
       ),
-    postFields.note,
+    postFields,
     pagination
   );
 

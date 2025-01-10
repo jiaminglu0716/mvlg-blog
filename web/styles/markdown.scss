@@ -1,0 +1,181 @@
+// github-markdown-css
+.markdown-body {
+  box-sizing: border-box;
+  min-width: 200px;
+  // max-width: 980px;
+  margin: 0 auto;
+  background: transparent;
+
+  p > img {
+    border-radius: 0.5rem;
+    margin: 2rem auto;
+    max-width: 30rem;
+  }
+
+  table {
+    margin: 1rem auto;
+    border-radius: 0.25rem;
+
+    tr {
+      // background-color: var(--board-bg-color);
+      transition: background-color 0.2s ease-in-out;
+    }
+    th {
+      background: rgb(243, 243, 243);
+    }
+    th,
+    td {
+      border: 0;
+      // border-color var(--line-color)
+      transition: white 0.2s ease-in-out;
+    }
+
+    tr:nth-child(2n) {
+      // background-color var(--board-bg-color)
+      transition: lightgrey 0.2s ease-in-out;
+    }
+  }
+
+  pre {
+    background: rgba(236, 236, 236, 0.671);
+    border: 1px solid darkgrey;
+  }
+}
+
+@media (max-width: 767px) {
+  .markdown-body {
+    padding: 15px;
+  }
+}
+
+// test markdown css
+#markdown {
+  /**
+    * base
+    */
+  p > img {
+    padding-left: 5rem;
+    padding-right: 5rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  font-size: 1rem;
+  line-height: 1.6;
+  // font-family: $font-family
+  margin-bottom: 2rem;
+  // color var(--post-text-color)
+
+  & > h1 {
+    font-size: 1.75rem;
+  }
+
+  & > h2 {
+    font-size: 1.55rem;
+  }
+  & > h3 {
+    font-size: 1.45rem;
+  }
+  & > h4 {
+    font-size: 1.25rem;
+  }
+  & > h5 {
+    font-size: 1.15rem;
+  }
+  & > h6 {
+    font-size: 1rem;
+  }
+
+  & > h1,
+  h2 {
+    line-height: 5rem;
+    border-bottom: 1px solid lightcyan;
+  }
+
+  & > h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    // color var(--post-heading-color)
+    transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
+    font-weight: bold;
+    margin-bottom: 0.75em;
+    margin-top: 2em;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  // a {
+  //   color var(--post-link-color)
+  // }
+
+  strong {
+    font-weight: bold;
+  }
+
+  code {
+    tab-size: 4;
+    // background-color var(--inlinecode-bg-color)
+    transition: background-color 0.2s ease-in-out;
+  }
+
+  // table {
+  //   tr {
+  //     // background-color var(--board-bg-color)
+  //     // transition: background-color .2s ease-in-out;
+  //   }
+  //   // tr:nth-child(2n)
+  //   //   background-color var(--board-bg-color)
+  //   //   transition background-color .2s ease-in-out
+  //   // th, td {
+  //   //   border-color var(--line-color)
+  //   //   transition border-color .2s ease-in-out
+  //   // }
+  // }
+  pre {
+    // font-size $code-font-size !important
+
+    .mermaid {
+      text-align: center;
+
+      & > svg {
+        min-width: 100%;
+      }
+    }
+  }
+
+  p > img,
+  p > a > img,
+  figure > img,
+  figure > a > img {
+    max-width: 90%;
+    margin: 1.5rem auto;
+    display: block;
+    // box-shadow: $img-shadow;
+    border-radius: 4px;
+    background-color: transparent;
+  }
+
+  // blockquote
+  //   color var(--sec-text-color)
+
+  details {
+    cursor: pointer;
+
+    summary {
+      outline: none;
+    }
+  }
+}
+
+@media screen and (max-width: 700px) {
+  #markdown {
+    img {
+      background: red;
+    }
+  }
+}

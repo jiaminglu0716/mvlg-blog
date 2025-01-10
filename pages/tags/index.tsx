@@ -1,8 +1,8 @@
 import type { InferGetStaticPropsType } from "next";
-import { PostQueryService } from "../../services/post/query/PostQueryService";
-import TagsView from "../../views/web/tags-view";
-import BlockLayoutContainer from "../../containers/web/layout";
-import { LayoutQueryService } from "../../services/layout/query/LayoutQueryService";
+import { PostQueryService } from "../../server/services/post/query/PostQueryService";
+import TagsView from "../../web/views/web/tags-view";
+import BlockLayoutContainer from "../../web/containers/web/layout";
+import { LayoutQueryService } from "../../server/services/layout/query/LayoutQueryService";
 
 export default function TagsPage({
   tags,

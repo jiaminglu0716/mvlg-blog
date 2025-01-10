@@ -1,10 +1,10 @@
 import type { InferGetStaticPropsType } from "next";
-import { postFields } from "../../modules";
-import { PostQueryService } from "../../services/post/query/PostQueryService";
-import { Pagination } from "../../services/common/utils/Pagination";
-import PostsView from "../../views/web/posts-view";
-import { LayoutQueryService } from "../../services/layout/query/LayoutQueryService";
-import BlockLayoutContainer from "../../containers/web/layout";
+import { PostQueryService } from "../../server/services/post/query/PostQueryService";
+import { Pagination } from "../../lib/pagination";
+import PostsView from "../../web/views/web/posts-view";
+import { LayoutQueryService } from "../../server/services/layout/query/LayoutQueryService";
+import BlockLayoutContainer from "../../web/containers/web/layout";
+import { PostService } from "../../web/services/post-service";
 
 const postQueryService = new PostQueryService();
 
@@ -15,12 +15,14 @@ export default function PostsPage({
   pagination,
   layout,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
+  const postService = new PostService();
+  posts = postService.toPosts(posts);
+
   return (
     <BlockLayoutContainer {...layout}>
       <PostsView posts={posts} pagination={pagination} />
     </BlockLayoutContainer>
   );
-  return;
 }
 
 type Params = {
@@ -31,6 +33,16 @@ type Params = {
 
 export async function getStaticProps({ params }: Params) {
   const argpage = params.page;
+  const postFields = [
+    "slugs",
+    "title",
+    "excerpt",
+    "date",
+    "link",
+    "tags",
+    "cover",
+    "star",
+  ];
 
   // const page = parseInt(argpage) ?? 1;
   const page = argpage
@@ -39,7 +51,7 @@ export async function getStaticProps({ params }: Params) {
       : 1
     : 1;
   const pagination = Pagination.pagination(page, pageSize);
-  const posts = postQueryService.listPosts(postFields.note, pagination);
+  const posts = postQueryService.listPosts(postFields, pagination);
   const total = postQueryService.countPosts();
 
   return {

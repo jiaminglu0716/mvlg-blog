@@ -1,4 +1,6 @@
 import { Html, Head, Main, NextScript } from "next/document";
+import { link } from "../web/common/link";
+import { SearchContextProvider } from "../web/contexts/searchContext";
 
 export default function Document() {
   return (
@@ -8,7 +10,11 @@ export default function Document() {
         <meta name="robots" content="follow, index" />
         <meta httpEquiv="x-ua-compatible" content="ie=edge" />
       </Head>
-      <body className="bg-white text-gray-700 antialiased">
+      <body
+        style={{
+          backgroundImage: `url('${link("/desk.jpg")}')`,
+        }}
+      >
         <Main />
         <NextScript />
       </body>

@@ -1,11 +1,11 @@
 import type { InferGetStaticPropsType } from "next";
-import { Archive } from "../../services/post/domain/Archive";
-import { QListPost } from "../../services/post/query/QListPost";
-import { PostQueryService } from "../../services/post/query/PostQueryService";
-import { Post } from "../../services/post/domain/Post";
-import ArchivesView from "../../views/web/archives-view";
-import BlockLayoutContainer from "../../containers/web/layout";
-import { LayoutQueryService } from "../../services/layout/query/LayoutQueryService";
+import { Archive } from "../../server/services/post/domain/Archive";
+import { QListPost } from "../../server/services/post/query/QListPost";
+import { PostQueryService } from "../../server/services/post/query/PostQueryService";
+import { Post } from "../../server/services/post/domain/Post";
+import ArchivesView from "../../web/views/web/archives-view";
+import BlockLayoutContainer from "../../web/containers/web/layout";
+import { LayoutQueryService } from "../../server/services/layout/query/LayoutQueryService";
 
 export default function ArchivesPage({
   archives,

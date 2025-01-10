@@ -3,9 +3,9 @@ module.exports = {
   mode: "jit",
   content: [
     "./pages/**/*.{js,ts,jsx,tsx}",
-    "./components/**/*.{js,ts,jsx,tsx}",
-    "./containers/**/*.{js,ts,jsx,tsx}",
-    "./views/**/*.{js,ts,jsx,tsx}",
+    "./web/components/**/*.{js,ts,jsx,tsx}",
+    "./web/containers/**/*.{js,ts,jsx,tsx}",
+    "./web/views/**/*.{js,ts,jsx,tsx}",
   ],
   variants: {
     extend: {

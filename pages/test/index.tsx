@@ -1,18 +1,15 @@
 import { InferGetStaticPropsType } from "next";
-import { PaginationParamLink } from "../../services/common/utils/PaginationLink";
-import { PostQueryService } from "../../services/post/query/PostQueryService";
-import { PostService } from "../../web/services/post-service";
-import ArchiveBlockContainer from "../../containers/web/block/archive-block";
-import { QListPost } from "../../services/post/query/QListPost";
-import { Post } from "../../services/post/domain/Post";
-import { Archive } from "../../services/post/domain/Archive";
-import TagBlockContainer from "../../containers/web/block/tags-block";
-import ProfileBlockContainer from "../../containers/web/block/profile-block";
-import BlockLayoutContainer from "../../containers/web/layout";
-import ViewContainer from "../../components/container/view-container";
-import { LayoutQueryService } from "../../services/layout/query/LayoutQueryService";
+import { link } from "../../web/common/link";
+// import { RevtService } from "../../web/services/revt-service";
+import fs from "fs";
+import { base64ImageUrl } from "../../server/common/utils/image";
+import { useEffect } from "react";
 
-function HomePage({ layout }: InferGetStaticPropsType<typeof getStaticProps>) {
+function HomePage({}: InferGetStaticPropsType<typeof getStaticProps>) {
+  useEffect(() => {
+    const { origin, pathname, search } = window.location;
+    console.log(origin, pathname, search);
+  }, []);
   return (
     <>
       {/* <div className="flex flex-wrap ">
@@ -21,20 +18,49 @@ function HomePage({ layout }: InferGetStaticPropsType<typeof getStaticProps>) {
           <ProfileBlockContainer stat={stat} />
         </div>
       </div> */}
-      <BlockLayoutContainer
-        {...layout}
-        children={<ViewContainer className="w-full">123</ViewContainer>}
-      />
     </>
   );
 }
 
 export async function getStaticProps() {
-  const layout = new LayoutQueryService().queryLayoutData();
-  console.log(new PostQueryService().topTags());
+  // console.log(process.env.NODE_ENV);
+  // console.log(process.env.__NEXT_PRIVATE_ORIGIN);
+  // fetch("http://localhost:3000/api/test").then((res) => {
+  //   console.log(res);
+  // });
+  // console.log(link("a"));
+
+  // const stat = new RevtService().statistic([
+  //   "y 2024",
+  //   "m 6",
+  //   "d 2",
+  //   "- 20:35",
+  //   "- 22:24",
+  //   "aaaaaaaaa",
+  //   "bbbbbbbbb",
+  //   "c -1 1 [t1]",
+  //   "d 3",
+  //   "- 21:33",
+  //   "- 21:34",
+  //   "ccccccccc",
+  //   "aaaaaaaaa",
+  //   "c 1 2 [t2] s ",
+  //   "- 21:43",
+  //   "ccccccccc",
+  //   "aaaaaaaaa",
+  //   "c 2 3 [t3] s",
+  //   "- 23:43",
+  //   "ccccccccc",
+  //   "aaaaaaaaa",
+  //   "c 1 4 [t4]",
+  // ]);
+
+  // console.log(stat);
+  // console.log(test);
+
   return {
     props: {
-      layout,
+      // test,
     },
   };
 }
