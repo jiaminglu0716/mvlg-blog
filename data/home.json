@@ -20,6 +20,11 @@
           "link": "/links",
           "desc": "> list some links we recommanded according to categories"
         },
+        {
+          "title": "Setting",
+          "link": "/setting",
+          "desc": "> reset website default settings"
+        },
         { "title": "Cover", "link": "/", "desc": "> back to root profile" }
       ]
     },

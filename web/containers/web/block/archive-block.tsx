@@ -13,6 +13,7 @@ import CaterpillarPageItems, {
   CaterpillarPageItemProps,
 } from "../../../components/pagination/caterpillar-page-items";
 import { Router } from "../../../common";
+import useLocaleService from "../../../hooks/useLocaleService";
 
 /**
  * React.ReactNode
@@ -62,9 +63,11 @@ export default function ArchiveBlockContainer<T>({
   colnum?: number;
   rownum?: number;
 } & DivProps) {
+  const { datetime } = useLocaleService();
+
   const width = colnum * 56 + 40;
   const height = rownum * 56 + 90;
-  const defaultTitle = "Year";
+  const defaultTitle = datetime.year;
   const yearList = getYearList();
 
   const wpart = 100 / colnum;

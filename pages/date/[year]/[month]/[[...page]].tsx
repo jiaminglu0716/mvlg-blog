@@ -7,6 +7,8 @@ import PostsView from "../../../../web/views/web/posts-view";
 import { InferGetStaticPropsType } from "next";
 import BlockLayoutContainer from "../../../../web/containers/web/layout";
 import { LayoutQueryService } from "../../../../server/services/layout/query/LayoutQueryService";
+import { LayoutDataType, PostType } from "../../../../web/interfaces/api";
+import { Facade } from "../../../../web/infras/facade";
 
 export default function DatePostsPage({
   posts,
@@ -14,9 +16,16 @@ export default function DatePostsPage({
   condition,
   layout,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
+  const postsData: PostType[] = Facade.toPosts(posts);
+  const layoutData: LayoutDataType = Facade.toLayoutData(layout);
+
   return (
-    <BlockLayoutContainer {...layout}>
-      <PostsView posts={posts} pagination={pagination} condition={condition} />
+    <BlockLayoutContainer {...layoutData}>
+      <PostsView
+        posts={postsData}
+        pagination={pagination}
+        condition={condition}
+      />
     </BlockLayoutContainer>
   );
 }
@@ -58,14 +67,6 @@ export async function getStaticProps({ params }: Params) {
     : 1;
   const pagination = Pagination.pagination(page, pageSize);
 
-  /**
-   * @Bug
-   * If we use wrapped service, the error will occur. (ArchiveQueryService)
-   *
-   * If we use basic service, no error.
-   *
-   * Um...
-   */
   const total = archiveQueryService.countByYearMonth(date);
 
   const posts = postQueryService.listPostsByFilter(

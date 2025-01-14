@@ -3,6 +3,12 @@ import ProfileBlockContainer from "../../../containers/web/block/profile-block";
 import ArchiveBlockContainer from "../../../containers/web/block/archive-block";
 import Container from "../../../components/container/container";
 import TagBlockContainer from "../block/tags-block";
+import {
+  PostStat,
+  PostType,
+  TagCountType,
+  TagType,
+} from "../../../interfaces/api";
 
 export default function BlockLayoutContainer({
   posts,
@@ -13,11 +19,11 @@ export default function BlockLayoutContainer({
   profile,
   children,
 }: {
-  posts: any[];
-  tags: any[];
+  posts: PostType[];
+  tags: TagType[];
   archives: any;
-  stat: any;
-  toptags: any[];
+  stat: PostStat;
+  toptags: TagCountType[];
   profile: any;
   children: React.ReactNode;
 }) {

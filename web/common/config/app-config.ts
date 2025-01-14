@@ -1,3 +1,7 @@
+import { Services } from "../../interfaces/service";
+
 export class AppConfig {
-  public static readonly SEARCH_VIEW_GAP_TIME = 700;
+  public static readonly SEARCH_VIEW_GAP_TIME: number = 700;
+
+  public static readonly DEFAULT_APP_LOCALE: Services = "en";
 }

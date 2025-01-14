@@ -7,6 +7,7 @@ import { classNames } from "../../../common";
 import { Router } from "../../../common";
 import { DivProps } from "../../../components/common/props";
 import { TagType } from "../../../interfaces/api";
+import useLocaleService from "../../../hooks/useLocaleService";
 
 export default function TagBlockContainer<T>({
   tags = [],
@@ -21,7 +22,9 @@ export default function TagBlockContainer<T>({
     limit?: number;
   };
 } & Omit<DivProps, "children">) {
-  const title = "Tag";
+  const { tag } = useLocaleService();
+
+  const title = tag;
   const { limit } = config;
   const bound = tags.length > limit ? limit : tags.length;
 

@@ -13,7 +13,7 @@ import IconShare from "../../../../components/icons/icon-share";
 import { useEffect, useState } from "react";
 import { Router } from "../../../../common";
 import { dateFormat } from "../../../../../lib/date";
-import { PostType } from "../../../../interfaces/api";
+import { PostType, TagType } from "../../../../interfaces/api";
 import IconStarFill from "../../../../components/icons/icon-star-fill";
 
 export default function PostModule({ post }: { post: PostType }) {
@@ -77,12 +77,12 @@ export default function PostModule({ post }: { post: PostType }) {
             {post.excerpt && <p className="mt-2 text-md">{post.excerpt}</p>}
             {post.tags && (
               <p className="mt-1 text-md text-sky-500 flex flex-wrap">
-                {post.tags.map((tag: string, index: number) => (
+                {post.tags.map((tag: TagType, index: number) => (
                   <Link
                     key={index}
                     className="mr-2"
-                    href={Router.tag(tag)}
-                  >{`#${tag}`}</Link>
+                    href={tag.href}
+                  >{`#${tag.title}`}</Link>
                 ))}
               </p>
             )}

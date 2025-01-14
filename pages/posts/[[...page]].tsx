@@ -4,7 +4,8 @@ import { Pagination } from "../../lib/pagination";
 import PostsView from "../../web/views/web/posts-view";
 import { LayoutQueryService } from "../../server/services/layout/query/LayoutQueryService";
 import BlockLayoutContainer from "../../web/containers/web/layout";
-import { PostService } from "../../web/services/post-service";
+import { Facade } from "../../web/infras/facade";
+import { LayoutDataType, PostType } from "../../web/interfaces/api";
 
 const postQueryService = new PostQueryService();
 
@@ -15,12 +16,12 @@ export default function PostsPage({
   pagination,
   layout,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  const postService = new PostService();
-  posts = postService.toPosts(posts);
+  const postsData: PostType[] = Facade.toPosts(posts);
+  const layoutData: LayoutDataType = Facade.toLayoutData(layout);
 
   return (
-    <BlockLayoutContainer {...layout}>
-      <PostsView posts={posts} pagination={pagination} />
+    <BlockLayoutContainer {...layoutData}>
+      <PostsView posts={postsData} pagination={pagination} />
     </BlockLayoutContainer>
   );
 }

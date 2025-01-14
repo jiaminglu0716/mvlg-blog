@@ -19,7 +19,7 @@ export type SNSLinkType = {
 export type ProfileType = {
   name: string;
   avatar: string;
-  sns: SNSLinkType[];
+  sns?: SNSLinkType[];
 };
 
 export type ShareLinkType = {
@@ -35,19 +35,36 @@ export type PostType = {
   date?: string;
   content?: string;
   excerpt?: string;
-  tags?: string[];
+  tags?: TagType[];
   star?: boolean;
   cover?: string;
   href?: string;
 };
 
 export type TagType = {
-  title?: string;
-  href?: string;
+  title: string;
+  href: string;
+};
+
+export type TagCountType = TagType & {
+  count: number;
 };
 
 export type PostStat = {
   posts: number;
   tags: number;
   stars: number;
+};
+
+export type LayoutDataType = {
+  posts: PostType[];
+  tags: TagType[];
+  archives: any;
+  stat: PostStat;
+  toptags: TagCountType[];
+  profile: {
+    name: string;
+    avatar: string;
+    sns: { type: string; link: string }[];
+  };
 };

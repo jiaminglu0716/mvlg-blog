@@ -4,6 +4,7 @@ import RadiusContainer from "../../../components/container/radius-container";
 import IconSNSTwitterBlockFillReverse from "../../../components/icons/icon-sns-twi-block-fill-reverse";
 import { ProfileType, SNSLinkType } from "../../../interfaces/api";
 import { link } from "../../../common/link";
+import useLocaleService from "../../../hooks/useLocaleService";
 
 function ProfilePostStatContainer({
   profile,
@@ -12,12 +13,14 @@ function ProfilePostStatContainer({
   profile: ProfileType;
   stat: any;
 }) {
+  const { stat: statLocale } = useLocaleService();
+
   const items = Object.keys(stat).map((title: string, index: number) => {
     const count = stat[title] > 999 ? "999+" : stat[title];
     return (
       <div key={index} className="text-center w-12">
         <div className="text-sm text-slate-900">{count}</div>
-        <div className="text-xs text-slate-800">{title}</div>
+        <div className="text-xs text-slate-800">{statLocale[title]}</div>
       </div>
     );
   });

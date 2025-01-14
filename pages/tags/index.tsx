@@ -3,14 +3,19 @@ import { PostQueryService } from "../../server/services/post/query/PostQueryServ
 import TagsView from "../../web/views/web/tags-view";
 import BlockLayoutContainer from "../../web/containers/web/layout";
 import { LayoutQueryService } from "../../server/services/layout/query/LayoutQueryService";
+import { Facade } from "../../web/infras/facade";
+import { LayoutDataType, TagType } from "../../web/interfaces/api";
 
 export default function TagsPage({
   tags,
   layout,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
+  const tagsData: TagType[] = Facade.toTags(tags);
+  const layoutData: LayoutDataType = Facade.toLayoutData(layout);
+
   return (
-    <BlockLayoutContainer {...layout}>
-      <TagsView tags={tags} />
+    <BlockLayoutContainer {...layoutData}>
+      <TagsView tags={tagsData} />
     </BlockLayoutContainer>
   );
 }

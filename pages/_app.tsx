@@ -6,6 +6,9 @@ import { Auth0Provider } from "@auth0/auth0-react";
 import "github-markdown-css/github-markdown.css";
 import "../web/styles/markdown.scss";
 import { SearchContextProvider } from "../web/contexts/searchContext";
+import { ServiceContextProvider } from "../web/contexts/serviceContext";
+import { LocaleContextProvider } from "../web/contexts/localeContext";
+import { useLocale } from "../web/hooks/useLocale";
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -24,11 +27,15 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         <title>mvlg</title>
       </Head>
 
-      <SearchContextProvider>
-        <main className="p-0 m-0">
-          <Component {...pageProps} />
-        </main>
-      </SearchContextProvider>
+      <LocaleContextProvider>
+        <ServiceContextProvider>
+          <SearchContextProvider>
+            <main className="p-0 m-0">
+              <Component {...pageProps} />
+            </main>
+          </SearchContextProvider>
+        </ServiceContextProvider>
+      </LocaleContextProvider>
     </div>
   );
 }

@@ -4,12 +4,24 @@ import { link } from "../../web/common/link";
 import fs from "fs";
 import { base64ImageUrl } from "../../server/common/utils/image";
 import { useEffect } from "react";
+import useLocaleService from "../../web/hooks/useLocaleService";
+import { useLocale } from "../../web/hooks/useLocale";
+import useStorage from "../../web/hooks/useStorage";
 
 function HomePage({}: InferGetStaticPropsType<typeof getStaticProps>) {
-  useEffect(() => {
-    const { origin, pathname, search } = window.location;
-    console.log(origin, pathname, search);
-  }, []);
+  // useEffect(() => {
+  //   const { origin, pathname, search } = window.location;
+  //   console.log(origin, pathname, search);
+  // }, []);
+  const props = useLocaleService();
+  // const { locale, setLocale } = useLocale();
+
+  // useEffect(() => {
+  //   setLocale("hk");
+  // }, []);
+
+  // console.log(storage.getToken());
+
   return (
     <>
       {/* <div className="flex flex-wrap ">

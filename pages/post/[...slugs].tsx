@@ -5,15 +5,19 @@ import { QListPost } from "../../server/services/post/query/QListPost";
 import PostView from "../../web/views/web/post-view";
 import BlockLayoutContainer from "../../web/containers/web/layout";
 import { LayoutQueryService } from "../../server/services/layout/query/LayoutQueryService";
-import { markdownToHtml } from "../../web/common";
+import { Facade } from "../../web/infras/facade";
+import { LayoutDataType, PostType } from "../../web/interfaces/api";
 
 export default function PostPage({
   post,
   layout,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
+  const postData: PostType = Facade.toPost(post);
+  const layoutData: LayoutDataType = Facade.toLayoutData(layout);
+
   return (
-    <BlockLayoutContainer {...layout}>
-      <PostView post={post} />
+    <BlockLayoutContainer {...layoutData}>
+      <PostView post={postData} />
     </BlockLayoutContainer>
   );
 }

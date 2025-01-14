@@ -6,13 +6,16 @@ import { Post } from "../../server/services/post/domain/Post";
 import ArchivesView from "../../web/views/web/archives-view";
 import BlockLayoutContainer from "../../web/containers/web/layout";
 import { LayoutQueryService } from "../../server/services/layout/query/LayoutQueryService";
+import { LayoutDataType } from "../../web/interfaces/api";
+import { Facade } from "../../web/infras/facade";
 
 export default function ArchivesPage({
   archives,
   layout,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
+  const layoutData: LayoutDataType = Facade.toLayoutData(layout);
   return (
-    <BlockLayoutContainer {...layout}>
+    <BlockLayoutContainer {...layoutData}>
       <ArchivesView archives={archives} />
     </BlockLayoutContainer>
   );

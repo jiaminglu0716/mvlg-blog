@@ -1,6 +1,8 @@
+import { ServiceContextProvider } from "../../../contexts/serviceContext";
+
 const WithContexts = (Component: any) => {
   const WithContextsContainer = () => {
-    const { service } = getRouteProps();
+    const service = "en";
 
     return (
       <ServiceContextProvider service={service}>

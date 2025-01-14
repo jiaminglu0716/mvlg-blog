@@ -4,6 +4,8 @@ import { PostQueryService } from "../../post/query/PostQueryService";
 import { QListPost } from "../../post/query/QListPost";
 import { QLayoutData } from "./QLayoutData";
 import profileData from "../../../../data/profile.json";
+import { updatedDict } from "../../../../lib/dict";
+import { imageLink } from "../../../common/utils/link";
 
 export class LayoutQueryService {
   private postService = new PostQueryService();
@@ -22,7 +24,10 @@ export class LayoutQueryService {
       posts: postService.listPosts(["link", "title", "date"]),
       tags: postService.listTags(),
       toptags: postService.topTags(20),
-      profile: profileData,
+      profile: updatedDict(profileData, (profile) => {
+        profile.avatar = imageLink(profile.avatar);
+        return profile;
+      }),
     };
   }
 }

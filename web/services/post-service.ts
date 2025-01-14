@@ -4,15 +4,6 @@ import { PostType, TagType } from "../interfaces/api";
 import { Router } from "../common";
 
 export class PostService {
-  public toPost(post: PostType): PostType {
-    post.href = Router.post(post.link);
-    return post;
-  }
-
-  public toPosts(posts: PostType[]): PostType[] {
-    return posts.map(this.toPost);
-  }
-
   private match(str: string, mask: string): boolean {
     return or(
       str.includes(mask),

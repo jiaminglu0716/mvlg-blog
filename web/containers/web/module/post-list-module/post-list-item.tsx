@@ -6,7 +6,7 @@ import IconStarFill from "../../../../components/icons/icon-star-fill";
 import { Router } from "../../../../common";
 import { link } from "../../../../common/link";
 import { dateFormat } from "../../../../../lib/date";
-import { PostType } from "../../../../interfaces/api";
+import { PostType, TagType } from "../../../../interfaces/api";
 import { classNames } from "../../../../common";
 
 export default function PostListItem({ post }: { post: PostType }) {
@@ -46,12 +46,12 @@ export default function PostListItem({ post }: { post: PostType }) {
 
             {post.tags && (
               <p className="text-md text-sky-500 flex flex-wrap">
-                {post.tags.map((tag: string, index: number) => (
+                {post.tags.map((tag: TagType, index: number) => (
                   <Link
                     key={index}
                     className="mr-2 flex items-center"
-                    href={Router.tag(tag)}
-                  >{`#${tag}`}</Link>
+                    href={tag.href}
+                  >{`#${tag.title}`}</Link>
                 ))}
               </p>
             )}

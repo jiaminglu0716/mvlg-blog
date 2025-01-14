@@ -1,7 +1,7 @@
 import React, { createContext, ReactElement } from "react";
-import { Services } from "../../models/types/global";
-import services from "../../lib/config/services/index";
-import { ServiceConfig } from "../interfaces/service";
+import services from "../locales";
+import { ServiceConfig, Services } from "../interfaces/service";
+import { useLocale } from "../hooks/useLocale";
 
 export const ServiceContext = createContext<ServiceConfig>({} as ServiceConfig);
 
@@ -9,10 +9,11 @@ export const ServiceContextProvider = ({
   children,
   service,
 }: {
+  service?: Services;
   children: ReactElement;
-  service: Services;
 }) => {
-  const LoadableContextProvider = services[service];
+  const { locale } = useLocale();
+  const LoadableContextProvider = services[service ?? locale];
 
   if (!LoadableContextProvider) {
     return null;

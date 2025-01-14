@@ -10,6 +10,10 @@ export type IconProps = Omit<SVGProps, "children">;
  */
 export type DivProps = React.HTMLAttributes<HTMLDivElement>;
 
+export type ContainerProps = Omit<DivProps, "children">;
+
+export type ViewProps = ContainerProps;
+
 export type ClickEvent = (event: React.MouseEvent) => void;
 
 export type BlockValueType<T> = {

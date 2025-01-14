@@ -2,13 +2,14 @@ import { useContext } from "react";
 import SearchStateNavBar from "./search-state-navbar";
 import NoSearchStateNavBar from "./no-search-state-navbar";
 import { SearchContext } from "../../../../contexts/searchContext";
+import { PostType, TagType } from "../../../../interfaces/api";
 
 export default function SearchNavigation({
   posts,
   tags,
 }: {
-  posts: any[];
-  tags: any[];
+  posts: PostType[];
+  tags: TagType[];
 }) {
   const { search } = useContext(SearchContext);
 
