@@ -1,8 +1,9 @@
 import { ContainerProps } from "../../../../components/common/props";
+import { HomeService } from "../../../../interfaces/service";
 import FunctionModule from "./function-module";
 
 type WaterflowListModuleProps = ContainerProps & {
-  modules: any[];
+  modules: HomeService[];
 };
 
 export default function WaterflowListModuleContainer(

@@ -2,19 +2,19 @@ import { classNames } from "../../../../common";
 import RadiusContainer from "../../../../components/container/radius-container";
 import IconCircle from "../../../../components/icons/icon-circle";
 
-export type SettingSelectMenuItemProps = {
+export type SettingTextItemProps = {
   title: string;
   value?: string;
-  options: { text: string; value: string }[];
-  onChange: React.ChangeEventHandler<HTMLSelectElement>;
+  placeholder?: string;
+  onChange: React.ChangeEventHandler<HTMLInputElement>;
 };
 
-export default function SettingSelectMenuItem({
+export default function SettingTextItem({
   title,
   value,
-  options,
+  placeholder,
   onChange,
-}: SettingSelectMenuItemProps) {
+}: SettingTextItemProps) {
   return (
     <RadiusContainer className="flex justify-left items-center px-2 py-1 h-12 mb-2">
       <div className="mr-0">
@@ -23,26 +23,12 @@ export default function SettingSelectMenuItem({
 
       <div className="flex justify-between w-full mx-2">
         <h2 className="text-lg text-left p-1 w-[50%]">{title}</h2>
-        <select
+        <input
           className={classNames("bg-transparent outline-none w-[50%] text-lg")}
           value={value}
+          placeholder={placeholder}
           onChange={onChange}
-        >
-          {options.map((option, optid: number) => {
-            return (
-              <option
-                key={optid}
-                className="text-md"
-                style={{
-                  backgroundColor: "rgba(0,0,0, 0.5)",
-                }}
-                value={option.value}
-              >
-                {option.text}
-              </option>
-            );
-          })}
-        </select>
+        />
       </div>
     </RadiusContainer>
   );

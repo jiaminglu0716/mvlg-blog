@@ -26,13 +26,29 @@ export const LocalStorage = {
   },
 
   /**
+   * Extended Unit
+   */
+  getStr(key: string, defaultValue: string = ""): string {
+    const value = LocalStorage.get(key);
+    return value == null || !value ? defaultValue : LocalStorage.get(key);
+  },
+
+  getInt(key: string, defaultValue: number = 0): number {
+    const value = LocalStorage.get(key);
+    return value == null || !value
+      ? defaultValue
+      : parseInt(LocalStorage.get(key));
+  },
+
+  /**
    * Locale Unit
    */
   locale(value: Services) {
     LocalStorage.set("locale", value);
   },
-  getLocale(): string {
-    return LocalStorage.get("locale") ?? AppConfig.DEFAULT_APP_LOCALE;
+  getLocale(): Services {
+    return (LocalStorage.get("locale") ??
+      AppConfig.DEFAULT_APP_LOCALE) as Services;
   },
   resetLocale() {
     LocalStorage.locale(AppConfig.DEFAULT_APP_LOCALE);

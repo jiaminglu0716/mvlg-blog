@@ -8,6 +8,7 @@ import SearchInformation from "./search-infomation";
 import { AppConfig, Router } from "../../../../common";
 import { useSearch } from "../../../../hooks/useSearch";
 import { PostType, TagType } from "../../../../interfaces/api";
+import useCountdownTimer from "../../../../hooks/useCountdownTimer";
 
 type SearchStateNavBarProps = {
   tags: any[];
@@ -61,18 +62,32 @@ export default function SearchStateNavBar(props: SearchStateNavBarProps) {
    * Search value input gaptime view
    */
   const [wait, setWait] = useState(false);
+  const { resetTimer: resetChangeEndDetectTimer } = useCountdownTimer(
+    handleChangeEnd,
+    AppConfig.SEARCH_INPUT_CHANGE_COUNTDOWN_TIME
+  );
+
+  function handleChangeEnd(keyword: string) {
+    if (keyword.length == 0) {
+      toNavBar();
+    }
+  }
 
   function onChange() {
-    const keyword = ref.current.value;
+    const keyword: string = ref.current.value;
 
     if (!wait) {
       setWait(true);
       search(keyword);
 
-      setTimeout(() => {
-        setWait(false);
-      }, AppConfig.SEARCH_VIEW_GAP_TIME);
+      if (keyword.length > 0) {
+        setTimeout(() => {
+          setWait(false);
+        }, AppConfig.SEARCH_VIEW_GAP_TIME);
+      }
     }
+
+    resetChangeEndDetectTimer(keyword);
   }
 
   return (

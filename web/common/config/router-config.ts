@@ -44,4 +44,9 @@ export class Router {
    * @Page Share Links
    */
   public static links = () => "/links";
+
+  /**
+   * @Page Settings
+   */
+  public static setting = () => "/setting";
 }

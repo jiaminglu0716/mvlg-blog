@@ -17,20 +17,26 @@ export type ServiceConfig = {
     stars: string;
     tags: string;
   };
-  // brandName: string;
-  // product: string;
-  // service: Services;
-  // serviceName: string;
-  // languageName: string;
-  // profile: string;
-  // descriptions: string;
-  // certifications: Certification[];
-  // customers: Customer[];
-  // values: CompanyValue[];
-  // coreValues: CompanyCoreValue[];
-  // contacts: Contact[];
-  // navigation: NavigationLink[];
-  // footer: Footer;
-  // translations: Translations;
-  // timezone: "GMT";
+  homepage: HomePageData;
+  tagspage: TagsPageData;
+};
+
+export type HomeServiceModule = {
+  title: string;
+  link: string;
+  desc: string;
+};
+
+export type HomeService = {
+  title: string;
+  modules: HomeServiceModule[];
+};
+
+export type HomePageData = {
+  data: HomeService[];
+};
+
+export type TagsPageData = {
+  title: string;
+  noTagsText: string;
 };
