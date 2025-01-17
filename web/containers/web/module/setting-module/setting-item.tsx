@@ -1,5 +1,5 @@
-import { Dictionary } from "revt-toolkit";
 import SettingSelectMenuItem from "./setting-select-item";
+import SettingSwitchItem from "./setting-switch-item";
 import SettingTextItem from "./setting-text-item";
 
 export enum SettingItemType {
@@ -22,6 +22,8 @@ export default function SettingItem({ type, props }: SettingItemProps) {
       return <SettingSelectMenuItem {...props} />;
     case SettingItemType.TEXT:
       return <SettingTextItem {...props} />;
+    case SettingItemType.SWITCH:
+      return <SettingSwitchItem {...props} />;
     default:
       return null;
   }

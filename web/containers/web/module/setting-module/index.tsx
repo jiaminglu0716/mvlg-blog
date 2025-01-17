@@ -9,9 +9,11 @@ import ButtonCenter from "../../../../components/button/button-center";
 
 export default function SettingContainer({
   items,
+  onInit,
   onSubmit,
 }: {
   items: SettingItemProps[];
+  onInit?: React.MouseEventHandler<Element>;
   onSubmit?: React.MouseEventHandler<Element>;
 }) {
   const router = useRouter();
@@ -29,6 +31,9 @@ export default function SettingContainer({
           </RadiusContainer>
         </div>
         <div className="flex items-center">
+          <ButtonCenter className="w-fit py-2 px-5 h-10 mr-2" onClick={onInit}>
+            <h2 className="text-left text-slate-900 text-md">{setting.init}</h2>
+          </ButtonCenter>
           <ButtonCenter className="w-fit py-2 px-5 h-10" onClick={onSubmit}>
             <h2 className="text-left text-slate-900 text-md">{setting.save}</h2>
           </ButtonCenter>

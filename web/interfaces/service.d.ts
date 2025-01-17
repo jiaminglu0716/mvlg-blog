@@ -11,6 +11,13 @@ export type ServiceConfig = {
   setting: {
     title: string;
     save: string;
+    language: string;
+    init: string;
+    search: {
+      on: string;
+      countdown: string;
+      gaptime: string;
+    };
   };
   stat: {
     posts: string;

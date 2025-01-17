@@ -5,91 +5,175 @@ import { LayoutQueryService } from "../../server/services/layout/query/LayoutQue
 import { Facade } from "../../web/infras/facade";
 import { useLocale } from "../../web/hooks/useLocale";
 import useLocaleService from "../../web/hooks/useLocaleService";
-import { Services } from "../../web/interfaces/service";
-import { ChangeEvent, useState } from "react";
+import { useState } from "react";
 import { SettingItemType } from "../../web/containers/web/module/setting-module/setting-item";
 import SettingsView from "../../web/views/web/settings-view";
+import { updatedDictPipe } from "../../lib/dict";
 import {
-  AppSettings,
+  AppSettingKeys,
   AppSettingsConfig,
-} from "../../web/common/config/app-setting";
-import { diffExecDict, updatedDictPipe } from "../../lib/dict";
+} from "../../web/interfaces/settings";
+import { deepClone } from "revt-toolkit";
+import { useSetting } from "../../web/hooks/useSetting";
+import { getInitializedSettings } from "../../web/contexts/settingContext";
 
-/**
- * @FailurePage
- * Now, just use for locale switch.
- * We have to complete all as th following list:
- * > provide a root settings
- * > change the root settings
- * > access any root setting
- * > quick S/L root settings
- * > build a tasker mapper when the setting change
- */
 export default function SettingsPage({
   layout,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   const layoutData: LayoutDataType = Facade.toLayoutData(layout);
 
-  const appSettings = new AppSettings();
+  // Get settings data
+  const { settings, setSettings } = useSetting();
 
-  const { lang, language } = useLocaleService();
+  // Get locale string data
+  const { lang, setting } = useLocaleService();
+
+  // Get locale switcher
   const { setLocale } = useLocale();
 
-  const [languageValue, setLanguageValue] = useState<Services>(lang);
+  // Build temp settings data
+  const [form, setForm] = useState<AppSettingsConfig>(deepClone(settings));
 
-  // const [form, setForm] = useState<{
-  //   language: Services;
-  // }>({
-  //   language: lang,
-  // });
+  // Build a state dict to rec seperated items
+  const states = {};
+  Object.keys(settings).forEach((key: string) => {
+    states[key] = useState(() => {
+      if (key == "locale") return lang;
+      return form[key];
+    });
+  });
 
-  const [form, setForm] = useState<AppSettingsConfig>(appSettings.settings());
+  /**
+   * @Settings
+   */
 
   const items = [
-    {
-      value: "language",
-      type: SettingItemType.SELECT_MENU,
-      props: {
-        title: language,
-        options: [
-          {
-            text: "English",
-            value: "en",
-          },
-          {
-            text: "Chinese",
-            value: "hk",
-          },
-        ],
-        value: languageValue,
-        onChange(e: ChangeEvent<HTMLSelectElement>) {
-          const service = e.target.value as Services;
-          setLanguageValue(service);
-          updateValue(service, "locale");
-        },
+    SettingSelectItem("locale", setting.language, [
+      {
+        text: "English",
+        value: "en",
       },
-    },
+      {
+        text: "Chinese",
+        value: "hk",
+      },
+    ]),
+    SettingTextItem("searchCountdown", setting.search.countdown),
+    SettingTextItem("searchGapTime", setting.search.gaptime),
+    SettingSwitchItem("searchBar", setting.search.on),
   ];
 
-  function updateValue(value: string, key: string) {
+  /**
+   * @Toolkit
+   */
+
+  function updateValue(value: any, key: AppSettingKeys) {
     setForm((form) => updatedDictPipe(form, value, key));
   }
 
+  function updateValueWithExec(
+    value: any,
+    key: AppSettingKeys,
+    func?: () => void
+  ) {
+    updateValue(value, key);
+    if (func) func();
+  }
+
+  /**
+   * @Config Item Setting Functions
+   */
+  function SettingSelectItem(
+    key: AppSettingKeys,
+    text: string,
+    options: {
+      text: string;
+      value: string;
+    }[],
+    config?: {
+      exec?: () => void;
+    }
+  ) {
+    return {
+      value: key,
+      type: SettingItemType.SELECT_MENU,
+      props: {
+        title: text,
+        options,
+        state: states[key],
+        onChange: (cvalue) => updateValueWithExec(cvalue, key, config?.exec),
+      },
+    };
+  }
+
+  function SettingTextItem(
+    key: AppSettingKeys,
+    text: string,
+    config?: {
+      placehold?: string;
+      exec?: () => void;
+    }
+  ) {
+    const placehold = config?.placehold ?? "";
+
+    return {
+      value: key,
+      type: SettingItemType.TEXT,
+      props: {
+        title: text,
+        state: states[key],
+        placehold: placehold,
+        onChange: (cvalue) => updateValueWithExec(cvalue, key, config?.exec),
+      },
+    };
+  }
+
+  function SettingSwitchItem(
+    key: AppSettingKeys,
+    text: string,
+    config?: {
+      exec?: () => void;
+    }
+  ) {
+    return {
+      value: key,
+      type: SettingItemType.SWITCH,
+      props: {
+        title: text,
+        state: states[key],
+        onChange: (cvalue) => updateValueWithExec(cvalue, key, config?.exec),
+      },
+    };
+  }
+
+  /**
+   * @EventHandler Event Control
+   */
+
   function onSubmit() {
-    appSettings.setAll(form, (key, d1, form) => {
-      switch (key) {
-        case "locale":
-          if (lang != form.locale) setLocale(form.locale);
-          break;
-      }
+    if (lang != form.locale) {
+      setLocale(form.locale);
+    }
+
+    setSettings(form);
+  }
+
+  function onInit() {
+    const init = getInitializedSettings();
+
+    Object.keys(form).forEach((key: string) => {
+      const [_, setValue] = states[key];
+      setValue(init[key]);
     });
 
-    console.log(appSettings.settings());
+    setLocale(init.locale);
+    setForm(init);
+    setSettings(init);
   }
 
   return (
     <BlockLayoutContainer {...layoutData}>
-      <SettingsView items={items} onSubmit={onSubmit} />
+      <SettingsView items={items} onInit={onInit} onSubmit={onSubmit} />
     </BlockLayoutContainer>
   );
 }

@@ -4,14 +4,16 @@ import { SettingItemProps } from "../../containers/web/module/setting-module/set
 
 export default function SettingsView({
   items,
+  onInit,
   onSubmit,
 }: {
   items: SettingItemProps[];
+  onInit?: React.MouseEventHandler<Element>;
   onSubmit?: React.MouseEventHandler<Element>;
 }) {
   return (
     <ViewContainer>
-      <SettingContainer items={items} onSubmit={onSubmit} />
+      <SettingContainer items={items} onInit={onInit} onSubmit={onSubmit} />
     </ViewContainer>
   );
 }

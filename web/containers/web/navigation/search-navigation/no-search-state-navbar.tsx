@@ -6,12 +6,14 @@ import { classNames } from "../../../../common/utils";
 import { DivProps } from "../../../../components/common/props";
 import { Router } from "../../../../common";
 import { useSearch } from "../../../../hooks/useSearch";
+import { useSetting } from "../../../../hooks/useSetting";
 
 type NoSearchStateNavBarProps = DivProps;
 
 export default function NoSearchStateNavBar(props: NoSearchStateNavBarProps) {
   const { className, ...subprops } = props;
   const { toSearch } = useSearch();
+  const { settings } = useSetting();
 
   return (
     <RadiusContainer
@@ -26,9 +28,11 @@ export default function NoSearchStateNavBar(props: NoSearchStateNavBarProps) {
           <IconHomeStroke size="26" />
         </Link>
       </div>
-      <div onClick={toSearch}>
-        <IconSearchStroke size="22" />
-      </div>
+      {settings.searchBar ? (
+        <div onClick={toSearch}>
+          <IconSearchStroke size="22" />
+        </div>
+      ) : null}
     </RadiusContainer>
   );
 }

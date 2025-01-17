@@ -12,6 +12,13 @@ export const service: ServiceConfig = {
   setting: {
     title: "Settings",
     save: "Save",
+    language: "Language",
+    init: "Init",
+    search: {
+      on: "On Search",
+      countdown: "Search Finish Countdown",
+      gaptime: "Search Gap Time",
+    },
   },
   stat: {
     posts: "posts",

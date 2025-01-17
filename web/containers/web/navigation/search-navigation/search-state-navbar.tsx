@@ -5,10 +5,10 @@ import IconSearchStroke from "../../../../components/icons/icon-search-stroke";
 import { classNames } from "../../../../common/utils";
 import { PostService } from "../../../../services/post-service";
 import SearchInformation from "./search-infomation";
-import { AppConfig, Router } from "../../../../common";
 import { useSearch } from "../../../../hooks/useSearch";
 import { PostType, TagType } from "../../../../interfaces/api";
 import useCountdownTimer from "../../../../hooks/useCountdownTimer";
+import { useSetting } from "../../../../hooks/useSetting";
 
 type SearchStateNavBarProps = {
   tags: any[];
@@ -27,6 +27,7 @@ export default function SearchStateNavBar(props: SearchStateNavBarProps) {
   const ref = useRef(null);
   const [tipPosts, setTipPosts] = useState([]);
   const [tipTags, setTipTags] = useState([]);
+  const { settings } = useSetting();
 
   const postService = new PostService();
 
@@ -64,7 +65,7 @@ export default function SearchStateNavBar(props: SearchStateNavBarProps) {
   const [wait, setWait] = useState(false);
   const { resetTimer: resetChangeEndDetectTimer } = useCountdownTimer(
     handleChangeEnd,
-    AppConfig.SEARCH_INPUT_CHANGE_COUNTDOWN_TIME
+    settings.searchCountdown
   );
 
   function handleChangeEnd(keyword: string) {
@@ -83,7 +84,7 @@ export default function SearchStateNavBar(props: SearchStateNavBarProps) {
       if (keyword.length > 0) {
         setTimeout(() => {
           setWait(false);
-        }, AppConfig.SEARCH_VIEW_GAP_TIME);
+        }, settings.searchGapTime);
       }
     }
 

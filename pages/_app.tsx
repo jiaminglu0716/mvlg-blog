@@ -1,22 +1,13 @@
 import "tailwindcss/tailwind.css";
+import "../web/styles/markdown.scss";
 
 import type { AppProps } from "next/app";
 import Head from "next/head";
-import { Auth0Provider } from "@auth0/auth0-react";
 import "github-markdown-css/github-markdown.css";
-import "../web/styles/markdown.scss";
-import { SearchContextProvider } from "../web/contexts/searchContext";
-import { ServiceContextProvider } from "../web/contexts/serviceContext";
-import { LocaleContextProvider } from "../web/contexts/localeContext";
-import { useLocale } from "../web/hooks/useLocale";
+import { AppContextProvider } from "../web/contexts/appContext";
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (
-    // <Auth0Provider
-    //   clientId={process.env.NEXT_PUBLIC_AUTH0_CLIENT_ID}
-    //   domain={process.env.NEXT_PUBLIC_AUTH0_DOMAIN}
-    // >
-    // </Auth0Provider>
     <div>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -27,15 +18,11 @@ export default function MyApp({ Component, pageProps }: AppProps) {
         <title>mvlg</title>
       </Head>
 
-      <LocaleContextProvider>
-        <ServiceContextProvider>
-          <SearchContextProvider>
-            <main className="p-0 m-0">
-              <Component {...pageProps} />
-            </main>
-          </SearchContextProvider>
-        </ServiceContextProvider>
-      </LocaleContextProvider>
+      <AppContextProvider>
+        <main className="p-0 m-0">
+          <Component {...pageProps} />
+        </main>
+      </AppContextProvider>
     </div>
   );
 }

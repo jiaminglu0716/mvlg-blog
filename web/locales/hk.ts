@@ -12,6 +12,13 @@ export const service: ServiceConfig = {
   setting: {
     title: "设置中心",
     save: "保存",
+    language: "语言",
+    init: "初始化",
+    search: {
+      on: "搜索功能",
+      countdown: "搜索关闭倒计时",
+      gaptime: "搜索间隔计时",
+    },
   },
   stat: {
     posts: "博客",

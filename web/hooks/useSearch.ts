@@ -1,7 +1,11 @@
 import { useContext } from "react";
-import { SearchDispatchContext } from "../contexts/searchContext";
+import {
+  SearchContext,
+  SearchDispatchContext,
+} from "../contexts/searchContext";
 
 export function useSearch() {
+  const search = useContext(SearchContext);
   const setSearch = useContext(SearchDispatchContext);
 
   function toSearch() {
@@ -13,6 +17,7 @@ export function useSearch() {
   }
 
   return {
+    search,
     toSearch,
     toNavBar,
   };
