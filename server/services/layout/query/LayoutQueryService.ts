@@ -1,11 +1,11 @@
 import { Archive } from "../../post/domain/Archive";
-import { Post } from "../../post/domain/Post";
 import { PostQueryService } from "../../post/query/PostQueryService";
 import { QListPost } from "../../post/query/QListPost";
 import { QLayoutData } from "./QLayoutData";
 import profileData from "../../../../data/profile.json";
 import { updatedDict } from "../../../../lib/dict";
 import { imageLink } from "../../../common/utils/link";
+import { getPostByData } from "../../post/utils/postType";
 
 export class LayoutQueryService {
   private postService = new PostQueryService();
@@ -14,7 +14,7 @@ export class LayoutQueryService {
     const postService = this.postService;
     const posts = postService
       .listPosts(["link", "title", "date"])
-      .map((post: QListPost) => Post.post().load(post));
+      .map((post: QListPost) => getPostByData(post));
 
     const y1m = Archive.archive().posts(posts).sorted(false).linkByY1M();
 

@@ -1,33 +1,45 @@
-import { distinct } from "../../../../lib/array";
-import { SinglePipeTask } from "../../../../lib/pipeTask";
-import { imageLink } from "../../../common/utils/link";
-import { AggregateRoot } from "../../common/domain";
 import { Dictionary } from "revt-toolkit";
-import { transferMarkdownLink } from "../utils/markdown";
-
-export enum PostImageMode {
-  // load with base64 link
-  LOCAL = "local",
-  // load with current server
-  SERVER = "server",
-  // load with server api or image oss(current no offer)
-  // API = "api",
-}
+import { SinglePipeTask } from "../../../../../lib/pipeTask";
+import { imageLink } from "../../../../common/utils/link";
+import { AggregateRoot } from "../../../common/domain";
+import { transferMarkdownLink } from "../../utils/markdown";
+import { PostType } from "./PostType";
 
 export class Post extends AggregateRoot {
-  private _slugs: string[];
-  private _title?: string;
-  private _author?: string;
-  private _link?: string;
-  private _date: string;
-  private _content?: string;
-  private _excerpt?: string;
-  private _tags: string[];
-  private _star: boolean;
-  private _cover: string;
+  /**
+   * @PostType
+   */
+  protected _type: PostType;
+
+  /**
+   * @PostURI
+   */
+  protected _slugs: string[];
+  protected _link?: string;
+
+  /**
+   * @PostBaseMeta
+   */
+  protected _cover: string;
+  protected _title?: string;
+  protected _date: string;
+  protected _author?: string;
+  protected _excerpt?: string;
+
+  /**
+   * @PostContent
+   */
+  protected _content?: string;
+
+  /**
+   * @PostFeedback
+   */
+  protected _tags: string[];
+  protected _star: boolean;
 
   public constructor() {
     super();
+    this._type = PostType.POST;
     this._date = new Date().toUTCString();
     this._star = false;
     this._slugs = [];
@@ -41,7 +53,7 @@ export class Post extends AggregateRoot {
   }
 
   /**
-   * @Factory
+   * @PostAggregateRootFactory
    */
   public static post(): Post {
     return new Post();
@@ -110,53 +122,15 @@ export class Post extends AggregateRoot {
     return this;
   }
 
-  // public cover(
-  //   value?: string,
-  //   options?: {
-  //     mode?: PostImageMode;
-  //     baseUrl?: string;
-  //   }
-  // ): this {
-  //   if (!value) return this;
-
-  //   const imgpath = value.trim().startsWith("/")
-  //     ? `${options?.baseUrl.trim() ?? ""}${value}`
-  //     : value;
-
-  //   switch (options?.mode ?? PostImageMode.LOCAL) {
-  //     case PostImageMode.LOCAL:
-  //       this._cover = base64ImageUrl(imgpath);
-  //       break;
-  //     case PostImageMode.SERVER:
-  //       this._cover = value;
-  //       break;
-  //     default:
-  //       this._cover = value;
-  //   }
-  //   return this;
-  // }
-
-  /**
-   * @Filter
-   */
-  private contentFilter(): string {
-    return new SinglePipeTask<string>()
-      .adds([
-        (value: string) =>
-          transferMarkdownLink(value, (imglink) => imageLink(imglink)),
-      ])
-      .run(this._content);
-  }
-
   /**
    * @Getter
    */
-  public getDate(): Date {
-    return new Date(this._date);
+  public getType(): PostType {
+    return this._type;
   }
 
-  public getContent(): string {
-    return this._content == null ? this._content : this.contentFilter();
+  public getDate(): Date {
+    return new Date(this._date);
   }
 
   public getTitle(): string {
@@ -165,6 +139,10 @@ export class Post extends AggregateRoot {
 
   public getCover(): string {
     return this._cover;
+  }
+
+  public getContent(): string {
+    return this._content == null ? this._content : this.contentFilter();
   }
 
   public hasStar(): boolean {
@@ -180,6 +158,18 @@ export class Post extends AggregateRoot {
    */
   protected generateIDFunc(id: string): string {
     return `post-${id}`;
+  }
+
+  /**
+   * @Filter
+   */
+  private contentFilter(): string {
+    return new SinglePipeTask<string>()
+      .adds([
+        (value: string) =>
+          transferMarkdownLink(value, (imglink) => imageLink(imglink)),
+      ])
+      .run(this._content);
   }
 
   public get(fields?: string[]) {

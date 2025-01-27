@@ -2,20 +2,18 @@ import { useRouter } from "next/router";
 import PrevButtonSM from "../../../../components/button/prev-button-sm";
 import RadiusContainer from "../../../../components/container/radius-container";
 import Link from "next/link";
-import {
-  distanceToNow,
-  classNames,
-  pixel,
-  markdownToHtml,
-} from "../../../../common";
+import { classNames, pixel } from "../../../../common";
 import IconStar from "../../../../components/icons/icon-star";
 import IconShare from "../../../../components/icons/icon-share";
-import { useEffect, useState } from "react";
-import { Router } from "../../../../common";
 import { dateFormat } from "../../../../../lib/date";
 import { PostType, TagType } from "../../../../interfaces/api";
 import IconStarFill from "../../../../components/icons/icon-star-fill";
+import PostBody from "./post-body";
 
+/**
+ * @BUG
+ * Screen has problems in responsible adjustment
+ */
 export default function PostModule({ post }: { post: PostType }) {
   const router = useRouter();
 
@@ -40,12 +38,6 @@ export default function PostModule({ post }: { post: PostType }) {
   ];
 
   const sideBarHeight = sideBar.length * (sideLinkIconSize + 16);
-
-  const [content, setContent] = useState("");
-
-  useEffect(() => {
-    markdownToHtml(post.content).then(setContent);
-  }, []);
 
   return (
     <div className="flex justify-left mb-3 min-h-[70vh]">
@@ -87,24 +79,18 @@ export default function PostModule({ post }: { post: PostType }) {
               </p>
             )}
             <time className="flex mt-2 text-gray-700">
-              {/* {distanceToNow(new Date(post.date))} */}
               {dateFormat(new Date(post.date))}
             </time>
             {post.cover && (
-              <div className="m-auto p-5 max-w-[40rem]">
+              <div className="m-auto py-5 w-full max-w-[40rem]">
                 <img src={post.cover} />
               </div>
             )}
           </div>
-          {/* <hr className="w-[95%] m-auto" /> */}
           <article className="m-2 p-3 px-5 pb-7">
-            <div
-              // id="markdown"
-              className="my-2 m-auto px-5 text-justify markdown-body"
-              dangerouslySetInnerHTML={{
-                __html: content,
-              }}
-            />
+            <div className="my-2 m-auto px-5">
+              <PostBody post={post} />
+            </div>
           </article>
         </RadiusContainer>
       </div>

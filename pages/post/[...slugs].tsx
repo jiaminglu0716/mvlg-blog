@@ -31,6 +31,7 @@ type Params = {
 export async function getStaticProps({ params }: Params) {
   const postRepository = new PostRepository();
   const post: QListPost = postRepository.bySlugs(params.slugs).get();
+
   return {
     props: {
       post: {
@@ -44,6 +45,7 @@ export async function getStaticProps({ params }: Params) {
 export async function getStaticPaths() {
   const postQueryService = new PostQueryService();
   const posts = postQueryService.listPosts(["slugs"]);
+
   return {
     paths: posts.map(({ slugs }) => {
       return {

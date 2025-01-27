@@ -1,22 +1,8 @@
-import { Post } from "./Post";
 import { findDictFromArray, last, top } from "../../../../lib/array";
-
-export type ArchiveY2MD<T extends any> = {
-  year: number;
-  mds: {
-    month: number;
-    day: number;
-    data: T[];
-  }[];
-}[];
-
-export type ArchiveLinkY1M = {
-  year: number;
-  months: number[];
-}[];
+import { CollectionPost } from "../utils/postType";
 
 export class Archive {
-  private _posts: Post[];
+  private _posts: CollectionPost[];
 
   public constructor() {
     this._posts = [];
@@ -26,12 +12,12 @@ export class Archive {
     return new Archive();
   }
 
-  public posts(posts: Post[]): this {
+  public posts(posts: CollectionPost[]): this {
     this._posts = posts;
     return this;
   }
 
-  public post(post: Post): this {
+  public post(post: CollectionPost): this {
     this._posts.push(post);
     return this;
   }
@@ -57,11 +43,11 @@ export class Archive {
   }
 
   public byY2MD<T>(
-    format: (post: Post) => any = (post) => post
+    format: (post: CollectionPost) => any = (post) => post
   ): ArchiveY2MD<T> {
     const y2md = [];
 
-    this._posts.forEach((post: Post) => {
+    this._posts.forEach((post: CollectionPost) => {
       const date = post.getDate();
       const [year, month, day] = [
         date.getFullYear(),
@@ -102,7 +88,7 @@ export class Archive {
   public linkByY1M(): ArchiveLinkY1M {
     const y1m = [];
 
-    this._posts.forEach((post: Post) => {
+    this._posts.forEach((post: CollectionPost) => {
       const date = post.getDate();
       const [year, month] = [date.getFullYear(), date.getMonth() + 1];
 

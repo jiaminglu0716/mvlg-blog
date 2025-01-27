@@ -15,7 +15,7 @@ export function dateFormat(
   const o: any = {
     "y{4,}": date.getFullYear(),
     "M{2,}": date.getMonth() + 1, //Month
-    "d{2,}": date.getDay(), //Day
+    "d{2,}": date.getDate(), //Day
     "h{2,}": date.getHours(), //Hour
     "m{2,}": date.getMinutes(), //Minute
     "s{2,}": date.getSeconds(), //Second

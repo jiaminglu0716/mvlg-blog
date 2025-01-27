@@ -1,13 +1,12 @@
 import Image from "next/image";
 import RadiusContainer from "../../../../components/container/radius-container";
 import Link from "next/link";
-import { distanceToNow } from "../../../../common/utils/date";
 import IconStarFill from "../../../../components/icons/icon-star-fill";
-import { Router } from "../../../../common";
 import { link } from "../../../../common/link";
 import { dateFormat } from "../../../../../lib/date";
 import { PostType, TagType } from "../../../../interfaces/api";
 import { classNames } from "../../../../common";
+import { getPostTitle } from "../../../../common/utils/post";
 
 export default function PostListItem({ post }: { post: PostType }) {
   return (

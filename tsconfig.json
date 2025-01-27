@@ -1,11 +1,8 @@
 {
   "compilerOptions": {
     "target": "es2022",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "typeRoots": ["./types"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
@@ -27,15 +24,12 @@
   "include": [
     "**/*.ts",
     "**/*.tsx",
+    "**/*.d.ts",
     "next-env.d.ts",
-    "pages/archives/.[[...page]].tsx",
-    "pages/posts/.copy.tsx",
     "postcss.config.js",
     "remark-html.d.ts",
     "tailwind.config.js",
     ".next/types/**/*.ts"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }

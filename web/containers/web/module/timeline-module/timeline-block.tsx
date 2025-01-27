@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { classNames } from "../../../../common/utils";
+import { PostType } from "../../../../interfaces/api";
 
 export default function TimelineBlock({
   month,
@@ -10,10 +11,7 @@ export default function TimelineBlock({
   className?: string;
   month: number;
   day: number;
-  data: {
-    title: string;
-    link: string;
-  }[];
+  data: PostType[];
 }) {
   return (
     <div className={classNames("flex-1", className)}>
@@ -29,10 +27,10 @@ export default function TimelineBlock({
       </div>
       <div className="border-l border-slate-800 px-5 ml-3 -mt-1.5">
         <div className="text-left ">
-          {data.map((post, index: number) => {
+          {data.map((post: PostType, index: number) => {
             return (
               <p key={index} className="sm:ml-12 p-1.5 font-serif">
-                <Link href={post.link}>{post.title}</Link>
+                <Link href={post.href}>{post.title}</Link>
               </p>
             );
           })}

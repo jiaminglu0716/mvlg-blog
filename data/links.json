@@ -1,13 +1,51 @@
 {
   "links": [
     {
-      "category": "books",
+      "category": "Galgame",
       "list": [
         {
-          "title": "",
-          "link": ""
+          "title": "Mikocon",
+          "link": "http://www.mikocon.com"
+        },
+        {
+          "title": "GGbases",
+          "link": "http://www.ggbases.com"
         }
       ]
+    },
+    {
+      "category": "Galgame Review",
+      "list": [
+        {
+          "title": "VNDB",
+          "link": "http://www.vndb.org"
+        },
+        {
+          "title": "BangumiTV",
+          "link": "http://www.bgm.tv"
+        }
+      ]
+    },
+    {
+      "category": "CN-Anime",
+      "list": [
+        {
+          "title": "BiliBili",
+          "link": "https://www.bilibili.com"
+        }
+      ]
+    },
+    {
+      "category": "Comic",
+      "list": []
+    },
+    {
+      "category": "Book",
+      "list": []
+    },
+    {
+      "category": "Movie",
+      "list": []
     }
   ]
 }

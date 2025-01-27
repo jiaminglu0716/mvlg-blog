@@ -35,6 +35,7 @@ type Params = {
 export async function getStaticProps({ params }: Params) {
   const argpage = params.page;
   const postFields = [
+    "type",
     "slugs",
     "title",
     "excerpt",
@@ -43,6 +44,7 @@ export async function getStaticProps({ params }: Params) {
     "tags",
     "cover",
     "star",
+    "meta",
   ];
 
   // const page = parseInt(argpage) ?? 1;

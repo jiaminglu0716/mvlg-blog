@@ -1,12 +1,13 @@
 import { join } from "path";
 import { relativeFilePaths } from "../../../common/utils/file";
-import { Post } from "../domain/Post";
 import { QListPost } from "./QListPost";
 import { PostRepository } from "../infrastructure/PostRepository";
 import { QListTag } from "./QListTag";
 import { QPostStats } from "./QPostStat";
 import { Pagination } from "../../../../lib/pagination";
 import { QCountTag } from "./QCountTagList";
+import { CollectionPost, getPostExFieldsByType } from "../utils/postType";
+import { addNeedFields } from "../utils";
 
 export class PostQueryService {
   private readonly POST_DIR = "posts";
@@ -32,19 +33,22 @@ export class PostQueryService {
   }
 
   public listPostsByFilter(
-    filter: (post: Post) => boolean,
+    filter: (post: CollectionPost) => boolean,
     fields?: string[],
     pagination?: Pagination
   ): QListPost[] {
-    const links = this.listLinks();
+    addNeedFields(fields, ["type"]);
 
+    const links = this.listLinks();
     const posts = links
       .map((link) => this.postRepository.byLink(link))
       .filter(filter)
-      .sort((prev: Post, cur: Post) =>
+      .sort((prev: CollectionPost, cur: CollectionPost) =>
         prev.getDate().getTime() > cur.getDate().getTime() ? -1 : 1
       )
-      .map((post: Post) => post.get(fields));
+      .map((post: CollectionPost) =>
+        post.get(getPostExFieldsByType(post.getType(), fields))
+      );
 
     if (pagination) {
       return posts.slice(pagination.skip(), pagination.threshold(posts.length));
@@ -63,7 +67,7 @@ export class PostQueryService {
     pagination?: Pagination
   ): QListPost[] {
     return this.listPostsByFilter(
-      (post: Post) => post.hasTag(tag),
+      (post: CollectionPost) => post.hasTag(tag),
       fields,
       pagination
     );
@@ -75,7 +79,7 @@ export class PostQueryService {
     pagination?: Pagination
   ): QListPost[] {
     return this.listPostsByFilter(
-      (post: Post) =>
+      (post: CollectionPost) =>
         tags
           .map((tag: string) => post.hasTag(tag))
           .reduce((prev, cur) => prev && cur),
@@ -106,7 +110,11 @@ export class PostQueryService {
   public listStats(): QPostStats {
     const tagset = new Set<string>();
     const posts = this.listPosts(["title", "star", "tags"]);
-    const stats: QPostStats = { posts: posts.length, stars: 0, tags: 0 };
+    const stats: QPostStats = {
+      posts: posts.length,
+      stars: 0,
+      tags: 0,
+    };
 
     posts.forEach((post: QListPost) => {
       post?.tags?.forEach((tag) => tagset.add(tag));
@@ -141,7 +149,7 @@ export class PostQueryService {
   public listByTitle(keyword: string, limit?: number): QListPost[] {
     let count = 0;
     return this.listPostsByFilter(
-      (post: Post) => {
+      (post: CollectionPost) => {
         const status = this.match(
           post.getTitle().toLowerCase(),
           keyword.toLowerCase()

@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import useLocaleService from "../../web/hooks/useLocaleService";
 import { useLocale } from "../../web/hooks/useLocale";
 import useStorage from "../../web/hooks/useStorage";
+import SimpleLineTable from "../../web/components/common/table/simple-line-table";
 
 function HomePage({}: InferGetStaticPropsType<typeof getStaticProps>) {
   // useEffect(() => {
@@ -30,6 +31,15 @@ function HomePage({}: InferGetStaticPropsType<typeof getStaticProps>) {
           <ProfileBlockContainer stat={stat} />
         </div>
       </div> */}
+      123
+      <SimpleLineTable
+        data={[
+          [1, 2, 3],
+          [4, 5, 6],
+        ]}
+        title={["1", "2", "3"]}
+        direction="top"
+      />
     </>
   );
 }

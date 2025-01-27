@@ -27,7 +27,11 @@ export type ShareLinkType = {
   link: string;
 };
 
-export type PostType = {
+/**
+ * @PostType
+ */
+export type BasePostType = {
+  type?: string;
   slugs?: string;
   title?: string;
   author?: string;
@@ -41,6 +45,19 @@ export type PostType = {
   href?: string;
 };
 
+export type CommonPostType = BasePostType;
+
+export type GalgameReviewPostType = BasePostType & {
+  meta: GalgameMeta;
+  playrecs: GalgamePlaytimeRecord[];
+  reviews: GalgamePlayReviewRecord[];
+};
+
+export type PostType = GalgameReviewPostType & CommonPostType;
+
+/**
+ * @TagType
+ */
 export type TagType = {
   title: string;
   href: string;

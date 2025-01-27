@@ -1,6 +1,11 @@
 import { SVGProps } from "./image/svg";
 
 /**
+ * Base Props
+ */
+export type Direction = "top" | "bottom" | "left" | "right";
+
+/**
  * Icon-Props
  */
 export type IconProps = Omit<SVGProps, "children">;

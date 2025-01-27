@@ -22,3 +22,13 @@ export function last(array: any[]) {
 export function distinct(array: any[]) {
   return Array.from(new Set(array));
 }
+
+export function range(
+  start: number,
+  end: number,
+  callback: (index: number) => void
+) {
+  for (let i = start; i < end; i++) {
+    callback(i);
+  }
+}

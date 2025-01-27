@@ -2,6 +2,9 @@ import Link from "next/link";
 import ButtonCenter from "../../../../components/button/button-center";
 import { TagType } from "../../../../interfaces/api";
 
+/**
+ * @Future add count number at the side of tag
+ */
 export default function TagListItem({ tag }: { tag: TagType }) {
   return (
     <ButtonCenter className="rounded-full w-auto m-1.5 py-1.5 px-4 ">

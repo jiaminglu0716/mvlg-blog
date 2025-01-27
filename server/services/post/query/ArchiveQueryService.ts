@@ -2,9 +2,10 @@ import { getDayTimestamp } from "../../../../lib/date";
 import { and, eq } from "revt-toolkit";
 import { PostQueryService } from "./PostQueryService";
 import { QListPost } from "./QListPost";
-import { Post } from "../domain/Post";
+// import { Post } from "../domain/Post";
 import { distinct } from "../../../../lib/array";
 import { Pagination } from "../../../../lib/pagination";
+import { CollectionPost, getPostByData } from "../utils/postType";
 
 export class ArchiveQueryService {
   private readonly postQueryService = new PostQueryService();
@@ -53,7 +54,7 @@ export class ArchiveQueryService {
     const dates = this.postQueryService
       .listPosts(["date"])
       .map((post: QListPost) => {
-        const date = Post.post().load(post).getDate();
+        const date = getPostByData(post).getDate();
         return `${date.getFullYear()}/${date.getMonth() + 1}`;
       });
 
@@ -63,7 +64,7 @@ export class ArchiveQueryService {
   public listYears(): number[] {
     const years = this.postQueryService
       .listPosts(["date"])
-      .map((post: QListPost) => Post.post().load(post).getDate().getFullYear());
+      .map((post: QListPost) => getPostByData(post).getDate().getFullYear());
 
     return distinct(years);
   }
@@ -74,7 +75,7 @@ export class ArchiveQueryService {
     pagination?: Pagination
   ): QListPost[] {
     return this.postQueryService.listPostsByFilter(
-      (post: Post) =>
+      (post: CollectionPost) =>
         eq(getDayTimestamp(date), getDayTimestamp(post.getDate())),
       fields,
       pagination
@@ -87,7 +88,8 @@ export class ArchiveQueryService {
     pagination?: Pagination
   ): QListPost[] {
     return this.postQueryService.listPostsByFilter(
-      (post: Post) => eq(date.getFullYear(), post.getDate().getFullYear()),
+      (post: CollectionPost) =>
+        eq(date.getFullYear(), post.getDate().getFullYear()),
       fields,
       pagination
     );
@@ -99,7 +101,7 @@ export class ArchiveQueryService {
     pagination?: Pagination
   ): QListPost[] {
     return this.postQueryService.listPostsByFilter(
-      (post: Post) =>
+      (post: CollectionPost) =>
         and(
           eq(date.getFullYear(), post.getDate().getFullYear()),
           eq(date.getMonth(), post.getDate().getMonth())

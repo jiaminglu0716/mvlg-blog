@@ -15,7 +15,7 @@ export default function TagListContainer({ tags }: { tags: TagType[] }) {
           </span>
         </ButtonCenter>
       </div>
-      <div className="flex flex-wrap mt-3">
+      <div className="flex flex-wrap mt-3 justify-center">
         {tags.length ? (
           tags.map((tag, index: number) => {
             return <TagListItem key={index} tag={tag} />;

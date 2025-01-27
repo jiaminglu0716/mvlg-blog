@@ -1,10 +1,11 @@
 import "tailwindcss/tailwind.css";
-import "../web/styles/markdown.scss";
 
 import type { AppProps } from "next/app";
 import Head from "next/head";
 import "github-markdown-css/github-markdown.css";
 import { AppContextProvider } from "../web/contexts/appContext";
+
+import "../web/styles/markdown.scss";
 
 export default function MyApp({ Component, pageProps }: AppProps) {
   return (

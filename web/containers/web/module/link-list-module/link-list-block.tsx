@@ -1,10 +1,11 @@
+import Link from "next/link";
 import ButtonSM from "../../../../components/button/button-sm";
 import RadiusContainer from "../../../../components/container/radius-container";
 import IconCircle from "../../../../components/icons/icon-circle";
 
 export default function LinkListBlock({ link }: { link: any }) {
   return (
-    <div className="inline-flex w-full p-2 mt-2">
+    <Link className="inline-flex w-full p-2 mt-2" href={link.link}>
       <div>
         <ButtonSM>
           <IconCircle size="25" />
@@ -13,6 +14,6 @@ export default function LinkListBlock({ link }: { link: any }) {
       <RadiusContainer className="ml-3 px-2 py-3 text-sm font-serif font-medium">
         {link.title}
       </RadiusContainer>
-    </div>
+    </Link>
   );
 }

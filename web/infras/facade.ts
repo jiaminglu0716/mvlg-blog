@@ -3,6 +3,7 @@ import { QLayoutData } from "../../server/services/layout/query/QLayoutData";
 import { QListPost } from "../../server/services/post/query/QListPost";
 import { QListTag } from "../../server/services/post/query/QListTag";
 import { Router } from "../common";
+import { getPostTitle } from "../common/utils/post";
 import {
   LayoutDataType,
   TagType,
@@ -24,8 +25,9 @@ export class Facade {
   }
 
   public static toPost<T extends PostType>(post: QListPost): T {
-    return updatedDict<any>(post, (post) => {
+    const newPost = updatedDict<any>(post, (post) => {
       post.href = Router.post(post.link);
+      post.title = getPostTitle(post);
 
       if (post.tags)
         post.tags = post.tags.map((tag: string): TagType => {
@@ -37,6 +39,8 @@ export class Facade {
 
       return post;
     });
+
+    return newPost;
   }
 
   public static toPosts<T extends PostType>(posts: QListPost[]): T[] {
@@ -52,5 +56,16 @@ export class Facade {
 
   public static toTags<T extends TagType>(tags: QListTag[]): T[] {
     return tags.map<T>(this.toTag);
+  }
+
+  public static toArchivesY2MD(y2md: ArchiveY2MD<any>): ArchiveY2MD<PostType> {
+    y2md = y2md.map((value) => {
+      value.mds = value.mds.map((md) => {
+        md.data = this.toPosts(md.data);
+        return md;
+      });
+      return value;
+    });
+    return y2md;
   }
 }

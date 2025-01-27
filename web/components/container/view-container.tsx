@@ -8,7 +8,7 @@ export default function ViewContainer(props: DivProps) {
   return (
     <RadiusContainer
       className={classNames(
-        "max-w-3xl sm:px-5 py-2 bg-white/[0] shadow-none backdrop-blur-none",
+        "max-w-3xl sm:px-5 py-2 bg-white/[0] shadow-none backdrop-filter-none",
         className
       )}
       {...subprops}
