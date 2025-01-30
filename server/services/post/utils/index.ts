@@ -14,7 +14,7 @@ export function fixDate(date) {
 }
 
 export function addNeedField(fields: string[], needField: string) {
-  if (!fields.includes(needField)) {
+  if (fields && !fields.includes(needField)) {
     fields.push(needField);
   }
 }

@@ -134,7 +134,12 @@ export function getPostByData(post: QListPost): CollectionPost {
   }
 }
 
-export function getPostExFieldsByType(type: PostType, fields): string[] {
+export function getPostExFieldsByType(
+  type: PostType,
+  fields?: string[]
+): string[] {
+  if (!fields) return;
+
   const postFields = [...fields];
 
   if (type == PostType.GALGAME_REVIEW) {
