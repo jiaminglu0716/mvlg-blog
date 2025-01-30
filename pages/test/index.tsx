@@ -31,15 +31,6 @@ function HomePage({}: InferGetStaticPropsType<typeof getStaticProps>) {
           <ProfileBlockContainer stat={stat} />
         </div>
       </div> */}
-      123
-      <SimpleLineTable
-        data={[
-          [1, 2, 3],
-          [4, 5, 6],
-        ]}
-        title={["1", "2", "3"]}
-        direction="top"
-      />
     </>
   );
 }
