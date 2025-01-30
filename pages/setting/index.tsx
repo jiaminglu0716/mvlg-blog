@@ -35,7 +35,14 @@ export default function SettingsPage({
   const [form, setForm] = useState<AppSettingsConfig>(deepClone(settings));
 
   // Build a state dict to rec seperated items
-  const states = {};
+  // const states = {};
+  // Object.keys(settings).forEach((key: string) => {
+  //   states[key] = useState(() => {
+  //     if (key == "locale") return lang;
+  //     return form[key];
+  //   });
+  // });
+  const states = useState();
   Object.keys(settings).forEach((key: string) => {
     states[key] = useState(() => {
       if (key == "locale") return lang;
@@ -162,7 +169,7 @@ export default function SettingsPage({
     const init = getInitializedSettings();
 
     Object.keys(form).forEach((key: string) => {
-      const [_, setValue] = states[key];
+      const [, setValue] = states[key];
       setValue(init[key]);
     });
 

@@ -1,4 +1,4 @@
-import { deepClone, Dictionary, mkpath, path } from "revt-toolkit";
+import { deepClone, Dictionary, mkpath } from "revt-toolkit";
 
 /**
  * Update target dict and return new dict.

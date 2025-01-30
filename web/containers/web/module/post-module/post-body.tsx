@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { markdownToHtml } from "../../../../common";
-import { PostType } from "../../../../interfaces/api";
+import { GalgameReviewPostType, PostType } from "../../../../interfaces/api";
 import PostHtmlBody from "./post-html-body";
 import PostReviewList from "./post-review-list";
 import SimpleLineTable from "../../../../components/common/table/simple-line-table";
@@ -16,17 +16,18 @@ function getPostBodyItemsByType(post: PostType) {
 
   switch (type) {
     case "galgame_review":
+      const grpost = post as GalgameReviewPostType;
       return (
         <>
           <SimpleKVTable
             className="mb-10"
-            keys={Object.keys(post.meta)}
-            values={Object.values(post.meta)}
+            keys={Object.keys(grpost?.meta)}
+            values={Object.values(grpost?.meta)}
           />
           {content && <PostHtmlBody className="py-5" content={content} />}
           <div className="border-4 rounded-xl">
             <SimpleLineTable
-              data={post.playrecs.map((playrec) => Object.values(playrec))}
+              data={grpost?.playrecs.map((playrec) => Object.values(playrec))}
               title={[
                 "Platform",
                 "Start",
@@ -39,7 +40,7 @@ function getPostBodyItemsByType(post: PostType) {
               index={true}
             />
           </div>
-          <PostReviewList className="mt-10" reviews={post?.reviews} />
+          <PostReviewList className="mt-10" reviews={grpost?.reviews} />
         </>
       );
     default:

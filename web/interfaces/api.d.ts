@@ -53,7 +53,7 @@ export type GalgameReviewPostType = BasePostType & {
   reviews: GalgamePlayReviewRecord[];
 };
 
-export type PostType = GalgameReviewPostType & CommonPostType;
+export type PostType = GalgameReviewPostType | CommonPostType;
 
 /**
  * @TagType

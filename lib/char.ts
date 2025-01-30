@@ -64,7 +64,7 @@ export class Char {
   public static countStringWidth(str: string) {
     let count = 0;
 
-    for (let char of str) {
+    for (const char of str) {
       const width = this.getCharWidth(char);
       count += width;
     }
